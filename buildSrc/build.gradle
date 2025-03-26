@@ -1,6 +1,7 @@
 plugins {
 	id 'java-gradle-plugin'
 	id 'checkstyle'
+    id 'org.ec4j.editorconfig' version '0.1.0'
 }
 
 repositories {
@@ -63,3 +64,5 @@ test {
 }
 
 jar.dependsOn check
+
+tasks.build.dependsOn("editorconfigCheck")
