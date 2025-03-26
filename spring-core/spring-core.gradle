@@ -3,7 +3,7 @@ import org.springframework.build.shadow.ShadowSource
 
 plugins {
 	id 'org.springframework.build.multiReleaseJar'
-//    id 'org.ec4j.editorconfig' version '0.1.0'
+    id 'org.ec4j.editorconfig' version '0.1.0'
 }
 
 description = "Spring Core"
@@ -164,4 +164,4 @@ eclipse {
 
 tasks['eclipse'].dependsOn(javapoetRepackJar, javapoetSourceJar, objenesisRepackJar, objenesisSourceJar)
 
-//tasks.build.dependsOn("editorconfigCheck")
+tasks.build.dependsOn("editorconfigCheck")
