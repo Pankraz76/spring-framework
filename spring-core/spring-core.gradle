@@ -4,6 +4,7 @@ import org.springframework.build.shadow.ShadowSource
 plugins {
 	id 'org.springframework.build.multiReleaseJar'
 	id 'pmd'
+	id 'org.ec4j.editorconfig' version '0.1.0'
 }
 
 description = "Spring Core"
