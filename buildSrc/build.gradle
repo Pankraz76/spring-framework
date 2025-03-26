@@ -1,11 +1,8 @@
 plugins {
 	id 'java-gradle-plugin'
 	id 'checkstyle'
-//    id 'org.ec4j.editorconfig' version '0.1.0'
 }
-allprojects {
-    apply(plugin: 'org.ec4j.editorconfig')
-}
+
 repositories {
 	mavenCentral()
 	gradlePluginPortal()
@@ -66,7 +63,3 @@ test {
 }
 
 jar.dependsOn check
-
-//pmd {
-//	ruleSets = ["category/java/bestpractices.xml"]
-//}
