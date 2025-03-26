@@ -3,7 +3,9 @@ plugins {
 	id 'checkstyle'
 //    id 'org.ec4j.editorconfig' version '0.1.0'
 }
-
+allprojects {
+    apply(plugin: 'org.ec4j.editorconfig')
+}
 repositories {
 	mavenCentral()
 	gradlePluginPortal()
