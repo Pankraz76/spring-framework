@@ -88,7 +88,7 @@ public abstract class ArchitectureCheck extends DefaultTask {
 			StringBuilder report = new StringBuilder();
 			for (EvaluationResult violation : violations) {
 				report.append(violation.getFailureReport());
-				report.append("%n".formatted());
+				report.append(String.format("%n"));
 			}
 			Files.writeString(outputFile.toPath(), report.toString(), StandardOpenOption.CREATE,
 					StandardOpenOption.TRUNCATE_EXISTING);

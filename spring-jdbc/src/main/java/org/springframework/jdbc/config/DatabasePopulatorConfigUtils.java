@@ -16,7 +16,11 @@
 
 package org.springframework.jdbc.config;
 
+import java.util.List;
+
 import org.jspecify.annotations.Nullable;
+import org.w3c.dom.Element;
+
 import org.springframework.beans.BeanMetadataElement;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.TypedStringValue;
@@ -26,9 +30,6 @@ import org.springframework.jdbc.datasource.init.CompositeDatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.util.StringUtils;
 import org.springframework.util.xml.DomUtils;
-import org.w3c.dom.Element;
-
-import java.util.List;
 
 /**
  * Internal utility methods used with JDBC configuration.
@@ -41,7 +42,6 @@ abstract class DatabasePopulatorConfigUtils {
 
 	public static void setDatabasePopulator(Element element, BeanDefinitionBuilder builder) {
 		List<Element> scripts = DomUtils.getChildElementsByTagName(element, "script");
-//		final var scripts = DomUtils.getChildElementsByTagName(element, "script");
 		if (!scripts.isEmpty()) {
 			builder.addPropertyValue("databasePopulator", createDatabasePopulator(element, scripts, "INIT"));
 			builder.addPropertyValue("databaseCleaner", createDatabasePopulator(element, scripts, "DESTROY"));
