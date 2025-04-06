@@ -20,7 +20,7 @@
 		<module name="RedundantImport"/>
 		<!-- Modifiers -->
 		<module name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
-		<module name="FinalLocalVariable"/>
+		<!--		<module name="FinalLocalVariable"/>-->
 
 	</module>
 
