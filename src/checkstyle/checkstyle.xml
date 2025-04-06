@@ -87,7 +87,8 @@
 			<property name="names" value="logger"/>
 		</module>
 		<module name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck"/>
-
+		ild
+		<module name="FinalLocalVariable"/>
 		<!-- Imports -->
 		<module name="AvoidStarImport"/>
 		<module name="UnusedImports"/>

@@ -10,8 +10,8 @@ rootProject {
         rewrite("org.openrewrite.recipe:rewrite-migrate-java:3.4.0")
     }
     rewrite {
-        activeRecipe("org.openrewrite.java.migrate.UpgradeToJava21")
-//        activeRecipe("org.openrewrite.staticanalysis.FinalizeLocalVariables")
+        activeRecipe("org.openrewrite.staticanalysis.FinalizeLocalVariables")
+//        activeRecipe("org.openrewrite.java.migrate.UpgradeToJava21")
 //        activeRecipe("org.openrewrite.java.migrate.lang.var.UseVarForObject")
 //        activeRecipe("org.openrewrite.java.migrate.lang.var.UseVarForPrimitive")
         setExportDatatables(true)
