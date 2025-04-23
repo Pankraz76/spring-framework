@@ -13,6 +13,7 @@ rootProject {
 //        activeRecipe("org.openrewrite.staticanalysis.FinalizeLocalVariables")
 //        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
         activeRecipe("org.openrewrite.java.migrate.UpgradeToJava17")
+//        activeRecipe("org.openrewrite.java.migrate.UpgradeToJava21")
 //        activeRecipe("org.openrewrite.java.migrate.lang.var.UseVarForObject")
 //        activeRecipe("org.openrewrite.java.migrate.lang.var.UseVarForPrimitive")
         setExportDatatables(true)
