@@ -15,8 +15,8 @@ rootProject {
 //        activeRecipe("org.openrewrite.java.migrate.lang.var.UseVarForObject")
 //        activeRecipe("org.openrewrite.java.migrate.lang.var.UseVarForPrimitive")
 //        activeRecipe("org.openrewrite.staticanalysis.FinalizeLocalVariables")
-        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedLocalVariables")
-//        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateFields")
+//        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedLocalVariables")
+        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateFields")
 //        activeRecipe("org.openrewrite.staticanalysis.RemoveUnusedPrivateMethods")
         setExportDatatables(true)
     }
