@@ -61,10 +61,7 @@ abstract public class FastMember
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || !(o instanceof FastMember other)) {
-            return false;
-        }
-        return member.equals(other.member);
-    }
+		return o != null && o instanceof FastMember other && member.equals(other.member);
+	}
 
 }

@@ -655,10 +655,7 @@ public class CodeFlow implements Opcodes {
 		if (descriptor == null) {
 			return false;
 		}
-		if (isPrimitiveOrUnboxableSupportedNumber(descriptor)) {
-			return true;
-		}
-		return ("Z".equals(descriptor) || descriptor.equals("Ljava/lang/Boolean"));
+		return isPrimitiveOrUnboxableSupportedNumber(descriptor) || ("Z".equals(descriptor) || descriptor.equals("Ljava/lang/Boolean"));
 	}
 
 	/**

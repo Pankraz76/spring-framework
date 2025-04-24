@@ -233,10 +233,7 @@ public final class ModelFactory {
 		if (attributeName.startsWith(BindingResult.MODEL_KEY_PREFIX)) {
 			return false;
 		}
-		if (this.sessionAttributesHandler.isHandlerSessionAttribute(attributeName, value.getClass())) {
-			return true;
-		}
-		return (!value.getClass().isArray() && !(value instanceof Collection) &&
+		return this.sessionAttributesHandler.isHandlerSessionAttribute(attributeName, value.getClass()) || (!value.getClass().isArray() && !(value instanceof Collection) &&
 				!(value instanceof Map) && !BeanUtils.isSimpleValueType(value.getClass()));
 	}
 

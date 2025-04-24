@@ -722,11 +722,8 @@ public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport
 
 			// Consistent with CorsFilter, ignore ASYNC dispatches
 			WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
-			if (asyncManager.hasConcurrentResult()) {
-				return true;
-			}
+			return asyncManager.hasConcurrentResult() || invokeCorsProcessor(request, response);
 
-			return invokeCorsProcessor(request, response);
 		}
 
 		protected boolean invokeCorsProcessor(

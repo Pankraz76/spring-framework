@@ -205,10 +205,7 @@ public class StaticListableBeanFactory implements ListableBeanFactory {
 	public boolean isSingleton(String name) throws NoSuchBeanDefinitionException {
 		Object bean = getBean(name);
 		// In case of FactoryBean, return singleton status of created object.
-		if (bean instanceof FactoryBean<?> factoryBean) {
-			return factoryBean.isSingleton();
-		}
-		return true;
+		return !(bean instanceof FactoryBean<?> factoryBean) || factoryBean.isSingleton();
 	}
 
 	@Override

@@ -238,10 +238,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	}
 
 	private boolean isQuotedString(String s) {
-		if (s.length() < 2) {
-			return false;
-		}
-		return ((s.startsWith("\"") && s.endsWith("\"")) || (s.startsWith("'") && s.endsWith("'")));
+		return s.length() >= 2 && ((s.startsWith("\"") && s.endsWith("\"")) || (s.startsWith("'") && s.endsWith("'")));
 	}
 
 	protected String unquote(String s) {
@@ -417,10 +414,7 @@ public class MimeType implements Comparable<MimeType>, Serializable {
 	 * @since 5.1.4
 	 */
 	public boolean equalsTypeAndSubtype(@Nullable MimeType other) {
-		if (other == null) {
-			return false;
-		}
-		return this.type.equalsIgnoreCase(other.type) && this.subtype.equalsIgnoreCase(other.subtype);
+		return other != null && this.type.equalsIgnoreCase(other.type) && this.subtype.equalsIgnoreCase(other.subtype);
 	}
 
 	/**

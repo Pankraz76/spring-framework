@@ -249,10 +249,7 @@ public abstract class ServletRequestPathUtils {
 			if (this == other) {
 				return true;
 			}
-			if (other == null || getClass() != other.getClass()) {
-				return false;
-			}
-			return (this.requestPath.equals(((ServletRequestPath) other).requestPath));
+			return other != null && getClass() == other.getClass() && (this.requestPath.equals(((ServletRequestPath) other).requestPath));
 		}
 
 		@Override

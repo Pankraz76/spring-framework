@@ -167,12 +167,7 @@ class NotificationListenerTests extends AbstractMBeanServerTests {
 		NotificationListenerBean listenerBean = new NotificationListenerBean();
 		listenerBean.setNotificationListener(listener);
 		listenerBean.setNotificationFilter(notification -> {
-			if (notification instanceof AttributeChangeNotification changeNotification) {
-				return "Name".equals(changeNotification.getAttributeName());
-			}
-			else {
-				return false;
-			}
+			return notification instanceof AttributeChangeNotification changeNotification && "Name".equals(changeNotification.getAttributeName());
 		});
 
 		MBeanExporter exporter = new MBeanExporter();

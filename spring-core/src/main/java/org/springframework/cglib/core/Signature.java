@@ -64,11 +64,8 @@ public class Signature {
         if (o == null) {
 			return false;
 		}
-        if (!(o instanceof Signature other)) {
-			return false;
-		}
-        return name.equals(other.name) && desc.equals(other.desc);
-    }
+		return o instanceof Signature other && name.equals(other.name) && desc.equals(other.desc);
+	}
 
     @Override
 	public int hashCode() {

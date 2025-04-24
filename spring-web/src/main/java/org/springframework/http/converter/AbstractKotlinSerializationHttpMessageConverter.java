@@ -83,22 +83,12 @@ public abstract class AbstractKotlinSerializationHttpMessageConverter<T extends 
 
 	@Override
 	public boolean canRead(ResolvableType type, @Nullable MediaType mediaType) {
-		if (!ResolvableType.NONE.equals(type) && serializer(type) != null) {
-			return canRead(mediaType);
-		}
-		else {
-			return false;
-		}
+		return !ResolvableType.NONE.equals(type) && serializer(type) != null && canRead(mediaType);
 	}
 
 	@Override
 	public boolean canWrite(ResolvableType type, Class<?> clazz, @Nullable MediaType mediaType) {
-		if (!ResolvableType.NONE.equals(type) && serializer(type) != null) {
-			return canWrite(mediaType);
-		}
-		else {
-			return false;
-		}
+		return !ResolvableType.NONE.equals(type) && serializer(type) != null && canWrite(mediaType);
 	}
 
 	@Override

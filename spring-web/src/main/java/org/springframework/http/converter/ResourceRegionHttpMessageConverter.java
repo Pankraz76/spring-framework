@@ -98,10 +98,7 @@ public class ResourceRegionHttpMessageConverter extends AbstractGenericHttpMessa
 			return false;
 		}
 		Type typeArgument = parameterizedType.getActualTypeArguments()[0];
-		if (!(typeArgument instanceof Class<?> typeArgumentClass)) {
-			return false;
-		}
-		return ResourceRegion.class.isAssignableFrom(typeArgumentClass);
+		return typeArgument instanceof Class<?> typeArgumentClass && ResourceRegion.class.isAssignableFrom(typeArgumentClass);
 	}
 
 	@Override

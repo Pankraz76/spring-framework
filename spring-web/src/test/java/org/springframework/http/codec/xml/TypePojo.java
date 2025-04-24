@@ -57,10 +57,7 @@ public class TypePojo {
 		if (this == o) {
 			return true;
 		}
-		if (o instanceof TypePojo other) {
-			return this.foo.equals(other.foo) && this.bar.equals(other.bar);
-		}
-		return false;
+		return o instanceof TypePojo other && this.foo.equals(other.foo) && this.bar.equals(other.bar);
 	}
 
 	@Override

@@ -33,10 +33,7 @@ abstract public class MethodInfo {
 		if (o == null) {
 			return false;
 		}
-		if (!(o instanceof MethodInfo other)) {
-			return false;
-		}
-		return getSignature().equals(other.getSignature());
+		return o instanceof MethodInfo other && getSignature().equals(other.getSignature());
 	}
 
 	@Override

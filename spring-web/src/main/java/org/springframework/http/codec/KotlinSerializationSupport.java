@@ -95,13 +95,8 @@ public abstract class KotlinSerializationSupport<T extends SerialFormat> {
 	 */
 	protected final boolean canSerialize(ResolvableType type, @Nullable MimeType mimeType) {
 		KSerializer<Object> serializer = serializer(type);
-		if (serializer == null) {
-			return false;
-		}
-		else {
-			return (supports(mimeType) && !String.class.isAssignableFrom(type.toClass()) &&
-					!ServerSentEvent.class.isAssignableFrom(type.toClass()));
-		}
+		return serializer != null && (supports(mimeType) && !String.class.isAssignableFrom(type.toClass()) &&
+				!ServerSentEvent.class.isAssignableFrom(type.toClass()));
 
 	}
 

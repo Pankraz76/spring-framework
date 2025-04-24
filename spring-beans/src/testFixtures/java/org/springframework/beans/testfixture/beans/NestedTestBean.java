@@ -46,10 +46,7 @@ public class NestedTestBean implements INestedTestBean {
 
 	@Override
 	public boolean equals(@Nullable Object obj) {
-		if (!(obj instanceof NestedTestBean ntb)) {
-			return false;
-		}
-		return this.company.equals(ntb.company);
+		return obj instanceof NestedTestBean ntb && this.company.equals(ntb.company);
 	}
 
 	@Override

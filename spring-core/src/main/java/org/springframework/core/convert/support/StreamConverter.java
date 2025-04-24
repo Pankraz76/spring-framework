@@ -61,10 +61,7 @@ class StreamConverter implements ConditionalGenericConverter {
 		if (sourceType.isAssignableTo(STREAM_TYPE)) {
 			return matchesFromStream(sourceType.getElementTypeDescriptor(), targetType);
 		}
-		if (targetType.isAssignableTo(STREAM_TYPE)) {
-			return matchesToStream(targetType.getElementTypeDescriptor(), sourceType);
-		}
-		return false;
+		return targetType.isAssignableTo(STREAM_TYPE) && matchesToStream(targetType.getElementTypeDescriptor(), sourceType);
 	}
 
 	/**

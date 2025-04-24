@@ -141,10 +141,7 @@ class MockitoBeanOverrideHandler extends AbstractMockitoBeanOverrideHandler {
 		if (other == this) {
 			return true;
 		}
-		if (other == null || other.getClass() != getClass()) {
-			return false;
-		}
-		return (other instanceof MockitoBeanOverrideHandler that && super.equals(that) &&
+		return other != null && other.getClass() == getClass() && (other instanceof MockitoBeanOverrideHandler that && super.equals(that) &&
 				(this.serializable == that.serializable) && (this.answers == that.answers) &&
 				Objects.equals(this.extraInterfaces, that.extraInterfaces));
 	}

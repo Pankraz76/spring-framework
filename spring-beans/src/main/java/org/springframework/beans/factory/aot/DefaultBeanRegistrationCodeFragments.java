@@ -156,10 +156,7 @@ class DefaultBeanRegistrationCodeFragments implements BeanRegistrationCodeFragme
 		if (beanType.hasGenerics()) {
 			return true;
 		}
-		if (beanClass != null && this.registeredBean.getMergedBeanDefinition().getFactoryMethodName() != null) {
-			return true;
-		}
-		return (beanClass != null && !beanType.toClass().equals(ClassUtils.getUserClass(beanClass)));
+		return beanClass != null && this.registeredBean.getMergedBeanDefinition().getFactoryMethodName() != null || (beanClass != null && !beanType.toClass().equals(ClassUtils.getUserClass(beanClass)));
 	}
 
 	@Override

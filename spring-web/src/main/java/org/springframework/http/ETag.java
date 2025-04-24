@@ -60,11 +60,8 @@ public record ETag(String tag, boolean weak) {
 			return false;
 		}
 
-		if (strong && (weak() || other.weak())) {
-			return false;
-		}
+		return (!strong || (!weak() && !other.weak())) && tag().equals(other.tag());
 
-		return tag().equals(other.tag());
 	}
 
 	@Override

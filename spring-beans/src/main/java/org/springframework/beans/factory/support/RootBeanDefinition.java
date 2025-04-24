@@ -532,10 +532,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	 */
 	boolean hasAnyExternallyManagedInitMethod(String initMethod) {
 		synchronized (this.postProcessingLock) {
-			if (isExternallyManagedInitMethod(initMethod)) {
-				return true;
-			}
-			return hasAnyExternallyManagedMethod(this.externallyManagedInitMethods, initMethod);
+			return isExternallyManagedInitMethod(initMethod) || hasAnyExternallyManagedMethod(this.externallyManagedInitMethods, initMethod);
 		}
 	}
 
@@ -607,10 +604,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	 */
 	boolean hasAnyExternallyManagedDestroyMethod(String destroyMethod) {
 		synchronized (this.postProcessingLock) {
-			if (isExternallyManagedDestroyMethod(destroyMethod)) {
-				return true;
-			}
-			return hasAnyExternallyManagedMethod(this.externallyManagedDestroyMethods, destroyMethod);
+			return isExternallyManagedDestroyMethod(destroyMethod) || hasAnyExternallyManagedMethod(this.externallyManagedDestroyMethods, destroyMethod);
 		}
 	}
 

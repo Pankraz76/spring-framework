@@ -101,10 +101,7 @@ implements CallbackFilter
         if (o == null) {
             return false;
         }
-        if (!(o instanceof CallbackHelper other)) {
-            return false;
-        }
-        return this.methodMap.equals(other.methodMap);
-    }
+		return o instanceof CallbackHelper other && this.methodMap.equals(other.methodMap);
+	}
 
 }

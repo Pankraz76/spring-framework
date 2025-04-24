@@ -94,37 +94,25 @@ final class TypeMappedAnnotations implements MergedAnnotations {
 
 	@Override
 	public <A extends Annotation> boolean isPresent(Class<A> annotationType) {
-		if (this.annotationFilter.matches(annotationType)) {
-			return false;
-		}
-		return Boolean.TRUE.equals(scan(annotationType,
+		return !this.annotationFilter.matches(annotationType) && Boolean.TRUE.equals(scan(annotationType,
 				IsPresent.get(this.repeatableContainers, this.annotationFilter, false)));
 	}
 
 	@Override
 	public boolean isPresent(String annotationType) {
-		if (this.annotationFilter.matches(annotationType)) {
-			return false;
-		}
-		return Boolean.TRUE.equals(scan(annotationType,
+		return !this.annotationFilter.matches(annotationType) && Boolean.TRUE.equals(scan(annotationType,
 				IsPresent.get(this.repeatableContainers, this.annotationFilter, false)));
 	}
 
 	@Override
 	public <A extends Annotation> boolean isDirectlyPresent(Class<A> annotationType) {
-		if (this.annotationFilter.matches(annotationType)) {
-			return false;
-		}
-		return Boolean.TRUE.equals(scan(annotationType,
+		return !this.annotationFilter.matches(annotationType) && Boolean.TRUE.equals(scan(annotationType,
 				IsPresent.get(this.repeatableContainers, this.annotationFilter, true)));
 	}
 
 	@Override
 	public boolean isDirectlyPresent(String annotationType) {
-		if (this.annotationFilter.matches(annotationType)) {
-			return false;
-		}
-		return Boolean.TRUE.equals(scan(annotationType,
+		return !this.annotationFilter.matches(annotationType) && Boolean.TRUE.equals(scan(annotationType,
 				IsPresent.get(this.repeatableContainers, this.annotationFilter, true)));
 	}
 

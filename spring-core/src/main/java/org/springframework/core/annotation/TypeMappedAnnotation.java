@@ -353,11 +353,8 @@ final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnn
 		}
 		// Is this a mapped annotation for a composed annotation, and are there
 		// annotation attributes (mirrors) that need to be merged?
-		if (getDistance() > 0 && this.resolvedMirrors.length > 0) {
-			return true;
-		}
+		return getDistance() > 0 && this.resolvedMirrors.length > 0 || this.mapping.isSynthesizable();
 		// Is the mapped annotation itself synthesizable?
-		return this.mapping.isSynthesizable();
 	}
 
 	@Override
@@ -564,10 +561,7 @@ final class TypeMappedAnnotation<A extends Annotation> extends AbstractMergedAnn
 	}
 
 	private boolean isFiltered(String attributeName) {
-		if (this.attributeFilter != null) {
-			return !this.attributeFilter.test(attributeName);
-		}
-		return false;
+		return this.attributeFilter != null && !this.attributeFilter.test(attributeName);
 	}
 
 	private @Nullable ClassLoader getClassLoader() {

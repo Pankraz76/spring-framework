@@ -1546,10 +1546,7 @@ public abstract class ClassUtils {
 		if ((method.getModifiers() & NON_OVERRIDABLE_MODIFIER) != 0) {
 			return false;
 		}
-		if ((method.getModifiers() & OVERRIDABLE_MODIFIER) != 0) {
-			return true;
-		}
-		return (targetClass == null ||
+		return (method.getModifiers() & OVERRIDABLE_MODIFIER) != 0 || (targetClass == null ||
 				getPackageName(method.getDeclaringClass()).equals(getPackageName(targetClass)));
 	}
 

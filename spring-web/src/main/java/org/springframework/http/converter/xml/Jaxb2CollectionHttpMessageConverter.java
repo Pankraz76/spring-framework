@@ -100,10 +100,7 @@ public class Jaxb2CollectionHttpMessageConverter<T extends Collection>
 			return false;
 		}
 		Type typeArgument = parameterizedType.getActualTypeArguments()[0];
-		if (!(typeArgument instanceof Class<?> typeArgumentClass)) {
-			return false;
-		}
-		return (typeArgumentClass.isAnnotationPresent(XmlRootElement.class) ||
+		return typeArgument instanceof Class<?> typeArgumentClass && (typeArgumentClass.isAnnotationPresent(XmlRootElement.class) ||
 				typeArgumentClass.isAnnotationPresent(XmlType.class)) && canRead(mediaType);
 	}
 

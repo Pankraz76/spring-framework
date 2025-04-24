@@ -106,11 +106,8 @@ public class FormHttpMessageWriter extends LoggingCodecSupport
 			// Optimistically, any MultiValueMap with or without generics
 			return true;
 		}
-		if (mediaType == null) {
-			// Only String-based MultiValueMap
-			return MULTIVALUE_TYPE.isAssignableFrom(elementType);
-		}
-		return false;
+		// Only String-based MultiValueMap
+		return mediaType == null && MULTIVALUE_TYPE.isAssignableFrom(elementType);
 	}
 
 	@Override

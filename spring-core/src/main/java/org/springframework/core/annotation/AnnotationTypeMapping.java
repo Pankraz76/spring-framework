@@ -496,10 +496,7 @@ final class AnnotationTypeMapping {
 		if (value instanceof Class<?>[] classes && extractedValue instanceof String[] strings) {
 			return areEquivalent(classes, strings);
 		}
-		if (value instanceof Annotation annotation) {
-			return areEquivalent(annotation, extractedValue, valueExtractor);
-		}
-		return false;
+		return value instanceof Annotation annotation && areEquivalent(annotation, extractedValue, valueExtractor);
 	}
 
 	private static boolean areEquivalent(Class<?>[] value, String[] extractedValue) {

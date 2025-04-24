@@ -334,11 +334,8 @@ public class GenericConversionService implements ConfigurableConversionService {
 			}
 			// Full check for complex generic type match required?
 			ResolvableType rt = targetType.getResolvableType();
-			if (!(rt.getType() instanceof Class) && !rt.isAssignableFromResolvedPart(this.targetType)) {
-				return false;
-			}
-			return !(this.converter instanceof ConditionalConverter conditionalConverter) ||
-					conditionalConverter.matches(sourceType, targetType);
+			return (rt.getType() instanceof Class || rt.isAssignableFromResolvedPart(this.targetType)) && (!(this.converter instanceof ConditionalConverter conditionalConverter) ||
+					conditionalConverter.matches(sourceType, targetType));
 		}
 
 		public boolean matchesFallback(TypeDescriptor sourceType, TypeDescriptor targetType) {
@@ -385,10 +382,7 @@ public class GenericConversionService implements ConfigurableConversionService {
 
 		@Override
 		public boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType) {
-			boolean matches = true;
-			if (this.converterFactory instanceof ConditionalConverter conditionalConverter) {
-				matches = conditionalConverter.matches(sourceType, targetType);
-			}
+			boolean matches = !(this.converterFactory instanceof ConditionalConverter conditionalConverter) || conditionalConverter.matches(sourceType, targetType);
 			if (matches) {
 				Converter<?, ?> converter = this.converterFactory.getConverter(targetType.getType());
 				if (converter instanceof ConditionalConverter conditionalConverter) {

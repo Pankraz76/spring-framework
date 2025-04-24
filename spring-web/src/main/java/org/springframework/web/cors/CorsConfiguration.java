@@ -804,10 +804,7 @@ public class CorsConfiguration {
 			if (this == other) {
 				return true;
 			}
-			if (other == null || !getClass().equals(other.getClass())) {
-				return false;
-			}
-			return ObjectUtils.nullSafeEquals(
+			return other != null && getClass().equals(other.getClass()) && ObjectUtils.nullSafeEquals(
 					this.declaredPattern, ((OriginPattern) other).declaredPattern);
 		}
 

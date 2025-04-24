@@ -556,10 +556,7 @@ class OptionTagTests extends AbstractHtmlElementTagTests {
 
 		@Override
 		public boolean equals(@Nullable Object obj) {
-			if (obj instanceof RulesVariant other) {
-				return this.toId().equals(other.toId());
-			}
-			return false;
+			return obj instanceof RulesVariant other && this.toId().equals(other.toId());
 		}
 
 		@Override

@@ -118,10 +118,7 @@ public class ResponseEntityResultHandler extends AbstractMessageWriterResultHand
 	}
 
 	private boolean isSupportedType(@Nullable Class<?> type) {
-		if (type == null) {
-			return false;
-		}
-		return ((HttpEntity.class.isAssignableFrom(type) && !RequestEntity.class.isAssignableFrom(type)) ||
+		return type != null && ((HttpEntity.class.isAssignableFrom(type) && !RequestEntity.class.isAssignableFrom(type)) ||
 				ErrorResponse.class.isAssignableFrom(type) || ProblemDetail.class.isAssignableFrom(type) ||
 				HttpHeaders.class.isAssignableFrom(type));
 	}

@@ -276,11 +276,8 @@ public final class BridgeMethodResolver {
 			// Same method: for common purposes, return true to proceed as if it was a visibility bridge.
 			return true;
 		}
-		if (ClassUtils.getUserClass(bridgeMethod.getDeclaringClass()) != bridgeMethod.getDeclaringClass()) {
-			// Method on generated subclass: return false to consistently ignore it for visibility purposes.
-			return false;
-		}
-		return (bridgeMethod.getReturnType().equals(bridgedMethod.getReturnType()) &&
+		// Method on generated subclass: return false to consistently ignore it for visibility purposes.
+		return ClassUtils.getUserClass(bridgeMethod.getDeclaringClass()) == bridgeMethod.getDeclaringClass() && (bridgeMethod.getReturnType().equals(bridgedMethod.getReturnType()) &&
 				bridgeMethod.getParameterCount() == bridgedMethod.getParameterCount() &&
 				Arrays.equals(bridgeMethod.getParameterTypes(), bridgedMethod.getParameterTypes()));
 	}

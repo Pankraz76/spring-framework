@@ -678,12 +678,7 @@ public abstract class RequestPredicates {
 
 		@Override
 		public boolean test(ServerRequest request) {
-			if (CorsUtils.isPreFlightRequest(request.servletRequest())) {
-				return true;
-			}
-			else {
-				return this.headersPredicate.test(request.headers());
-			}
+			return CorsUtils.isPreFlightRequest(request.servletRequest()) || this.headersPredicate.test(request.headers());
 		}
 
 		@Override

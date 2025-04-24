@@ -47,10 +47,7 @@ public interface ConditionalHint {
 	 */
 	default boolean conditionMatches(ClassLoader classLoader) {
 		TypeReference reachableType = getReachableType();
-		if (reachableType != null) {
-			return ClassUtils.isPresent(reachableType.getCanonicalName(), classLoader);
-		}
-		return true;
+		return reachableType == null || ClassUtils.isPresent(reachableType.getCanonicalName(), classLoader);
 	}
 
 }

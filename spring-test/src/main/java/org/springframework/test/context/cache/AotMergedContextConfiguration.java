@@ -71,10 +71,7 @@ final class AotMergedContextConfiguration extends MergedContextConfiguration {
 
 	@Override
 	public boolean equals(@Nullable Object other) {
-		if (this == other) {
-			return true;
-		}
-		return ((other instanceof AotMergedContextConfiguration that) &&
+		return this == other || ((other instanceof AotMergedContextConfiguration that) &&
 				this.contextInitializerClass.equals(that.contextInitializerClass));
 	}
 

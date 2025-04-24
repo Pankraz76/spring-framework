@@ -358,10 +358,7 @@ abstract class AnnotationsScanner {
 	private static boolean hasSameParameterTypes(Method rootMethod, Method candidateMethod) {
 		Class<?>[] rootParameterTypes = rootMethod.getParameterTypes();
 		Class<?>[] candidateParameterTypes = candidateMethod.getParameterTypes();
-		if (Arrays.equals(candidateParameterTypes, rootParameterTypes)) {
-			return true;
-		}
-		return hasSameGenericTypeParameters(rootMethod, candidateMethod, rootParameterTypes);
+		return Arrays.equals(candidateParameterTypes, rootParameterTypes) || hasSameGenericTypeParameters(rootMethod, candidateMethod, rootParameterTypes);
 	}
 
 	private static boolean hasSameGenericTypeParameters(
@@ -475,10 +472,7 @@ abstract class AnnotationsScanner {
 			return true;
 		}
 		if (searchStrategy == SearchStrategy.DIRECT || isWithoutHierarchy(source, searchEnclosingClass)) {
-			if (source instanceof Method method && method.isBridge()) {
-				return false;
-			}
-			return getDeclaredAnnotations(source, false).length == 0;
+			return (!(source instanceof Method method) || !method.isBridge()) && getDeclaredAnnotations(source, false).length == 0;
 		}
 		return false;
 	}
@@ -509,11 +503,8 @@ abstract class AnnotationsScanner {
 			return (searchEnclosingClass.test(sourceClass) ? noSuperTypes &&
 					sourceClass.getEnclosingClass() == null : noSuperTypes);
 		}
-		if (source instanceof Method sourceMethod) {
-			return (Modifier.isPrivate(sourceMethod.getModifiers()) ||
-					isWithoutHierarchy(sourceMethod.getDeclaringClass(), searchEnclosingClass));
-		}
-		return true;
+		return !(source instanceof Method sourceMethod) || (Modifier.isPrivate(sourceMethod.getModifiers()) ||
+				isWithoutHierarchy(sourceMethod.getDeclaringClass(), searchEnclosingClass));
 	}
 
 	static void clearCache() {

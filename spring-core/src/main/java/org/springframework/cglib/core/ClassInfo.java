@@ -33,10 +33,7 @@ abstract public class ClassInfo {
 		if (o == null) {
 			return false;
 		}
-		if (!(o instanceof ClassInfo classInfo)) {
-			return false;
-		}
-		return getType().equals(classInfo.getType());
+		return o instanceof ClassInfo classInfo && getType().equals(classInfo.getType());
 	}
 
     @Override

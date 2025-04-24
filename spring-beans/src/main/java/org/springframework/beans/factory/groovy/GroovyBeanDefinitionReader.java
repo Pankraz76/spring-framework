@@ -393,10 +393,7 @@ public class GroovyBeanDefinitionReader extends AbstractBeanDefinitionReader imp
 			else {
 				refName = args[0].toString();
 			}
-			boolean parentRef = false;
-			if (args.length > 1 && args[1] instanceof Boolean bool) {
-				parentRef = bool;
-			}
+			boolean parentRef = args.length > 1 && args[1] instanceof Boolean bool && bool;
 			return new RuntimeBeanReference(refName, parentRef);
 		}
 		else if (this.namespaces.containsKey(name) && args.length > 0 && args[0] instanceof Closure) {

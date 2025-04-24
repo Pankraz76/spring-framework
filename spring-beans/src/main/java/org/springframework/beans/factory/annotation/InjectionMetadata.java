@@ -249,10 +249,7 @@ public class InjectionMetadata {
 		 * @since 6.0.10
 		 */
 		protected boolean shouldInject(@Nullable PropertyValues pvs) {
-			if (this.isField) {
-				return true;
-			}
-			return !checkPropertySkipping(pvs);
+			return this.isField || !checkPropertySkipping(pvs);
 		}
 
 		/**

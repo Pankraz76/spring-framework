@@ -59,12 +59,7 @@ final class ObjectToOptionalConverter implements ConditionalGenericConverter {
 
 	@Override
 	public boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType) {
-		if (targetType.getResolvableType().hasGenerics()) {
-			return this.conversionService.canConvert(sourceType, new GenericTypeDescriptor(targetType));
-		}
-		else {
-			return true;
-		}
+		return !targetType.getResolvableType().hasGenerics() || this.conversionService.canConvert(sourceType, new GenericTypeDescriptor(targetType));
 	}
 
 	@Override

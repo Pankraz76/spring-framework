@@ -688,10 +688,7 @@ final class WhatWgUrlParser {
 	 * the second code point is U+003A {@code (:)}.
 	 */
 	private static boolean isWindowsDriveLetter(CharSequence input, boolean normalized) {
-		if (input.length() != 2) {
-			return false;
-		}
-		return isWindowsDriveLetterInternal(input, normalized);
+		return input.length() == 2 && isWindowsDriveLetterInternal(input, normalized);
 	}
 
 	/**

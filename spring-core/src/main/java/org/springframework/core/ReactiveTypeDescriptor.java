@@ -119,10 +119,7 @@ public final class ReactiveTypeDescriptor {
 		if (this == other) {
 			return true;
 		}
-		if (other == null || getClass() != other.getClass()) {
-			return false;
-		}
-		return this.reactiveType.equals(((ReactiveTypeDescriptor) other).reactiveType);
+		return other != null && getClass() == other.getClass() && this.reactiveType.equals(((ReactiveTypeDescriptor) other).reactiveType);
 	}
 
 	@Override

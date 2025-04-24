@@ -118,10 +118,7 @@ public class MethodExclusionMBeanInfoAssembler extends AbstractConfigurableMBean
 				return !methodNames.contains(method.getName());
 			}
 		}
-		if (this.ignoredMethods != null) {
-			return !this.ignoredMethods.contains(method.getName());
-		}
-		return true;
+		return this.ignoredMethods == null || !this.ignoredMethods.contains(method.getName());
 	}
 
 }

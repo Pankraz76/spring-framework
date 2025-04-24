@@ -471,13 +471,10 @@ public class InitDestroyAnnotationBeanPostProcessor implements DestructionAwareB
 		 */
 		private static boolean isPrivateOrNotVisible(Method method, Class<?> beanClass) {
 			int modifiers = method.getModifiers();
-			if (Modifier.isPrivate(modifiers)) {
-				return true;
-			}
+			return Modifier.isPrivate(modifiers) || (!method.getDeclaringClass().getPackageName().equals(beanClass.getPackageName()) &&
+					!(Modifier.isPublic(modifiers) || Modifier.isProtected(modifiers)));
 			// Method is declared in a class that resides in a different package
 			// than the bean class and the method is neither public nor protected?
-			return (!method.getDeclaringClass().getPackageName().equals(beanClass.getPackageName()) &&
-					!(Modifier.isPublic(modifiers) || Modifier.isProtected(modifiers)));
 		}
 
 	}

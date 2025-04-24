@@ -157,12 +157,9 @@ public abstract class ObjectUtils {
 		if (obj instanceof Collection<?> collection) {
 			return collection.isEmpty();
 		}
-		if (obj instanceof Map<?, ?> map) {
-			return map.isEmpty();
-		}
+		return obj instanceof Map<?, ?> map && map.isEmpty();
 
 		// else
-		return false;
 	}
 
 	/**
@@ -343,10 +340,7 @@ public abstract class ObjectUtils {
 		if (o1.equals(o2)) {
 			return true;
 		}
-		if (o1.getClass().isArray() && o2.getClass().isArray()) {
-			return arrayEquals(o1, o2);
-		}
-		return false;
+		return o1.getClass().isArray() && o2.getClass().isArray() && arrayEquals(o1, o2);
 	}
 
 	/**
@@ -383,10 +377,7 @@ public abstract class ObjectUtils {
 		if (o1 instanceof long[] longs1 && o2 instanceof long[] longs2) {
 			return Arrays.equals(longs1, longs2);
 		}
-		if (o1 instanceof short[] shorts1 && o2 instanceof short[] shorts2) {
-			return Arrays.equals(shorts1, shorts2);
-		}
-		return false;
+		return o1 instanceof short[] shorts1 && o2 instanceof short[] shorts2 && Arrays.equals(shorts1, shorts2);
 	}
 
 	/**

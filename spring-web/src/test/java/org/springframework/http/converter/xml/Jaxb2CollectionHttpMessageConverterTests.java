@@ -226,10 +226,7 @@ class Jaxb2CollectionHttpMessageConverterTests {
 			if (this == o) {
 				return true;
 			}
-			if (o instanceof RootElement other) {
-				return this.type.equals(other.type);
-			}
-			return false;
+			return o instanceof RootElement other && this.type.equals(other.type);
 		}
 
 		@Override
@@ -257,10 +254,7 @@ class Jaxb2CollectionHttpMessageConverterTests {
 			if (this == o) {
 				return true;
 			}
-			if (o instanceof TestType other) {
-				return this.s.equals(other.s);
-			}
-			return false;
+			return o instanceof TestType other && this.s.equals(other.s);
 		}
 
 		@Override

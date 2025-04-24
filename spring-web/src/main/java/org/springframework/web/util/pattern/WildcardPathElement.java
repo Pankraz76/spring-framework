@@ -66,10 +66,7 @@ class WildcardPathElement extends PathElement {
 		}
 		else {
 			// Within a path (e.g. /aa/*/bb) there must be at least one character to match the wildcard
-			if (segmentData == null || segmentData.isEmpty()) {
-				return false;
-			}
-			return (this.next != null && this.next.matches(pathIndex, matchingContext));
+			return segmentData != null && !segmentData.isEmpty() && (this.next != null && this.next.matches(pathIndex, matchingContext));
 		}
 	}
 

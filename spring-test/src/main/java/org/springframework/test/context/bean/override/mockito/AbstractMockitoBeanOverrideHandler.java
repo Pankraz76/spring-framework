@@ -76,10 +76,7 @@ abstract class AbstractMockitoBeanOverrideHandler extends BeanOverrideHandler {
 
 	@Override
 	public boolean equals(@Nullable Object other) {
-		if (other == this) {
-			return true;
-		}
-		return (other instanceof AbstractMockitoBeanOverrideHandler that && super.equals(that) &&
+		return other == this || (other instanceof AbstractMockitoBeanOverrideHandler that && super.equals(that) &&
 				this.reset == that.reset);
 	}
 

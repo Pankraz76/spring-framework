@@ -249,10 +249,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 		if (this == other) {
 			return true;
 		}
-		if (!super.equals(other)) {
-			return false;
-		}
-		return (other instanceof RequestEntity<?> otherEntity &&
+		return super.equals(other) && (other instanceof RequestEntity<?> otherEntity &&
 				ObjectUtils.nullSafeEquals(this.method, otherEntity.method) &&
 				ObjectUtils.nullSafeEquals(this.url, otherEntity.url));
 	}
@@ -772,10 +769,7 @@ public class RequestEntity<T> extends HttpEntity<T> {
 			if (this == other) {
 				return true;
 			}
-			if (!super.equals(other)) {
-				return false;
-			}
-			return (other instanceof UriTemplateRequestEntity<?> otherEntity &&
+			return super.equals(other) && (other instanceof UriTemplateRequestEntity<?> otherEntity &&
 					ObjectUtils.nullSafeEquals(this.uriTemplate, otherEntity.uriTemplate) &&
 					ObjectUtils.nullSafeEquals(this.uriVarsArray, otherEntity.uriVarsArray) &&
 					ObjectUtils.nullSafeEquals(this.uriVarsMap, otherEntity.uriVarsMap));

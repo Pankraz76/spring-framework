@@ -79,10 +79,7 @@ final class JCacheOperationSourcePointcut extends StaticMethodMatcherPointcut im
 
 		@Override
 		public boolean matches(Class<?> clazz) {
-			if (CacheManager.class.isAssignableFrom(clazz)) {
-				return false;
-			}
-			return (cacheOperationSource == null || cacheOperationSource.isCandidateClass(clazz));
+			return !CacheManager.class.isAssignableFrom(clazz) && (cacheOperationSource == null || cacheOperationSource.isCandidateClass(clazz));
 		}
 
 		private @Nullable JCacheOperationSource getCacheOperationSource() {

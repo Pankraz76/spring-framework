@@ -38,10 +38,7 @@ public abstract class AbstractMessageCondition<T extends AbstractMessageConditio
 		if (this == other) {
 			return true;
 		}
-		if (other == null || getClass() != other.getClass()) {
-			return false;
-		}
-		return getContent().equals(((AbstractMessageCondition<?>) other).getContent());
+		return other != null && getClass() == other.getClass() && getContent().equals(((AbstractMessageCondition<?>) other).getContent());
 	}
 
 	@Override

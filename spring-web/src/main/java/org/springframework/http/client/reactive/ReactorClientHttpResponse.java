@@ -147,10 +147,7 @@ class ReactorClientHttpResponse implements ClientHttpResponse {
 	}
 
 	private static boolean getPartitioned(Cookie cookie) {
-		if (cookie instanceof DefaultCookie defaultCookie) {
-			return defaultCookie.isPartitioned();
-		}
-		return false;
+		return cookie instanceof DefaultCookie defaultCookie && defaultCookie.isPartitioned();
 	}
 
 	/**

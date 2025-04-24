@@ -307,11 +307,8 @@ public abstract class Operator extends SpelNodeImpl {
 			return true;
 		}
 
-		if (context.getTypeComparator().canCompare(left, right)) {
-			return context.getTypeComparator().compare(left, right) == 0;
-		}
+		return context.getTypeComparator().canCompare(left, right) && context.getTypeComparator().compare(left, right) == 0;
 
-		return false;
 	}
 
 

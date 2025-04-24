@@ -190,10 +190,7 @@ public class ResponseEntity<T> extends HttpEntity<T> {
 		if (this == other) {
 			return true;
 		}
-		if (!super.equals(other)) {
-			return false;
-		}
-		return (other instanceof ResponseEntity<?> otherEntity && ObjectUtils.nullSafeEquals(this.status, otherEntity.status));
+		return super.equals(other) && (other instanceof ResponseEntity<?> otherEntity && ObjectUtils.nullSafeEquals(this.status, otherEntity.status));
 	}
 
 	@Override

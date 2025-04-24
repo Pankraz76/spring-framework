@@ -399,10 +399,7 @@ public class DependencyDescriptor extends InjectionPoint implements Serializable
 		if (this == other) {
 			return true;
 		}
-		if (!super.equals(other)) {
-			return false;
-		}
-		return (other instanceof DependencyDescriptor otherDesc && this.required == otherDesc.required &&
+		return super.equals(other) && (other instanceof DependencyDescriptor otherDesc && this.required == otherDesc.required &&
 				this.eager == otherDesc.eager && this.nestingLevel == otherDesc.nestingLevel &&
 				this.containingClass == otherDesc.containingClass);
 	}

@@ -66,10 +66,7 @@ final class PackagesAnnotationFilter implements AnnotationFilter {
 		if (this == other) {
 			return true;
 		}
-		if (other == null || getClass() != other.getClass()) {
-			return false;
-		}
-		return Arrays.equals(this.prefixes, ((PackagesAnnotationFilter) other).prefixes);
+		return other != null && getClass() == other.getClass() && Arrays.equals(this.prefixes, ((PackagesAnnotationFilter) other).prefixes);
 	}
 
 	@Override

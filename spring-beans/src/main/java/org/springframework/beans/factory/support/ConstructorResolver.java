@@ -1187,10 +1187,7 @@ class ConstructorResolver {
 	}
 
 	private boolean isMatch(ResolvableType parameterType, ResolvableType valueType, FallbackMode fallbackMode) {
-		if (isAssignable(valueType).test(parameterType)) {
-			return true;
-		}
-		return switch (fallbackMode) {
+		return isAssignable(valueType).test(parameterType) || switch (fallbackMode) {
 			case ASSIGNABLE_ELEMENT -> isAssignable(valueType).test(extractElementType(parameterType));
 			case TYPE_CONVERSION -> typeConversionFallback(valueType).test(parameterType);
 			default -> false;
@@ -1213,10 +1210,7 @@ class ConstructorResolver {
 
 	private Predicate<ResolvableType> typeConversionFallback(ResolvableType valueType) {
 		return parameterType -> {
-			if (valueOrCollection(valueType, this::isStringForClassFallback).test(parameterType)) {
-				return true;
-			}
-			return valueOrCollection(valueType, this::isSimpleValueType).test(parameterType);
+			return valueOrCollection(valueType, this::isStringForClassFallback).test(parameterType) || valueOrCollection(valueType, this::isSimpleValueType).test(parameterType);
 		};
 	}
 
@@ -1227,10 +1221,7 @@ class ConstructorResolver {
 			if (predicateProvider.apply(valueType).test(parameterType)) {
 				return true;
 			}
-			if (predicateProvider.apply(extractElementType(valueType)).test(extractElementType(parameterType))) {
-				return true;
-			}
-			return (predicateProvider.apply(valueType).test(extractElementType(parameterType)));
+			return predicateProvider.apply(extractElementType(valueType)).test(extractElementType(parameterType)) || (predicateProvider.apply(valueType).test(extractElementType(parameterType)));
 		};
 	}
 

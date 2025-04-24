@@ -561,10 +561,7 @@ class Tokenizer {
 	}
 
 	private boolean isDigit(char ch) {
-		if (ch > 255) {
-			return false;
-		}
-		return (FLAGS[ch] & IS_DIGIT) != 0;
+		return ch <= 255 && (FLAGS[ch] & IS_DIGIT) != 0;
 	}
 
 	private boolean isAlphabetic(char ch) {
@@ -572,10 +569,7 @@ class Tokenizer {
 	}
 
 	private boolean isHexadecimalDigit(char ch) {
-		if (ch > 255) {
-			return false;
-		}
-		return (FLAGS[ch] & IS_HEXDIGIT) != 0;
+		return ch <= 255 && (FLAGS[ch] & IS_HEXDIGIT) != 0;
 	}
 
 	private boolean isExhausted() {

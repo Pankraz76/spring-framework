@@ -58,12 +58,7 @@ class CompositeCollection<E> implements Collection<E> {
 
 	@Override
 	public boolean contains(Object o) {
-		if (this.first.contains(o)) {
-			return true;
-		}
-		else {
-			return this.second.contains(o);
-		}
+		return this.first.contains(o) || this.second.contains(o);
 	}
 
 	@Override

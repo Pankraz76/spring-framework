@@ -106,11 +106,8 @@ public abstract class TypeUtils {
 			}
 		}
 
-		if (lhsType instanceof WildcardType lhsWildcardType) {
-			return isAssignable(lhsWildcardType, rhsType);
-		}
+		return lhsType instanceof WildcardType lhsWildcardType && isAssignable(lhsWildcardType, rhsType);
 
-		return false;
 	}
 
 	private static boolean isAssignable(ParameterizedType lhsType, ParameterizedType rhsType) {
@@ -214,10 +211,7 @@ public abstract class TypeUtils {
 		if (rhsType == null) {
 			return true;
 		}
-		if (lhsType == null) {
-			return false;
-		}
-		return isAssignable(lhsType, rhsType);
+		return lhsType != null && isAssignable(lhsType, rhsType);
 	}
 
 }

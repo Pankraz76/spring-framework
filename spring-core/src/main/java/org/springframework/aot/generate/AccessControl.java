@@ -120,10 +120,7 @@ public final class AccessControl {
 		if (this.visibility == Visibility.PRIVATE) {
 			return false;
 		}
-		if (this.visibility == Visibility.PUBLIC) {
-			return true;
-		}
-		return this.target.getPackageName().equals(type.packageName());
+		return this.visibility == Visibility.PUBLIC || this.target.getPackageName().equals(type.packageName());
 	}
 
 

@@ -972,34 +972,22 @@ class InternalSpelExpressionParser extends TemplateAwareExpressionParser {
 
 	private boolean peekToken(TokenKind possible1, TokenKind possible2) {
 		Token t = peekToken();
-		if (t == null) {
-			return false;
-		}
-		return (t.kind == possible1 || t.kind == possible2);
+		return t != null && (t.kind == possible1 || t.kind == possible2);
 	}
 
 	private boolean peekToken(TokenKind possible1, TokenKind possible2, TokenKind possible3) {
 		Token t = peekToken();
-		if (t == null) {
-			return false;
-		}
-		return (t.kind == possible1 || t.kind == possible2 || t.kind == possible3);
+		return t != null && (t.kind == possible1 || t.kind == possible2 || t.kind == possible3);
 	}
 
 	private boolean peekIdentifierToken(String identifierString) {
 		Token t = peekToken();
-		if (t == null) {
-			return false;
-		}
-		return (t.kind == TokenKind.IDENTIFIER && identifierString.equalsIgnoreCase(t.stringValue()));
+		return t != null && (t.kind == TokenKind.IDENTIFIER && identifierString.equalsIgnoreCase(t.stringValue()));
 	}
 
 	private boolean peekSelectToken() {
 		Token t = peekToken();
-		if (t == null) {
-			return false;
-		}
-		return (t.kind == TokenKind.SELECT || t.kind == TokenKind.SELECT_FIRST || t.kind == TokenKind.SELECT_LAST);
+		return t != null && (t.kind == TokenKind.SELECT || t.kind == TokenKind.SELECT_FIRST || t.kind == TokenKind.SELECT_LAST);
 	}
 
 	private Token takeToken() {

@@ -248,12 +248,8 @@ public class ContentNegotiationManagerFactoryBean implements FactoryBean<Content
 			if (this.favorParameter) {
 				ParameterContentNegotiationStrategy strategy = new ParameterContentNegotiationStrategy(this.mediaTypes);
 				strategy.setParameterName(this.parameterName);
-				if (this.useRegisteredExtensionsOnly != null) {
-					strategy.setUseRegisteredExtensionsOnly(this.useRegisteredExtensionsOnly);
-				}
-				else {
-					strategy.setUseRegisteredExtensionsOnly(true);  // backwards compatibility
-				}
+				// backwards compatibility
+				strategy.setUseRegisteredExtensionsOnly(this.useRegisteredExtensionsOnly == null || this.useRegisteredExtensionsOnly);
 				strategies.add(strategy);
 			}
 			if (!this.ignoreAcceptHeader) {

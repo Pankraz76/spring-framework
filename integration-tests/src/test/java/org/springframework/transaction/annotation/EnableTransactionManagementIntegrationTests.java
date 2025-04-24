@@ -146,10 +146,7 @@ class EnableTransactionManagementIntegrationTests {
 	}
 
 	private boolean isTxProxy(FooRepository repo) {
-		if (!AopUtils.isAopProxy(repo)) {
-			return false;
-		}
-		return Arrays.stream(((Advised) repo).getAdvisors())
+		return AopUtils.isAopProxy(repo) && Arrays.stream(((Advised) repo).getAdvisors())
 				.anyMatch(BeanFactoryTransactionAttributeSourceAdvisor.class::isInstance);
 	}
 

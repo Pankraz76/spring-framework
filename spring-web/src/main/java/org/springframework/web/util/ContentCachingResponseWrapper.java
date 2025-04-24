@@ -150,12 +150,7 @@ public class ContentCachingResponseWrapper extends HttpServletResponseWrapper {
 
 	@Override
 	public boolean containsHeader(String name) {
-		if (this.contentLength != null && HttpHeaders.CONTENT_LENGTH.equalsIgnoreCase(name)) {
-			return true;
-		}
-		else {
-			return super.containsHeader(name);
-		}
+		return this.contentLength != null && HttpHeaders.CONTENT_LENGTH.equalsIgnoreCase(name) || super.containsHeader(name);
 	}
 
 	@Override

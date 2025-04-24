@@ -440,10 +440,7 @@ public class TestContextAotGenerator {
 
 	private static boolean getFailOnErrorFlag() {
 		String failOnError = SpringProperties.getProperty(FAIL_ON_ERROR_PROPERTY_NAME);
-		if (StringUtils.hasText(failOnError)) {
-			return Boolean.parseBoolean(failOnError.trim());
-		}
-		return true;
+		return !StringUtils.hasText(failOnError) || Boolean.parseBoolean(failOnError.trim());
 	}
 
 	private static List<String> classNames(List<Class<?>> classes) {

@@ -167,10 +167,7 @@ public class ParameterValidationResult {
 		if (this == other) {
 			return true;
 		}
-		if (!super.equals(other)) {
-			return false;
-		}
-		return (other instanceof ParameterValidationResult otherResult &&
+		return super.equals(other) && (other instanceof ParameterValidationResult otherResult &&
 				getMethodParameter().equals(otherResult.getMethodParameter()) &&
 				ObjectUtils.nullSafeEquals(getArgument(), otherResult.getArgument()) &&
 				ObjectUtils.nullSafeEquals(getContainerIndex(), otherResult.getContainerIndex()) &&

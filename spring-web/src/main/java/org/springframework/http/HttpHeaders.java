@@ -1922,10 +1922,7 @@ public class HttpHeaders implements Serializable {
 	 */
 	public boolean containsHeaderValue(String headerName, String value) {
 		final List<String> values = this.headers.get(headerName);
-		if (values == null) {
-			return false;
-		}
-		return values.contains(value);
+		return values != null && values.contains(value);
 	}
 
 	/**
@@ -2329,10 +2326,7 @@ public class HttpHeaders implements Serializable {
 				if (this == o) {
 					return true;
 				}
-				if (!(o instanceof Map.Entry<?,?> that)) {
-					return false;
-				}
-				return ObjectUtils.nullSafeEquals(getKey(), that.getKey()) && ObjectUtils.nullSafeEquals(getValue(), that.getValue());
+				return o instanceof Map.Entry<?, ?> that && ObjectUtils.nullSafeEquals(getKey(), that.getKey()) && ObjectUtils.nullSafeEquals(getValue(), that.getValue());
 			}
 
 			@Override

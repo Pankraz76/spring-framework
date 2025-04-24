@@ -279,12 +279,9 @@ public class TypeDescriptor implements Serializable {
 	 */
 	public boolean hasAnnotation(Class<? extends Annotation> annotationType) {
 		AnnotatedElementAdapter annotatedElement = getAnnotatedElement();
-		if (annotatedElement.isEmpty()) {
-			// Shortcut: AnnotatedElementUtils would have to expect AnnotatedElement.getAnnotations()
-			// to return a copy of the array, whereas we can do it more efficiently here.
-			return false;
-		}
-		return AnnotatedElementUtils.isAnnotated(annotatedElement, annotationType);
+		// Shortcut: AnnotatedElementUtils would have to expect AnnotatedElement.getAnnotations()
+		// to return a copy of the array, whereas we can do it more efficiently here.
+		return !annotatedElement.isEmpty() && AnnotatedElementUtils.isAnnotated(annotatedElement, annotationType);
 	}
 
 	/**
@@ -502,10 +499,7 @@ public class TypeDescriptor implements Serializable {
 		if (getType() != otherDesc.getType()) {
 			return false;
 		}
-		if (!annotationsMatch(otherDesc)) {
-			return false;
-		}
-		return Arrays.equals(getResolvableType().getGenerics(), otherDesc.getResolvableType().getGenerics());
+		return annotationsMatch(otherDesc) && Arrays.equals(getResolvableType().getGenerics(), otherDesc.getResolvableType().getGenerics());
 	}
 
 	private boolean annotationsMatch(TypeDescriptor otherDesc) {

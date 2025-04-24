@@ -132,10 +132,7 @@ public abstract class RepeatableContainers {
 		if (other == this) {
 			return true;
 		}
-		if (other == null || getClass() != other.getClass()) {
-			return false;
-		}
-		return ObjectUtils.nullSafeEquals(this.parent, ((RepeatableContainers) other).parent);
+		return other != null && getClass() == other.getClass() && ObjectUtils.nullSafeEquals(this.parent, ((RepeatableContainers) other).parent);
 	}
 
 	@Override

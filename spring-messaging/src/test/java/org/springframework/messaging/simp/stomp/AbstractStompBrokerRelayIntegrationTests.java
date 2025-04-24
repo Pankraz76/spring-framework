@@ -468,10 +468,7 @@ public abstract class AbstractStompBrokerRelayIntegrationTests {
 		@Override
 		public final boolean match(Message<?> message) {
 			StompHeaderAccessor headers = StompHeaderAccessor.wrap(message);
-			if (!this.command.equals(headers.getCommand()) || !this.sessionId.equals(headers.getSessionId())) {
-				return false;
-			}
-			return matchInternal(headers, message.getPayload());
+			return this.command.equals(headers.getCommand()) && this.sessionId.equals(headers.getSessionId()) && matchInternal(headers, message.getPayload());
 		}
 
 		protected boolean matchInternal(StompHeaderAccessor headers, Object payload) {

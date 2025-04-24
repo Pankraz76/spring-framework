@@ -852,10 +852,7 @@ public class ConcurrentReferenceHashMap<K, V> extends AbstractMap<K, V> implemen
 
 		@Override
 		public boolean remove(Object o) {
-			if (o instanceof Map.Entry<?, ?> entry) {
-				return ConcurrentReferenceHashMap.this.remove(entry.getKey(), entry.getValue());
-			}
-			return false;
+			return o instanceof Map.Entry<?, ?> entry && ConcurrentReferenceHashMap.this.remove(entry.getKey(), entry.getValue());
 		}
 
 		@Override

@@ -485,10 +485,7 @@ public class ReflectionHintsPredicates {
 		@Override
 		public boolean test(RuntimeHints runtimeHints) {
 			TypeHint typeHint = runtimeHints.reflection().getTypeHint(this.field.getDeclaringClass());
-			if (typeHint == null) {
-				return false;
-			}
-			return memberCategoryMatch(typeHint) || exactMatch(typeHint);
+			return typeHint != null && (memberCategoryMatch(typeHint) || exactMatch(typeHint));
 		}
 
 		@SuppressWarnings("removal")

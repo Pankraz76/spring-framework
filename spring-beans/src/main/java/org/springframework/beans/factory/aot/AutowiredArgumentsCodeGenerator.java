@@ -83,13 +83,10 @@ public class AutowiredArgumentsCodeGenerator {
 					.filter(Predicate.not(constructor::equals))
 					.anyMatch(this::hasSameParameterCount);
 		}
-		if (this.executable instanceof Method method) {
-			return Arrays.stream(ReflectionUtils.getAllDeclaredMethods(this.target))
-					.filter(Predicate.not(method::equals))
-					.filter(candidate -> candidate.getName().equals(method.getName()))
-					.anyMatch(this::hasSameParameterCount);
-		}
-		return true;
+		return !(this.executable instanceof Method method) || Arrays.stream(ReflectionUtils.getAllDeclaredMethods(this.target))
+				.filter(Predicate.not(method::equals))
+				.filter(candidate -> candidate.getName().equals(method.getName()))
+				.anyMatch(this::hasSameParameterCount);
 	}
 
 	private boolean hasSameParameterCount(Executable executable) {

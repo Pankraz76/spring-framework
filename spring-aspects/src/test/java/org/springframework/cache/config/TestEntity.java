@@ -50,10 +50,7 @@ public class TestEntity {
 
 	@Override
 	public boolean equals(@Nullable Object obj) {
-		if (obj == this) {
-			return true;
-		}
-		return (obj instanceof TestEntity that && ObjectUtils.nullSafeEquals(this.id, that.id));
+		return obj == this || (obj instanceof TestEntity that && ObjectUtils.nullSafeEquals(this.id, that.id));
 	}
 
 }

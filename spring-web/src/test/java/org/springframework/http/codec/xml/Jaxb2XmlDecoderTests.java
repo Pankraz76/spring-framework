@@ -318,11 +318,8 @@ class Jaxb2XmlDecoderTests extends AbstractLeakCheckingTests {
 			if (this == o) {
 				return true;
 			}
-			if (o instanceof Child other) {
-				return getBar().equals(other.getBar()) &&
-						getFoo().equals(other.getFoo());
-			}
-			return false;
+			return o instanceof Child other && getBar().equals(other.getBar()) &&
+					getFoo().equals(other.getFoo());
 		}
 
 		@Override

@@ -410,13 +410,8 @@ public class ExceptionHandlerExceptionResolver extends AbstractHandlerMethodExce
 
 	@Override
 	protected boolean shouldApplyTo(HttpServletRequest request, @Nullable Object handler) {
-		if ((handler instanceof ResourceHttpRequestHandler || handler instanceof HandlerFunction) &&
-				hasGlobalExceptionHandlers() && !hasHandlerMappings()) {
-			return true;  // apply to ResourceHttpRequestHandler and HandlerFunction by default
-		}
-		else {
-			return super.shouldApplyTo(request, handler);
-		}
+		return (handler instanceof ResourceHttpRequestHandler || handler instanceof HandlerFunction) &&
+				hasGlobalExceptionHandlers() && !hasHandlerMappings() || super.shouldApplyTo(request, handler);  // apply to ResourceHttpRequestHandler and HandlerFunction by default
 	}
 
 	/**

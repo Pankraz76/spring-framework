@@ -81,12 +81,9 @@ final class TransactionAttributeSourcePointcut extends StaticMethodMatcherPointc
 
 		@Override
 		public boolean matches(Class<?> clazz) {
-			if (TransactionalProxy.class.isAssignableFrom(clazz) ||
-					TransactionManager.class.isAssignableFrom(clazz) ||
-					PersistenceExceptionTranslator.class.isAssignableFrom(clazz)) {
-				return false;
-			}
-			return (transactionAttributeSource == null || transactionAttributeSource.isCandidateClass(clazz));
+			return !TransactionalProxy.class.isAssignableFrom(clazz) &&
+					!TransactionManager.class.isAssignableFrom(clazz) &&
+					!PersistenceExceptionTranslator.class.isAssignableFrom(clazz) && (transactionAttributeSource == null || transactionAttributeSource.isCandidateClass(clazz));
 		}
 
 		private @Nullable TransactionAttributeSource getTransactionAttributeSource() {

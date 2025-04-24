@@ -155,12 +155,7 @@ public abstract class AbstractFileResolvingResource extends AbstractResource {
 				}
 				else if (con instanceof JarURLConnection jarCon) {
 					JarEntry jarEntry = jarCon.getJarEntry();
-					if (jarEntry == null) {
-						return false;
-					}
-					else {
-						return !jarEntry.isDirectory();
-					}
+					return jarEntry != null && !jarEntry.isDirectory();
 				}
 				long contentLength = con.getContentLengthLong();
 				if (contentLength > 0) {

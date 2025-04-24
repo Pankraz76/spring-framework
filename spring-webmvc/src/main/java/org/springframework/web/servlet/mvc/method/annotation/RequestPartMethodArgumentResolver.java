@@ -109,10 +109,7 @@ public class RequestPartMethodArgumentResolver extends AbstractMessageConverterM
 			return true;
 		}
 		else {
-			if (parameter.hasParameterAnnotation(RequestParam.class)) {
-				return false;
-			}
-			return MultipartResolutionDelegate.isMultipartArgument(parameter.nestedIfOptional());
+			return !parameter.hasParameterAnnotation(RequestParam.class) && MultipartResolutionDelegate.isMultipartArgument(parameter.nestedIfOptional());
 		}
 	}
 

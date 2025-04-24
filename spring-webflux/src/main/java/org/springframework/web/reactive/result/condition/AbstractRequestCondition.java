@@ -61,10 +61,7 @@ public abstract class AbstractRequestCondition<T extends AbstractRequestConditio
 		if (this == other) {
 			return true;
 		}
-		if (other == null || getClass() != other.getClass()) {
-			return false;
-		}
-		return getContent().equals(((AbstractRequestCondition<?>) other).getContent());
+		return other != null && getClass() == other.getClass() && getContent().equals(((AbstractRequestCondition<?>) other).getContent());
 	}
 
 	@Override

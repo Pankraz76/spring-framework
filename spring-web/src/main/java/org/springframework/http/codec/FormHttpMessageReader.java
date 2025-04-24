@@ -107,10 +107,7 @@ public class FormHttpMessageReader extends LoggingCodecSupport
 		if (!supportsMediaType(mediaType)) {
 			return false;
 		}
-		if (MultiValueMap.class.isAssignableFrom(elementType.toClass()) && elementType.hasUnresolvableGenerics()) {
-			return true;
-		}
-		return MULTIVALUE_STRINGS_TYPE.isAssignableFrom(elementType);
+		return MultiValueMap.class.isAssignableFrom(elementType.toClass()) && elementType.hasUnresolvableGenerics() || MULTIVALUE_STRINGS_TYPE.isAssignableFrom(elementType);
 	}
 
 	private static boolean supportsMediaType(@Nullable MediaType mediaType) {

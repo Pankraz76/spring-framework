@@ -417,10 +417,7 @@ public class ResolvableType implements Serializable {
 	 * @see #getComponentType()
 	 */
 	public boolean isArray() {
-		if (this == NONE) {
-			return false;
-		}
-		return ((this.type instanceof Class<?> clazz && clazz.isArray()) ||
+		return this != NONE && ((this.type instanceof Class<?> clazz && clazz.isArray()) ||
 				this.type instanceof GenericArrayType || resolveType().isArray());
 	}
 
@@ -593,10 +590,7 @@ public class ResolvableType implements Serializable {
 	 * The result will be {@code true} only in those two scenarios.
 	 */
 	public boolean hasUnresolvableGenerics() {
-		if (this == NONE) {
-			return false;
-		}
-		return hasUnresolvableGenerics(null);
+		return this != NONE && hasUnresolvableGenerics(null);
 	}
 
 	private boolean hasUnresolvableGenerics(@Nullable Set<Type> alreadySeen) {
