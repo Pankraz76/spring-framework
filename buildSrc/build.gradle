@@ -1,6 +1,7 @@
 plugins {
 	id 'java-gradle-plugin'
 	id 'checkstyle'
+	id 'pmd'
 }
 
 repositories {
@@ -65,3 +66,9 @@ test {
 }
 
 jar.dependsOn check
+
+pmd {
+	consoleOutput = true
+	toolVersion = "7.0.0"
+	ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+}
