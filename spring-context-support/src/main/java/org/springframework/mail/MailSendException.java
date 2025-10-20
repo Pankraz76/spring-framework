@@ -137,7 +137,7 @@ public class MailSendException extends MailException {
 			sb.append("Failed messages: ");
 			for (int i = 0; i < this.messageExceptions.length; i++) {
 				Exception subEx = this.messageExceptions[i];
-				sb.append(subEx.toString());
+				sb.append(subEx);
 				if (i < this.messageExceptions.length - 1) {
 					sb.append("; ");
 				}

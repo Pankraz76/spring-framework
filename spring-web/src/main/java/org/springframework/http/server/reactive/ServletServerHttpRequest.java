@@ -142,7 +142,7 @@ class ServletServerHttpRequest extends AbstractServerHttpRequest {
 				try {
 					// Maybe malformed query, try to parse and encode it
 					query = UriComponentsBuilder.fromUriString("?" + query).build().toUri().getRawQuery();
-					return new URI(servletRequest.getRequestURL().toString() + "?" + query);
+					return new URI(servletRequest.getRequestURL() + "?" + query);
 				}
 				catch (URISyntaxException ex2) {
 					try {

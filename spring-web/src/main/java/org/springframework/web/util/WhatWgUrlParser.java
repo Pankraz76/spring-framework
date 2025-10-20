@@ -1278,7 +1278,7 @@ final class WhatWgUrlParser {
 				}
 				// Otherwise, port-invalid validation error, return failure.
 				else {
-					p.failure("Invalid port: \"" + Character.toString(c) + "\"");
+					p.failure("Invalid port: \"" + c + "\"");
 				}
 			}
 		},
@@ -2703,7 +2703,7 @@ final class WhatWgUrlParser {
 				// IPv6-invalid-code-point validation error, return failure.
 				else if (c != EOF) {
 					throw new InvalidUrlException(
-							"IPv6 address contains \"" + Character.toString(c) + "\", which is " +
+							"IPv6 address contains \"" + c + "\", which is " +
 									"neither an ASCII hex digit nor a ':'.");
 				}
 				// Set address[pieceIndex] to value.
