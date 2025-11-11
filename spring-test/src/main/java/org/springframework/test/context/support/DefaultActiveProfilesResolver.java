@@ -60,17 +60,16 @@ public class DefaultActiveProfilesResolver implements ActiveProfilesResolver {
 
 		if (descriptor == null) {
 			if (logger.isTraceEnabled()) {
-				logger.trace(String.format(
-					"Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]",
-					ActiveProfiles.class.getName(), testClass.getName()));
+				logger.trace("Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]".formatted(
+						ActiveProfiles.class.getName(), testClass.getName()));
 			}
 			return EMPTY_STRING_ARRAY;
 		}
 		else {
 			ActiveProfiles annotation = descriptor.getAnnotation();
 			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("Retrieved @ActiveProfiles [%s] for declaring class [%s].", annotation,
-					descriptor.getDeclaringClass().getName()));
+				logger.trace("Retrieved @ActiveProfiles [%s] for declaring class [%s].".formatted(annotation,
+						descriptor.getDeclaringClass().getName()));
 			}
 			return annotation.profiles();
 		}

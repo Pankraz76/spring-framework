@@ -62,7 +62,7 @@ final class DerbyEmbeddedDatabaseConfigurer implements EmbeddedDatabaseConfigure
 	@Override
 	public void configureConnectionProperties(ConnectionProperties properties, String databaseName) {
 		properties.setDriverClass(EmbeddedDriver.class);
-		properties.setUrl(String.format(URL_TEMPLATE, databaseName, "create=true"));
+		properties.setUrl(URL_TEMPLATE.formatted(databaseName, "create=true"));
 		properties.setUsername("sa");
 		properties.setPassword("");
 	}
@@ -71,7 +71,7 @@ final class DerbyEmbeddedDatabaseConfigurer implements EmbeddedDatabaseConfigure
 	public void shutdown(DataSource dataSource, String databaseName) {
 		try {
 			new EmbeddedDriver().connect(
-					String.format(URL_TEMPLATE, databaseName, "drop=true"), new Properties());
+					URL_TEMPLATE.formatted(databaseName, "drop=true"), new Properties());
 		}
 		catch (SQLException ex) {
 			// Error code that indicates successful shutdown

@@ -121,7 +121,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 		// Use defaults?
 		if (descriptor == null) {
 			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("@TestExecutionListeners is not present for class [%s]: using defaults.",
+				logger.trace("@TestExecutionListeners is not present for class [%s]: using defaults.".formatted(
 						clazz.getName()));
 			}
 			usingDefaults = true;
@@ -133,7 +133,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 				Class<?> declaringClass = descriptor.getDeclaringClass();
 				TestExecutionListeners testExecutionListeners = descriptor.getAnnotation();
 				if (logger.isTraceEnabled()) {
-					logger.trace(String.format("Retrieved @TestExecutionListeners [%s] for declaring class [%s].",
+					logger.trace("Retrieved @TestExecutionListeners [%s] for declaring class [%s].".formatted(
 							testExecutionListeners, declaringClass.getName()));
 				}
 
@@ -254,13 +254,11 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 
 		ContextLoader contextLoader = resolveContextLoader(testClass, defaultConfigAttributesList);
 		if (logger.isTraceEnabled()) {
-			logger.trace(String.format(
-					"Neither @ContextConfiguration nor @ContextHierarchy found for test class [%s]: using %s",
+			logger.trace("Neither @ContextConfiguration nor @ContextHierarchy found for test class [%s]: using %s".formatted(
 					testClass.getName(), contextLoader.getClass().getName()));
 		}
 		else if (logger.isDebugEnabled()) {
-			logger.debug(String.format(
-					"Neither @ContextConfiguration nor @ContextHierarchy found for test class [%s]: using %s",
+			logger.debug("Neither @ContextConfiguration nor @ContextHierarchy found for test class [%s]: using %s".formatted(
 					testClass.getSimpleName(), contextLoader.getClass().getSimpleName()));
 		}
 		return buildMergedContextConfiguration(testClass, defaultConfigAttributesList, null,
@@ -307,7 +305,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 
 		for (ContextConfigurationAttributes configAttributes : configAttributesList) {
 			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("Processing locations and classes for context configuration attributes %s",
+				logger.trace("Processing locations and classes for context configuration attributes %s".formatted(
 						configAttributes));
 			}
 			if (contextLoader instanceof SmartContextLoader smartContextLoader) {
@@ -506,7 +504,7 @@ public abstract class AbstractTestContextBootstrapper implements TestContextBoot
 			contextLoaderClass = getDefaultContextLoaderClass(testClass);
 		}
 		if (logger.isTraceEnabled()) {
-			logger.trace(String.format("Using ContextLoader class [%s] for test class [%s]",
+			logger.trace("Using ContextLoader class [%s] for test class [%s]".formatted(
 					contextLoaderClass.getName(), testClass.getName()));
 		}
 		return BeanUtils.instantiateClass(contextLoaderClass, ContextLoader.class);

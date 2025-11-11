@@ -252,7 +252,7 @@ class JacksonJsonHttpMessageConverterTests {
 		JacksonJsonHttpMessageConverter converter = new JacksonJsonHttpMessageConverter() {
 			@Override
 			protected JavaType getJavaType(Type type, @Nullable Class<?> contextClass) {
-				if (type instanceof Class && List.class.isAssignableFrom((Class<?>)type)) {
+				if (type instanceof Class<?> class1 && List.class.isAssignableFrom(class1)) {
 					return new ObjectMapper().getTypeFactory().constructCollectionType(ArrayList.class, MyBean.class);
 				}
 				else {

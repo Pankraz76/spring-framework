@@ -54,7 +54,7 @@ class TrickyAspectJPointcutExpressionTests {
 		TestService target = new TestServiceImpl();
 		LogUserAdvice logAdvice = new LogUserAdvice();
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression(String.format("execution(* %s.TestService.*(..))", getClass().getName()));
+		pointcut.setExpression("execution(* %s.TestService.*(..))".formatted(getClass().getName()));
 		testAdvice(new DefaultPointcutAdvisor(pointcut, logAdvice), logAdvice, target, "TestServiceImpl");
 	}
 
@@ -63,7 +63,7 @@ class TrickyAspectJPointcutExpressionTests {
 		TestService target = new TestServiceImpl();
 		LogUserAdvice logAdvice = new LogUserAdvice();
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression(String.format("@within(%s.Log)", getClass().getName()));
+		pointcut.setExpression("@within(%s.Log)".formatted(getClass().getName()));
 		testAdvice(new DefaultPointcutAdvisor(pointcut, logAdvice), logAdvice, target, "TestServiceImpl");
 	}
 
@@ -72,7 +72,7 @@ class TrickyAspectJPointcutExpressionTests {
 		TestService target = new TestServiceImpl();
 		LogUserAdvice logAdvice = new LogUserAdvice();
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression(String.format("@within(%s.Log)", getClass().getName()));
+		pointcut.setExpression("@within(%s.Log)".formatted(getClass().getName()));
 		testAdvice(new DefaultPointcutAdvisor(pointcut, logAdvice), logAdvice, target, "TestServiceImpl", true);
 	}
 
@@ -81,7 +81,7 @@ class TrickyAspectJPointcutExpressionTests {
 
 		LogUserAdvice logAdvice = new LogUserAdvice();
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression(String.format("execution(* %s.TestService.*(..))", getClass().getName()));
+		pointcut.setExpression("execution(* %s.TestService.*(..))".formatted(getClass().getName()));
 
 		// Test with default class loader first...
 		testAdvice(new DefaultPointcutAdvisor(pointcut, logAdvice), logAdvice, new TestServiceImpl(), "TestServiceImpl");

@@ -188,7 +188,7 @@ public class DefaultDataBuffer implements DataBuffer {
 
 	private void setCapacity(int newCapacity) {
 		if (newCapacity < 0) {
-			throw new IllegalArgumentException(String.format("'newCapacity' %d must be 0 or higher", newCapacity));
+			throw new IllegalArgumentException("'newCapacity' %d must be 0 or higher".formatted(newCapacity));
 		}
 		int readPosition = readPosition();
 		int writePosition = writePosition();
@@ -497,7 +497,7 @@ public class DefaultDataBuffer implements DataBuffer {
 
 	@Override
 	public String toString() {
-		return String.format("DefaultDataBuffer (r: %d, w: %d, c: %d)",
+		return "DefaultDataBuffer (r: %d, w: %d, c: %d)".formatted(
 				this.readPosition, this.writePosition, this.capacity);
 	}
 
@@ -519,7 +519,7 @@ public class DefaultDataBuffer implements DataBuffer {
 
 	private void assertIndex(boolean expression, String format, Object... args) {
 		if (!expression) {
-			String message = String.format(format, args);
+			String message = format.formatted(args);
 			throw new IndexOutOfBoundsException(message);
 		}
 	}

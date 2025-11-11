@@ -163,7 +163,7 @@ class XmlContentTests {
 
 		@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
 		ResponseEntity<Object> savepersons(@RequestBody Person person) {
-			URI location = URI.create(String.format("/persons/%s", person.getName()));
+			URI location = URI.create("/persons/%s".formatted(person.getName()));
 			return ResponseEntity.created(location).build();
 		}
 	}

@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -117,7 +116,7 @@ class MultipartRouterFunctionIntegrationTests extends AbstractRouterFunctionInte
 				.create(result)
 				.consumeNextWith(location -> {
 					try {
-						byte[] actualBytes = Files.readAllBytes(Paths.get(location));
+						byte[] actualBytes = Files.readAllBytes(Path.of(location));
 						byte[] expectedBytes = FileCopyUtils.copyToByteArray(this.resource.getInputStream());
 						assertThat(actualBytes).isEqualTo(expectedBytes);
 					}

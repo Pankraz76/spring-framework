@@ -16,6 +16,7 @@
 
 package org.springframework.aop.target;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.jspecify.annotations.Nullable;
@@ -40,7 +41,7 @@ import org.springframework.util.Assert;
 public class HotSwappableTargetSource implements TargetSource, Serializable {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = 7497929212653839187L;
+	@Serial private static final long serialVersionUID = 7497929212653839187L;
 
 
 	/** The current target object. */

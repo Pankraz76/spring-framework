@@ -16,6 +16,7 @@
 
 package org.springframework.aop.framework;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.Proxy;
 
@@ -53,7 +54,7 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 	 */
 	public static final DefaultAopProxyFactory INSTANCE = new DefaultAopProxyFactory();
 
-	private static final long serialVersionUID = 7930414337282325166L;
+	@Serial private static final long serialVersionUID = 7930414337282325166L;
 
 
 	@Override

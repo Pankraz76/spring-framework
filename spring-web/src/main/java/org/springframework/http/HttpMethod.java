@@ -16,6 +16,7 @@
 
 package org.springframework.http;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.jspecify.annotations.Nullable;
@@ -33,7 +34,7 @@ import org.springframework.util.Assert;
  */
 public final class HttpMethod implements Comparable<HttpMethod>, Serializable {
 
-	private static final long serialVersionUID = -70133475680645360L;
+	@Serial private static final long serialVersionUID = -70133475680645360L;
 
 	/**
 	 * The HTTP method {@code GET}.

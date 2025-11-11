@@ -263,8 +263,7 @@ final class DefaultDatabaseClient implements DatabaseClient {
 		@Override
 		public DefaultGenericExecuteSpec bind(int index, Object value) {
 			assertNotPreparedOperation();
-			Assert.notNull(value, () -> String.format(
-					"Value at index %d must not be null. Use bindNull(…) instead.", index));
+			Assert.notNull(value, () -> "Value at index %d must not be null. Use bindNull(…) instead.".formatted(index));
 
 			Map<Integer, Parameter> byIndex = new LinkedHashMap<>(this.byIndex);
 			byIndex.put(index, resolveParameter(value));
@@ -287,8 +286,7 @@ final class DefaultDatabaseClient implements DatabaseClient {
 			assertNotPreparedOperation();
 
 			Assert.hasText(name, "Parameter name must not be null or empty");
-			Assert.notNull(value, () -> String.format(
-					"Value for parameter %s must not be null. Use bindNull(…) instead.", name));
+			Assert.notNull(value, () -> "Value for parameter %s must not be null. Use bindNull(…) instead.".formatted(name));
 
 			Map<String, Parameter> byName = new LinkedHashMap<>(this.byName);
 			byName.put(name, resolveParameter(value));
@@ -466,7 +464,7 @@ final class DefaultDatabaseClient implements DatabaseClient {
 				Parameter parameter = getParameter(remainderByName, remainderByIndex, parameterNames, parameterName);
 				if (parameter == null) {
 					throw new InvalidDataAccessApiUsageException(
-							String.format("No parameter specified for [%s] in query [%s]", parameterName, sql));
+							"No parameter specified for [%s] in query [%s]".formatted(parameterName, sql));
 				}
 				namedBindings.put(parameterName, parameter);
 			}

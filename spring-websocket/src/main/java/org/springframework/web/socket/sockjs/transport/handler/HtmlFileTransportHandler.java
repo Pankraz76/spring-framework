@@ -146,7 +146,7 @@ public class HtmlFileTransportHandler extends AbstractHttpSendingTransportHandle
 		protected byte[] getPrelude(ServerHttpRequest request) {
 			// We already validated the parameter above...
 			String callback = getCallbackParam(request);
-			String html = String.format(PARTIAL_HTML_CONTENT, callback);
+			String html = PARTIAL_HTML_CONTENT.formatted(callback);
 			return html.getBytes(StandardCharsets.UTF_8);
 		}
 	}

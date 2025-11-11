@@ -105,22 +105,22 @@ class ToStringVisitor implements RouterFunctions.Visitor, RequestPredicates.Visi
 	@Deprecated(since = "7.0", forRemoval = true)
 	@Override
 	public void pathExtension(String extension) {
-		this.builder.append(String.format("*.%s", extension));
+		this.builder.append("*.%s".formatted(extension));
 	}
 
 	@Override
 	public void header(String name, String value) {
-		this.builder.append(String.format("%s: %s", name, value));
+		this.builder.append("%s: %s".formatted(name, value));
 	}
 
 	@Override
 	public void param(String name, String value) {
-		this.builder.append(String.format("?%s == %s", name, value));
+		this.builder.append("?%s == %s".formatted(name, value));
 	}
 
 	@Override
 	public void version(String version) {
-		this.builder.append(String.format("version: %s", version));
+		this.builder.append("version: %s".formatted(version));
 	}
 
 	@Override

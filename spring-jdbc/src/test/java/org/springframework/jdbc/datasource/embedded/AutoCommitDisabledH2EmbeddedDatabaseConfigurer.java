@@ -40,7 +40,7 @@ public class AutoCommitDisabledH2EmbeddedDatabaseConfigurer extends AbstractEmbe
 
 	@Override
 	public void configureConnectionProperties(ConnectionProperties properties, String databaseName) {
-		String url = String.format("jdbc:h2:mem:%s;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;AUTOCOMMIT=false", databaseName);
+		String url = "jdbc:h2:mem:%s;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;AUTOCOMMIT=false".formatted(databaseName);
 
 		properties.setDriverClass(this.driverClass);
 		properties.setUrl(url);

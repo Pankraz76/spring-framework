@@ -16,6 +16,7 @@
 
 package org.springframework.http;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ import org.springframework.util.StringUtils;
  */
 public class MediaType extends MimeType implements Serializable {
 
-	private static final long serialVersionUID = 2069937152339670231L;
+	@Serial private static final long serialVersionUID = 2069937152339670231L;
 
 	/**
 	 * Media type for "&#42;/&#42;", including all media ranges.

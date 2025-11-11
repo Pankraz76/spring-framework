@@ -16,6 +16,7 @@
 
 package org.springframework.aop.target;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -53,7 +54,7 @@ import org.springframework.util.ObjectUtils;
 public abstract class AbstractBeanFactoryBasedTargetSource implements TargetSource, BeanFactoryAware, Serializable {
 
 	/** use serialVersionUID from Spring 1.2.7 for interoperability. */
-	private static final long serialVersionUID = -4721607536018568393L;
+	@Serial private static final long serialVersionUID = -4721607536018568393L;
 
 
 	/** Logger available to subclasses. */

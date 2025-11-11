@@ -382,8 +382,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 			}
 			catch (RuntimeException ex) {
 				if (logger.isWarnEnabled()) {
-					logger.warn(String.format(
-							"Caught exception while retrieving transaction manager with qualifier '%s' for test context %s",
+					logger.warn("Caught exception while retrieving transaction manager with qualifier '%s' for test context %s".formatted(
 							qualifier, testContext), ex);
 				}
 				throw ex;
@@ -431,7 +430,7 @@ public class TransactionalTestExecutionListener extends AbstractTestExecutionLis
 		if (rollbackPresent) {
 			boolean defaultRollback = rollback.value();
 			if (logger.isDebugEnabled()) {
-				logger.debug(String.format("Retrieved default @Rollback(%s) for test class [%s].",
+				logger.debug("Retrieved default @Rollback(%s) for test class [%s].".formatted(
 						defaultRollback, testClass.getName()));
 			}
 			return defaultRollback;

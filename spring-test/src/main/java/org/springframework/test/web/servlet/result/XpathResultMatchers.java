@@ -50,7 +50,7 @@ public class XpathResultMatchers {
 	 * @param expression the XPath expression
 	 * @param namespaces the XML namespaces referenced in the XPath expression, or {@code null}
 	 * @param args arguments to parameterize the XPath expression with using the
-	 * formatting specifiers defined in {@link String#format(String, Object...)}
+	 * formatting specifiers defined in {@link String#formatted(Object...)}
 	 */
 	protected XpathResultMatchers(String expression, @Nullable Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {

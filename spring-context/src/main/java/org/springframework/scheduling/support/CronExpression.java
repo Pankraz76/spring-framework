@@ -180,8 +180,7 @@ public final class CronExpression {
 
 		String[] fields = StringUtils.tokenizeToStringArray(expression, " ");
 		if (fields.length != 6) {
-			throw new IllegalArgumentException(String.format(
-					"Cron expression must consist of 6 fields (found %d in \"%s\")", fields.length, expression));
+			throw new IllegalArgumentException("Cron expression must consist of 6 fields (found %d in \"%s\")".formatted(fields.length, expression));
 		}
 		try {
 			CronField seconds = CronField.parseSeconds(fields[0]);

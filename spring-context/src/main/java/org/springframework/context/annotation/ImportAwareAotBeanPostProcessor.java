@@ -72,7 +72,7 @@ public final class ImportAwareAotBeanPostProcessor implements BeanPostProcessor,
 			instance.setImportMetadata(metadataReader.getAnnotationMetadata());
 		}
 		catch (IOException ex) {
-			throw new IllegalStateException(String.format("Failed to read metadata for '%s'", importingClass), ex);
+			throw new IllegalStateException("Failed to read metadata for '%s'".formatted(importingClass), ex);
 		}
 	}
 

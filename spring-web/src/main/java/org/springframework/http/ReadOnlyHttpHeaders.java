@@ -16,6 +16,7 @@
 
 package org.springframework.http;
 
+import java.io.Serial;
 import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -42,7 +43,7 @@ import org.springframework.util.MultiValueMap;
  */
 class ReadOnlyHttpHeaders extends HttpHeaders {
 
-	private static final long serialVersionUID = -8578554704772377436L;
+	@Serial private static final long serialVersionUID = -8578554704772377436L;
 
 	private @Nullable MediaType cachedContentType;
 

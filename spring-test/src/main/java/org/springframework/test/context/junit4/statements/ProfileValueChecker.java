@@ -90,15 +90,13 @@ public class ProfileValueChecker extends Statement {
 		if (this.testMethod == null) {
 			if (!ProfileValueUtils.isTestEnabledInThisEnvironment(this.testClass)) {
 				Annotation ann = AnnotatedElementUtils.findMergedAnnotation(this.testClass, IfProfileValue.class);
-				throw new AssumptionViolatedException(String.format(
-						"Profile configured via [%s] is not enabled in this environment for test class [%s].",
+				throw new AssumptionViolatedException("Profile configured via [%s] is not enabled in this environment for test class [%s].".formatted(
 						ann, this.testClass.getName()));
 			}
 		}
 		else {
 			if (!ProfileValueUtils.isTestEnabledInThisEnvironment(this.testMethod, this.testClass)) {
-				throw new AssumptionViolatedException(String.format(
-						"Profile configured via @IfProfileValue is not enabled in this environment for test method [%s].",
+				throw new AssumptionViolatedException("Profile configured via @IfProfileValue is not enabled in this environment for test method [%s].".formatted(
 						this.testMethod));
 			}
 		}

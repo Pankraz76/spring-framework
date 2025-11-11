@@ -333,7 +333,7 @@ public abstract class MockRestRequestMatchers {
 	 * <a href="https://github.com/jayway/JsonPath">JsonPath</a> expression to
 	 * inspect a specific subset of the body. The JSON path expression can be a
 	 * parameterized string using formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * {@link String#formatted(Object...)}.
 	 * @param expression the JSON path optionally parameterized with arguments
 	 * @param args arguments to parameterize the JSON path expression with
 	 */
@@ -357,7 +357,7 @@ public abstract class MockRestRequestMatchers {
 	 * Access to request body matchers using an XPath to inspect a specific
 	 * subset of the body. The XPath expression can be a parameterized string
 	 * using formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * {@link String#formatted(Object...)}.
 	 * @param expression the XPath optionally parameterized with arguments
 	 * @param args arguments to parameterize the XPath expression with
 	 */
@@ -369,7 +369,7 @@ public abstract class MockRestRequestMatchers {
 	 * Access to response body matchers using an XPath to inspect a specific
 	 * subset of the body. The XPath expression can be a parameterized string
 	 * using formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * {@link String#formatted(Object...)}.
 	 * @param expression the XPath optionally parameterized with arguments
 	 * @param namespaces the namespaces referenced in the XPath expression
 	 * @param args arguments to parameterize the XPath expression with

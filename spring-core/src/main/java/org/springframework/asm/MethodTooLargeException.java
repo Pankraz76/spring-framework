@@ -27,6 +27,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 package org.springframework.asm;
 
+import java.io.Serial;
+
 /**
  * Exception thrown when the Code attribute of a method produced by a {@link ClassWriter} is too
  * large.
@@ -34,7 +36,7 @@ package org.springframework.asm;
  * @author Jason Zaugg
  */
 public final class MethodTooLargeException extends IndexOutOfBoundsException {
-  private static final long serialVersionUID = 6807380416709738314L;
+	@Serial private static final long serialVersionUID = 6807380416709738314L;
 
   private final String className;
   private final String methodName;

@@ -590,7 +590,7 @@ class DefaultServerRequestTests {
 		@SafeHttpMethodsTest
 		void ifNoneMatchShouldMatchPaddedETag(String method) {
 			String eTag = "Foo";
-			String paddedEtag = String.format("\"%s\"", eTag);
+			String paddedEtag = "\"%s\"".formatted(eTag);
 			MockServerHttpRequest mockRequest = MockServerHttpRequest
 					.method(HttpMethod.valueOf(method), "/")
 					.ifNoneMatch(paddedEtag).build();

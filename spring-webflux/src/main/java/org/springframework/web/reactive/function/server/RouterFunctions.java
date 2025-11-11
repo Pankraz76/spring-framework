@@ -1220,7 +1220,7 @@ public abstract class RouterFunctions {
 			if (this.predicate.test(request)) {
 				if (logger.isTraceEnabled()) {
 					String logPrefix = request.exchange().getLogPrefix();
-					logger.trace(logPrefix + String.format("Matched %s", this.predicate));
+					logger.trace(logPrefix + "Matched %s".formatted(this.predicate));
 				}
 				return Mono.just(this.handlerFunction);
 			}
@@ -1256,7 +1256,7 @@ public abstract class RouterFunctions {
 					.map(nestedRequest -> {
 								if (logger.isTraceEnabled()) {
 									String logPrefix = serverRequest.exchange().getLogPrefix();
-									logger.trace(logPrefix + String.format("Matched nested %s", this.predicate));
+									logger.trace(logPrefix + "Matched nested %s".formatted(this.predicate));
 								}
 								return this.routerFunction.route(nestedRequest)
 										.doOnNext(match -> {

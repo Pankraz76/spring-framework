@@ -150,13 +150,12 @@ public abstract class AbstractDelegatingSmartContextLoader implements AotContext
 
 			if (xmlLoaderDetectedDefaults) {
 				if (logger.isTraceEnabled()) {
-					logger.trace(String.format("%s detected default locations for context configuration %s",
+					logger.trace("%s detected default locations for context configuration %s".formatted(
 							name(getXmlLoader()), configAttributes));
 				}
 			}
 
-			Assert.state(!configAttributes.hasClasses(), () -> String.format(
-					"%s should NOT have detected default configuration classes for context configuration %s",
+			Assert.state(!configAttributes.hasClasses(), () -> "%s should NOT have detected default configuration classes for context configuration %s".formatted(
 					name(getXmlLoader()), configAttributes));
 
 			// Now let the annotation config loader process the configuration.
@@ -164,13 +163,12 @@ public abstract class AbstractDelegatingSmartContextLoader implements AotContext
 
 			if (configAttributes.hasClasses()) {
 				if (logger.isTraceEnabled()) {
-					logger.trace(String.format("%s detected default configuration classes for context configuration %s",
+					logger.trace("%s detected default configuration classes for context configuration %s".formatted(
 							name(getAnnotationConfigLoader()), configAttributes));
 				}
 			}
 
-			Assert.state(xmlLoaderDetectedDefaults || !configAttributes.hasLocations(), () -> String.format(
-					"%s should NOT have detected default locations for context configuration %s",
+			Assert.state(xmlLoaderDetectedDefaults || !configAttributes.hasLocations(), () -> "%s should NOT have detected default locations for context configuration %s".formatted(
 					name(getAnnotationConfigLoader()), configAttributes));
 
 			if (configAttributes.hasLocations() && configAttributes.hasClasses()) {

@@ -2,7 +2,8 @@ description = "Spring Core Test"
 
 dependencies {
 	api(project(":spring-core"))
-	optional("org.assertj:assertj-core")
+	compileOnly "jakarta.annotation:jakarta.annotation-api:1.3.5"
+    optional("org.assertj:assertj-core")
 	optional("org.junit.jupiter:junit-jupiter-api")
 	compileOnly("org.junit.jupiter:junit-jupiter-params") // Used in CompileWithForkedClassLoaderExtension Javadoc
 	compileOnly("org.junit.platform:junit-platform-launcher") // Used in CompileWithForkedClassLoaderExtension

@@ -133,8 +133,8 @@ class AspectJAutoProxyAdviceOrderIntegrationTests {
 	static class Echo {
 
 		Object echo(Object obj) throws Exception {
-			if (obj instanceof Exception) {
-				throw (Exception) obj;
+			if (obj instanceof Exception exception) {
+				throw exception;
 			}
 			return obj;
 		}

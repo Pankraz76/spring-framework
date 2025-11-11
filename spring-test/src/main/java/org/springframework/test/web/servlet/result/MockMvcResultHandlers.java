@@ -102,14 +102,14 @@ public abstract class MockMvcResultHandlers {
 				@Override
 				public void printHeading(String heading) {
 					writer.println();
-					writer.println(String.format("%s:", heading));
+					writer.println("%s:".formatted(heading));
 				}
 				@Override
 				public void printValue(String label, @Nullable Object value) {
 					if (value != null && value.getClass().isArray()) {
 						value = CollectionUtils.arrayToList(value);
 					}
-					writer.println(String.format("%17s = %s", label, value));
+					writer.println("%17s = %s".formatted(label, value));
 				}
 			});
 		}

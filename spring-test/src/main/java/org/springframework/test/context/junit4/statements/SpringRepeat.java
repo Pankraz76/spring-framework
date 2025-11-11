@@ -82,7 +82,7 @@ public class SpringRepeat extends Statement {
 	public void evaluate() throws Throwable {
 		for (int i = 0; i < this.repeat; i++) {
 			if (this.repeat > 1 && logger.isTraceEnabled()) {
-				logger.trace(String.format("Repetition %d of test %s#%s()", (i + 1),
+				logger.trace("Repetition %d of test %s#%s()".formatted((i + 1),
 						this.testMethod.getDeclaringClass().getSimpleName(), this.testMethod.getName()));
 			}
 			this.next.evaluate();

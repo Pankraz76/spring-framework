@@ -16,6 +16,7 @@
 
 package org.springframework.test.context.cache;
 
+import java.io.Serial;
 import java.util.Collections;
 
 import org.jspecify.annotations.Nullable;
@@ -42,7 +43,7 @@ import org.springframework.test.context.MergedContextConfiguration;
  */
 final class AotMergedContextConfiguration extends MergedContextConfiguration {
 
-	private static final long serialVersionUID = 1963364911008547843L;
+	@Serial private static final long serialVersionUID = 1963364911008547843L;
 
 	private final Class<? extends ApplicationContextInitializer<?>> contextInitializerClass;
 

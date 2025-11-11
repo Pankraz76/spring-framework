@@ -50,7 +50,7 @@ public class ScriptParseException extends ScriptException {
 
 
 	private static String buildMessage(String message, @Nullable EncodedResource resource) {
-		return String.format("Failed to parse SQL script from resource [%s]: %s",
+		return "Failed to parse SQL script from resource [%s]: %s".formatted(
 				(resource == null ? "<unknown>" : resource), message);
 	}
 

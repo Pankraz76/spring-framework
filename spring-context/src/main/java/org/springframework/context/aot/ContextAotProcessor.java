@@ -157,7 +157,7 @@ public abstract class ContextAotProcessor extends AbstractAotProcessor<ClassName
 		}
 		StringBuilder sb = new StringBuilder();
 		sb.append("Args = ");
-		sb.append(String.join(String.format(" \\%n"), args));
+		sb.append(String.join(" \\%n".formatted(), args));
 		Path file = getSettings().getResourceOutput().resolve("META-INF/native-image/" +
 				getSettings().getGroupId() + "/" + getSettings().getArtifactId() + "/native-image.properties");
 		try {

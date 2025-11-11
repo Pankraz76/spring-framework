@@ -127,8 +127,9 @@ public class XpathResultMatchersTests {
 
 	@Test
 	public void stringEncodingDetection() throws Exception {
-		String content = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-				"<person><name>Jürgen</name></person>";
+		String content = """
+				<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+				<person><name>Jürgen</name></person>""";
 		byte[] bytes = content.getBytes(StandardCharsets.UTF_8);
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		response.addHeader("Content-Type", "application/xml");

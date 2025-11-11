@@ -16,6 +16,7 @@
 
 package org.springframework.aop.support;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.jspecify.annotations.Nullable;
@@ -45,7 +46,7 @@ import org.springframework.util.Assert;
 public class ComposablePointcut implements Pointcut, Serializable {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = -2743223737633663832L;
+	@Serial private static final long serialVersionUID = -2743223737633663832L;
 
 	@SuppressWarnings("serial")
 	private ClassFilter classFilter;

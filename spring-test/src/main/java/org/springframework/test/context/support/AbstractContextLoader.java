@@ -256,7 +256,7 @@ public abstract class AbstractContextLoader implements SmartContextLoader {
 			if (classPathResource.exists()) {
 				String prefixedResourcePath = ResourceUtils.CLASSPATH_URL_PREFIX + SLASH + resourcePath;
 				if (logger.isDebugEnabled()) {
-					logger.debug(String.format("Detected default resource location \"%s\" for test class [%s]",
+					logger.debug("Detected default resource location \"%s\" for test class [%s]".formatted(
 							prefixedResourcePath, clazz.getName()));
 				}
 				return new String[] {prefixedResourcePath};

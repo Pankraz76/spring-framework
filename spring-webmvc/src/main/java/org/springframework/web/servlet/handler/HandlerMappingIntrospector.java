@@ -349,7 +349,7 @@ public class HandlerMappingIntrospector
 	}
 
 	private MatchableHandlerMapping createMatchableHandlerMapping(HandlerMapping mapping, HttpServletRequest request) {
-		if (mapping instanceof MatchableHandlerMapping) {
+		if (mapping instanceof MatchableHandlerMapping handlerMapping) {
 			PathPatternMatchableHandlerMapping pathPatternMapping = this.pathPatternMappings.get(mapping);
 			if (pathPatternMapping != null) {
 				RequestPath requestPath = ServletRequestPathUtils.getParsedRequestPath(request);
@@ -357,7 +357,7 @@ public class HandlerMappingIntrospector
 			}
 			else {
 				String lookupPath = (String) request.getAttribute(UrlPathHelper.PATH_ATTRIBUTE);
-				return new LookupPathMatchableHandlerMapping((MatchableHandlerMapping) mapping, lookupPath);
+				return new LookupPathMatchableHandlerMapping(handlerMapping, lookupPath);
 			}
 		}
 		throw new IllegalStateException("HandlerMapping is not a MatchableHandlerMapping");

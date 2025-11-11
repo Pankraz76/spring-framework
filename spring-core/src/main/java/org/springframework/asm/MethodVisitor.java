@@ -551,7 +551,7 @@ public abstract class MethodVisitor {
   public void visitLdcInsn(final Object value) {
     if (api < Opcodes.ASM5
         && (value instanceof Handle
-            || (value instanceof Type && ((Type) value).getSort() == Type.METHOD))) {
+            || (value instanceof Type type && type.getSort() == Type.METHOD))) {
       throw new UnsupportedOperationException(REQUIRES_ASM5);
     }
     if (api < Opcodes.ASM7 && value instanceof ConstantDynamic) {

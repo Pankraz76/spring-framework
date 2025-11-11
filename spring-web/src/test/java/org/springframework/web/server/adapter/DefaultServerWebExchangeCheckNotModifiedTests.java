@@ -144,7 +144,7 @@ class DefaultServerWebExchangeCheckNotModifiedTests {
 	@Test
 	void checkNotModifiedUnpaddedETag() {
 		String eTag = "Foo";
-		String paddedEtag = String.format("\"%s\"", eTag);
+		String paddedEtag = "\"%s\"".formatted(eTag);
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/").ifNoneMatch(paddedEtag));
 
 		assertThat(exchange.checkNotModified(eTag)).isTrue();
@@ -162,7 +162,7 @@ class DefaultServerWebExchangeCheckNotModifiedTests {
 		assertThat(exchange.checkNotModified(currentETag)).isFalse();
 
 		assertThat(exchange.getResponse().getStatusCode()).isNull();
-		assertThat(exchange.getResponse().getHeaders().getETag()).isEqualTo(String.format("\"%s\"", currentETag));
+		assertThat(exchange.getResponse().getHeaders().getETag()).isEqualTo("\"%s\"".formatted(currentETag));
 	}
 
 	@Test
@@ -224,7 +224,7 @@ class DefaultServerWebExchangeCheckNotModifiedTests {
 	@Test
 	void checkNotModifiedETagWeakStrong() {
 		String eTag = "\"Foo\"";
-		String weakEtag = String.format("W/%s", eTag);
+		String weakEtag = "W/%s".formatted(eTag);
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/").ifNoneMatch(eTag));
 
 		assertThat(exchange.checkNotModified(weakEtag)).isTrue();
@@ -236,7 +236,7 @@ class DefaultServerWebExchangeCheckNotModifiedTests {
 	@Test
 	void checkNotModifiedETagStrongWeak() {
 		String eTag = "\"Foo\"";
-		MockServerHttpRequest request = get("/").ifNoneMatch(String.format("W/%s", eTag)).build();
+		MockServerHttpRequest request = get("/").ifNoneMatch("W/%s".formatted(eTag)).build();
 		MockServerWebExchange exchange = MockServerWebExchange.from(request);
 
 		assertThat(exchange.checkNotModified(eTag)).isTrue();
@@ -248,7 +248,7 @@ class DefaultServerWebExchangeCheckNotModifiedTests {
 	@Test
 	void checkNotModifiedMultipleETags() {
 		String eTag = "\"Bar\"";
-		String multipleETags = String.format("\"Foo\", %s", eTag);
+		String multipleETags = "\"Foo\", %s".formatted(eTag);
 		MockServerWebExchange exchange = MockServerWebExchange.from(get("/").ifNoneMatch(multipleETags));
 
 		assertThat(exchange.checkNotModified(eTag)).isTrue();

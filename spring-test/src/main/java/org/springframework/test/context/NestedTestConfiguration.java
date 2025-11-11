@@ -177,9 +177,8 @@ public @interface NestedTestConfiguration {
 			catch (IllegalArgumentException ex) {
 				Log logger = LogFactory.getLog(EnclosingConfiguration.class);
 				if (logger.isDebugEnabled()) {
-					logger.debug(String.format(
-						"Failed to parse enclosing configuration mode from '%s': %s",
-						name, ex.getMessage()));
+					logger.debug("Failed to parse enclosing configuration mode from '%s': %s".formatted(
+							name, ex.getMessage()));
 				}
 				return null;
 			}

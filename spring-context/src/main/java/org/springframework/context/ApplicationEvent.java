@@ -16,6 +16,7 @@
 
 package org.springframework.context;
 
+import java.io.Serial;
 import java.time.Clock;
 import java.util.EventObject;
 
@@ -31,7 +32,7 @@ import java.util.EventObject;
 public abstract class ApplicationEvent extends EventObject {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = 7099057708183571937L;
+	@Serial private static final long serialVersionUID = 7099057708183571937L;
 
 	/** System time when the event happened. */
 	private final long timestamp;

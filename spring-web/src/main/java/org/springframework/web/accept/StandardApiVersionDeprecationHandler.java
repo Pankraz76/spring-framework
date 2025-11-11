@@ -232,7 +232,7 @@ public class StandardApiVersionDeprecationHandler implements ApiVersionDeprecati
 
 		public VersionInfo withDeprecationLink(URI uri, MediaType mediaType) {
 			return new VersionInfo(version(), requestPredicate(),
-					deprecationDate(), String.format("<%s>; rel=\"deprecation\"; type=\"%s\"", uri, mediaType),
+					deprecationDate(), "<%s>; rel=\"deprecation\"; type=\"%s\"".formatted(uri, mediaType),
 					sunsetDate(), sunsetLink());
 		}
 
@@ -245,7 +245,7 @@ public class StandardApiVersionDeprecationHandler implements ApiVersionDeprecati
 		public VersionInfo withSunsetLink(URI uri, MediaType mediaType) {
 			return new VersionInfo(version(), requestPredicate(),
 					deprecationDate(), deprecationLink(),
-					sunsetDate(), String.format("<%s>; rel=\"sunset\"; type=\"%s\"", uri, mediaType));
+					sunsetDate(), "<%s>; rel=\"sunset\"; type=\"%s\"".formatted(uri, mediaType));
 		}
 
 		boolean match(Comparable<?> requestVersion, HttpServletRequest request) {

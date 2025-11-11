@@ -61,13 +61,13 @@ public class XpathExpectationsHelper {
 	 * @param expression the XPath expression
 	 * @param namespaces the XML namespaces referenced in the XPath expression, or {@code null}
 	 * @param args arguments to parameterize the XPath expression with using the
-	 * formatting specifiers defined in {@link String#format(String, Object...)}
+	 * formatting specifiers defined in {@link String#formatted(Object...)}
 	 * @throws XPathExpressionException if expression compilation failed
 	 */
 	public XpathExpectationsHelper(String expression, @Nullable Map<String, String> namespaces, Object... args)
 			throws XPathExpressionException {
 
-		this.expression = String.format(expression, args);
+		this.expression = expression.formatted(args);
 		this.xpathExpression = compileXpathExpression(this.expression, namespaces);
 		this.hasNamespaces = !CollectionUtils.isEmpty(namespaces);
 	}

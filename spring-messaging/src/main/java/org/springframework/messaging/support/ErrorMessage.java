@@ -16,6 +16,7 @@
 
 package org.springframework.messaging.support;
 
+import java.io.Serial;
 import java.util.Map;
 
 import org.jspecify.annotations.Nullable;
@@ -44,7 +45,7 @@ import org.springframework.messaging.MessageHeaders;
  */
 public class ErrorMessage extends GenericMessage<Throwable> {
 
-	private static final long serialVersionUID = -5470210965279837728L;
+	@Serial private static final long serialVersionUID = -5470210965279837728L;
 
 	@SuppressWarnings("serial")
 	private final @Nullable Message<?> originalMessage;

@@ -583,8 +583,7 @@ public class MvcUriComponentsBuilder {
 			return methods.iterator().next();
 		}
 		else if (methods.size() > 1) {
-			throw new IllegalArgumentException(String.format(
-					"Found two methods named '%s' accepting arguments %s in controller %s: [%s]",
+			throw new IllegalArgumentException("Found two methods named '%s' accepting arguments %s in controller %s: [%s]".formatted(
 					methodName, Arrays.asList(args), controllerType.getName(), methods));
 		}
 		else {

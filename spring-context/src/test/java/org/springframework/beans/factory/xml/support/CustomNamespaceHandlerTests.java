@@ -59,7 +59,6 @@ import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
@@ -77,9 +76,9 @@ class CustomNamespaceHandlerTests {
 	private static final String CLASSNAME = CLASS.getSimpleName();
 	private static final String FQ_PATH = "org/springframework/beans/factory/xml/support";
 
-	private static final String NS_PROPS = format("%s/%s.properties", FQ_PATH, CLASSNAME);
-	private static final String NS_XML = format("%s/%s-context.xml", FQ_PATH, CLASSNAME);
-	private static final String TEST_XSD = format("%s/%s.xsd", FQ_PATH, CLASSNAME);
+	private static final String NS_PROPS = "%s/%s.properties".formatted(FQ_PATH, CLASSNAME);
+	private static final String NS_XML = "%s/%s-context.xml".formatted(FQ_PATH, CLASSNAME);
+	private static final String TEST_XSD = "%s/%s.xsd".formatted(FQ_PATH, CLASSNAME);
 
 	private GenericApplicationContext beanFactory;
 

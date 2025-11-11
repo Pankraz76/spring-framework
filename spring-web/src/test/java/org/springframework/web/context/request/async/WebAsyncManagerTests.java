@@ -383,8 +383,8 @@ class WebAsyncManagerTests {
 
 		@Override
 		public Object call() throws Exception {
-			if (this.value instanceof Exception) {
-				throw ((Exception) this.value);
+			if (this.value instanceof Exception exception) {
+				throw exception;
 			}
 			return this.value;
 		}

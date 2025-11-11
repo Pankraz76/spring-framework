@@ -152,16 +152,16 @@ public class LifecycleBean implements BeanNameAware, BeanFactoryAware, Initializ
 
 		@Override
 		public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
-			if (bean instanceof LifecycleBean) {
-				((LifecycleBean) bean).postProcessBeforeInit();
+			if (bean instanceof LifecycleBean lifecycleBean) {
+				lifecycleBean.postProcessBeforeInit();
 			}
 			return bean;
 		}
 
 		@Override
 		public Object postProcessAfterInitialization(Object bean, String name) throws BeansException {
-			if (bean instanceof LifecycleBean) {
-				((LifecycleBean) bean).postProcessAfterInit();
+			if (bean instanceof LifecycleBean lifecycleBean) {
+				lifecycleBean.postProcessAfterInit();
 			}
 			return bean;
 		}

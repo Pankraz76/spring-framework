@@ -228,8 +228,7 @@ public abstract class AbstractRoutingConnectionFactory implements ConnectionFact
 				connectionFactory = this.resolvedDefaultConnectionFactory;
 			}
 			if (connectionFactory == null) {
-				sink.error(new IllegalStateException(String.format(
-						"Cannot determine target ConnectionFactory for lookup key '%s'", key == FALLBACK_MARKER ? null : key)));
+				sink.error(new IllegalStateException("Cannot determine target ConnectionFactory for lookup key '%s'".formatted(key == FALLBACK_MARKER ? null : key)));
 				return;
 			}
 			sink.next(connectionFactory);

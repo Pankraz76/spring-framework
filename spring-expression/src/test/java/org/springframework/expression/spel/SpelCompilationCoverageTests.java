@@ -7260,7 +7260,7 @@ public class SpelCompilationCoverageTests extends AbstractExpressionTests {
 	public static class DelegatingStringFormat {
 
 		public static String format(String s, Object... args) {
-			return String.format(s, args);
+			return s.formatted(args);
 		}
 	}
 

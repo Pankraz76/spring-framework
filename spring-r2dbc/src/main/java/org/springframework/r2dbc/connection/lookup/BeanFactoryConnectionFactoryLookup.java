@@ -78,7 +78,7 @@ public class BeanFactoryConnectionFactoryLookup implements ConnectionFactoryLook
 		}
 		catch (BeansException ex) {
 			throw new ConnectionFactoryLookupFailureException(
-					String.format("Failed to look up ConnectionFactory bean with name '%s'", connectionFactoryName), ex);
+					"Failed to look up ConnectionFactory bean with name '%s'".formatted(connectionFactoryName), ex);
 		}
 	}
 

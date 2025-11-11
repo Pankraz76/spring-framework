@@ -18,6 +18,7 @@ package org.springframework.aop.framework;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,7 +69,7 @@ import org.springframework.util.ObjectUtils;
 public class AdvisedSupport extends ProxyConfig implements Advised {
 
 	/** use serialVersionUID from Spring 2.0 for interoperability. */
-	private static final long serialVersionUID = 2651364800145442165L;
+	@Serial private static final long serialVersionUID = 2651364800145442165L;
 
 	private static final Advisor[] EMPTY_ADVISOR_ARRAY = new Advisor[0];
 

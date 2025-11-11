@@ -532,24 +532,24 @@ class CommonAnnotationBeanPostProcessorTests {
 
 		@Override
 		public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-			if (bean instanceof AnnotatedInitDestroyBean) {
-				assertThat(((AnnotatedInitDestroyBean) bean).initCalled).isFalse();
+			if (bean instanceof AnnotatedInitDestroyBean destroyBean) {
+				assertThat(destroyBean.initCalled).isFalse();
 			}
 			return bean;
 		}
 
 		@Override
 		public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-			if (bean instanceof AnnotatedInitDestroyBean) {
-				assertThat(((AnnotatedInitDestroyBean) bean).initCalled).isTrue();
+			if (bean instanceof AnnotatedInitDestroyBean destroyBean) {
+				assertThat(destroyBean.initCalled).isTrue();
 			}
 			return bean;
 		}
 
 		@Override
 		public void postProcessBeforeDestruction(Object bean, String beanName) throws BeansException {
-			if (bean instanceof AnnotatedInitDestroyBean) {
-				assertThat(((AnnotatedInitDestroyBean) bean).destroyCalled).isFalse();
+			if (bean instanceof AnnotatedInitDestroyBean destroyBean) {
+				assertThat(destroyBean.destroyCalled).isFalse();
 			}
 		}
 

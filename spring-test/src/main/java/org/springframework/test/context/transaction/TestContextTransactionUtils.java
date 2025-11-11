@@ -99,7 +99,7 @@ public abstract class TestContextTransactionUtils {
 			}
 		}
 		catch (BeansException ex) {
-			logger.error(String.format("Failed to retrieve DataSource named '%s' for test context %s",
+			logger.error("Failed to retrieve DataSource named '%s' for test context %s".formatted(
 					name, testContext), ex);
 			throw ex;
 		}
@@ -170,7 +170,7 @@ public abstract class TestContextTransactionUtils {
 			}
 		}
 		catch (BeansException ex) {
-			logger.error(String.format("Failed to retrieve transaction manager named '%s' for test context %s",
+			logger.error("Failed to retrieve transaction manager named '%s' for test context %s".formatted(
 					name, testContext), ex);
 			throw ex;
 		}

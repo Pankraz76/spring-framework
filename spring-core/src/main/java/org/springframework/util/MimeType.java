@@ -18,6 +18,7 @@ package org.springframework.util;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.BitSet;
@@ -52,7 +53,7 @@ import org.jspecify.annotations.Nullable;
  */
 public class MimeType implements Comparable<MimeType>, Serializable {
 
-	private static final long serialVersionUID = 4085923477777865903L;
+	@Serial private static final long serialVersionUID = 4085923477777865903L;
 
 
 	protected static final String WILDCARD_TYPE = "*";

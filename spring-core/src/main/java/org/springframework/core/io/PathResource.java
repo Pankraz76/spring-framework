@@ -30,7 +30,6 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import org.jspecify.annotations.Nullable;
@@ -82,11 +81,11 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 * via {@link #createRelative}, the relative path will be built <i>underneath</i>
 	 * the given root: for example, Paths.get("C:/dir1/"), relative path "dir2" &rarr; "C:/dir1/dir2"!
 	 * @param path a path
-	 * @see java.nio.file.Paths#get(String, String...)
+	 * @see Path#of(String, String...)
 	 */
 	public PathResource(String path) {
 		Assert.notNull(path, "Path must not be null");
-		this.path = Paths.get(path).normalize();
+		this.path = Path.of(path).normalize();
 	}
 
 	/**
@@ -95,11 +94,11 @@ public class PathResource extends AbstractResource implements WritableResource {
 	 * via {@link #createRelative}, the relative path will be built <i>underneath</i>
 	 * the given root: for example, Paths.get("C:/dir1/"), relative path "dir2" &rarr; "C:/dir1/dir2"!
 	 * @param uri a path URI
-	 * @see java.nio.file.Paths#get(URI)
+	 * @see Path#of(URI)
 	 */
 	public PathResource(URI uri) {
 		Assert.notNull(uri, "URI must not be null");
-		this.path = Paths.get(uri).normalize();
+		this.path = Path.of(uri).normalize();
 	}
 
 

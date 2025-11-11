@@ -106,7 +106,7 @@ class CacheProxyFactoryBeanTests {
 
 		default String greet(String name) {
 			setCacheMiss();
-			return String.format("Hello %s!", name);
+			return "Hello %s!".formatted(name);
 		}
 	}
 

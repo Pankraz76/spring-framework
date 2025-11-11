@@ -51,7 +51,7 @@ public class JsonPathRequestMatchers {
 	 * {@link MockRestRequestMatchers#jsonPath(String, Object...)}.
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
 	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * using formatting specifiers defined in {@link String#formatted(Object...)}
 	 */
 	protected JsonPathRequestMatchers(String expression, Object... args) {
 		Assert.hasText(expression, "expression must not be null or empty");

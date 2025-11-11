@@ -1973,12 +1973,12 @@ final class MethodWriter extends MethodVisitor {
    *     a NEW instruction (for uninitialized types).
    */
   private void putFrameType(final Object type) {
-    if (type instanceof Integer) {
-      stackMapTableEntries.putByte(((Integer) type).intValue());
-    } else if (type instanceof String) {
+    if (type instanceof Integer integer) {
+      stackMapTableEntries.putByte(integer.intValue());
+    } else if (type instanceof String string) {
       stackMapTableEntries
           .putByte(Frame.ITEM_OBJECT)
-          .putShort(symbolTable.addConstantClass((String) type).index);
+          .putShort(symbolTable.addConstantClass(string).index);
     } else {
       stackMapTableEntries.putByte(Frame.ITEM_UNINITIALIZED);
       ((Label) type).put(stackMapTableEntries);

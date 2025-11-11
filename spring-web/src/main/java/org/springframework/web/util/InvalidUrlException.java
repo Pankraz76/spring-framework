@@ -16,6 +16,8 @@
 
 package org.springframework.web.util;
 
+import java.io.Serial;
+
 /**
  * Thrown when a URL string cannot be parsed.
  *
@@ -24,7 +26,7 @@ package org.springframework.web.util;
  */
 public class InvalidUrlException extends IllegalArgumentException {
 
-	private static final long serialVersionUID = 7409308391039105562L;
+	@Serial private static final long serialVersionUID = 7409308391039105562L;
 
 
 	/**

@@ -32,7 +32,6 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Stream;
@@ -132,7 +131,7 @@ class ResourceTests {
 
 	private static Stream<Arguments> resource() throws URISyntaxException {
 		URL resourceClass = ResourceTests.class.getResource("ResourceTests.class");
-		Path resourceClassFilePath = Paths.get(resourceClass.toURI());
+		Path resourceClassFilePath = Path.of(resourceClass.toURI());
 		return Stream.of(
 				argumentSet("ClassPathResource", new ClassPathResource("org/springframework/core/io/ResourceTests.class")),
 				argumentSet("ClassPathResource with ClassLoader", new ClassPathResource("org/springframework/core/io/ResourceTests.class", ResourceTests.class.getClassLoader())),
@@ -252,7 +251,7 @@ class ResourceTests {
 
 		@Test
 		void sameResourceFromFilePathIsEqual() throws Exception {
-			Path filePath = Paths.get(getClass().getResource("ResourceTests.class").toURI());
+			Path filePath = Path.of(getClass().getResource("ResourceTests.class").toURI());
 			Resource resource = new FileSystemResource(filePath);
 			assertThat(resource).isEqualTo(new FileSystemResource(filePath));
 		}

@@ -342,7 +342,7 @@ class ExtendedBeanInfo implements BeanInfo {
 
 		@Override
 		public String toString() {
-			return String.format("%s[name=%s, propertyType=%s, readMethod=%s, writeMethod=%s]",
+			return "%s[name=%s, propertyType=%s, readMethod=%s, writeMethod=%s]".formatted(
 					getClass().getSimpleName(), getName(), getPropertyType(), this.readMethod, this.writeMethod);
 		}
 	}

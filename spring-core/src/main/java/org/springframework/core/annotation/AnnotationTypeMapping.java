@@ -152,12 +152,10 @@ final class AnnotationTypeMapping {
 		Method target = AttributeMethods.forAnnotationType(targetAnnotation).get(targetAttributeName);
 		if (target == null) {
 			if (targetAnnotation == this.annotationType) {
-				throw new AnnotationConfigurationException(String.format(
-						"@AliasFor declaration on %s declares an alias for '%s' which is not present.",
+				throw new AnnotationConfigurationException("@AliasFor declaration on %s declares an alias for '%s' which is not present.".formatted(
 						AttributeMethods.describe(attribute), targetAttributeName));
 			}
-			throw new AnnotationConfigurationException(String.format(
-					"%s is declared as an @AliasFor nonexistent %s.",
+			throw new AnnotationConfigurationException("%s is declared as an @AliasFor nonexistent %s.".formatted(
 					StringUtils.capitalize(AttributeMethods.describe(attribute)),
 					AttributeMethods.describe(targetAnnotation, targetAttributeName)));
 		}
@@ -168,8 +166,7 @@ final class AnnotationTypeMapping {
 					AttributeMethods.describe(attribute)));
 		}
 		if (!isCompatibleReturnType(attribute.getReturnType(), target.getReturnType())) {
-			throw new AnnotationConfigurationException(String.format(
-					"Misconfigured aliases: %s and %s must declare the same return type.",
+			throw new AnnotationConfigurationException("Misconfigured aliases: %s and %s must declare the same return type.".formatted(
 					AttributeMethods.describe(attribute),
 					AttributeMethods.describe(target)));
 		}
@@ -178,8 +175,7 @@ final class AnnotationTypeMapping {
 			if (targetAliasFor != null) {
 				Method mirror = resolveAliasTarget(target, targetAliasFor, false);
 				if (!mirror.equals(attribute)) {
-					throw new AnnotationConfigurationException(String.format(
-							"%s must be declared as an @AliasFor %s, not %s.",
+					throw new AnnotationConfigurationException("%s must be declared as an @AliasFor %s, not %s.".formatted(
 							StringUtils.capitalize(AttributeMethods.describe(target)),
 							AttributeMethods.describe(attribute), AttributeMethods.describe(mirror)));
 				}
@@ -320,8 +316,7 @@ final class AnnotationTypeMapping {
 			AliasFor aliasFor = AnnotationsScanner.getDeclaredAnnotation(attribute, AliasFor.class);
 			if (aliasFor != null && !this.claimedAliases.contains(attribute)) {
 				Method target = resolveAliasTarget(attribute, aliasFor);
-				throw new AnnotationConfigurationException(String.format(
-						"@AliasFor declaration on %s declares an alias for %s which is not meta-present.",
+				throw new AnnotationConfigurationException("@AliasFor declaration on %s declares an alias for %s which is not meta-present.".formatted(
 						AttributeMethods.describe(attribute), AttributeMethods.describe(target)));
 			}
 		}
@@ -334,13 +329,11 @@ final class AnnotationTypeMapping {
 			Method mirrorAttribute = mirrorSet.get(i);
 			Object mirrorDefaultValue = mirrorAttribute.getDefaultValue();
 			if (firstDefaultValue == null || mirrorDefaultValue == null) {
-				throw new AnnotationConfigurationException(String.format(
-						"Misconfigured aliases: %s and %s must declare default values.",
+				throw new AnnotationConfigurationException("Misconfigured aliases: %s and %s must declare default values.".formatted(
 						AttributeMethods.describe(firstAttribute), AttributeMethods.describe(mirrorAttribute)));
 			}
 			if (!ObjectUtils.nullSafeEquals(firstDefaultValue, mirrorDefaultValue)) {
-				throw new AnnotationConfigurationException(String.format(
-						"Misconfigured aliases: %s and %s must declare the same default value.",
+				throw new AnnotationConfigurationException("Misconfigured aliases: %s and %s must declare the same default value.".formatted(
 						AttributeMethods.describe(firstAttribute), AttributeMethods.describe(mirrorAttribute)));
 			}
 		}

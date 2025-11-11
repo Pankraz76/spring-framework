@@ -66,8 +66,8 @@ class ConcurrentTaskSchedulerTests extends AbstractSchedulingTaskExecutorTests {
 	@Override
 	void shutdownExecutor() {
 		for (Runnable task : ((ExecutorService) scheduler.getConcurrentExecutor()).shutdownNow()) {
-			if (task instanceof Future) {
-				((Future<?>) task).cancel(true);
+			if (task instanceof Future<?> future) {
+				future.cancel(true);
 			}
 		}
 	}

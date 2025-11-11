@@ -57,8 +57,8 @@ public class SerializablePerson implements Person, Serializable {
 
 	@Override
 	public Object echo(Object o) throws Throwable {
-		if (o instanceof Throwable) {
-			throw (Throwable) o;
+		if (o instanceof Throwable throwable) {
+			throw throwable;
 		}
 		return o;
 	}

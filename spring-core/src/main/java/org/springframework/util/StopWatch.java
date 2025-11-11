@@ -332,7 +332,7 @@ public class StopWatch {
 			String line = "-".repeat(width) + "\n";
 			String unitName = timeUnit.name();
 			unitName = unitName.charAt(0) + unitName.substring(1).toLowerCase(Locale.ENGLISH);
-			unitName = String.format("%-12s", unitName);
+			unitName = "%-12s".formatted(unitName);
 			sb.append(line);
 			sb.append(unitName).append("  %       Task name\n");
 			sb.append(line);
@@ -345,9 +345,9 @@ public class StopWatch {
 			nf.setMaximumFractionDigits(10 - digits);
 
 			for (TaskInfo task : this.taskList) {
-				sb.append(String.format("%-14s", (timeUnit == TimeUnit.NANOSECONDS ?
+				sb.append("%-14s".formatted((timeUnit == TimeUnit.NANOSECONDS ?
 						nf.format(task.getTimeNanos()) : nf.format(task.getTime(timeUnit)))));
-				sb.append(String.format("%-8s",
+				sb.append("%-8s".formatted(
 						pf.format(task.getTimeSeconds() / getTotalTimeSeconds())));
 				sb.append(task.getTaskName()).append('\n');
 			}

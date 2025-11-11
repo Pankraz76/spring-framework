@@ -16,6 +16,7 @@
 
 package org.springframework.aop.framework;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.jspecify.annotations.Nullable;
@@ -33,7 +34,7 @@ import org.springframework.util.Assert;
 public class ProxyConfig implements Serializable {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = -8409359707199703185L;
+	@Serial private static final long serialVersionUID = -8409359707199703185L;
 
 
 	private @Nullable Boolean proxyTargetClass;

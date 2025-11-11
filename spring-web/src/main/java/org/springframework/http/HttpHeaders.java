@@ -16,6 +16,7 @@
 
 package org.springframework.http;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -96,7 +97,7 @@ import org.springframework.util.StringUtils;
  */
 public class HttpHeaders implements Serializable {
 
-	private static final long serialVersionUID = -8578554704772377436L;
+	@Serial private static final long serialVersionUID = -8578554704772377436L;
 
 
 	/**

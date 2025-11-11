@@ -309,7 +309,7 @@ public interface Cache {
 		private final @Nullable Object key;
 
 		public ValueRetrievalException(@Nullable Object key, Callable<?> loader, @Nullable Throwable ex) {
-			super(String.format("Value for key '%s' could not be loaded using '%s'", key, loader), ex);
+			super("Value for key '%s' could not be loaded using '%s'".formatted(key, loader), ex);
 			this.key = key;
 		}
 

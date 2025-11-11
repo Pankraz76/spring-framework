@@ -87,7 +87,7 @@ public class StringDecoderBenchmark {
 
 					""";
 
-			int eventLength = String.format(eventTemplate, String.format("%05d", 1)).length();
+			int eventLength = eventTemplate.formatted("%05d".formatted(1)).length();
 			int eventCount = this.totalSize / eventLength;
 			DataBufferFactory bufferFactory = new DefaultDataBufferFactory();
 

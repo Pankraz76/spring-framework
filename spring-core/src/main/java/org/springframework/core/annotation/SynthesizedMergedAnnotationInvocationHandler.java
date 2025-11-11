@@ -85,8 +85,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 		if (ReflectionUtils.isEqualsMethod(method)) {
 			return annotationEquals(args[0]);
 		}
-		throw new AnnotationConfigurationException(String.format(
-				"Method [%s] is unsupported for synthesized annotation type [%s]", method, this.type));
+		throw new AnnotationConfigurationException("Method [%s] is unsupported for synthesized annotation type [%s]".formatted(method, this.type));
 	}
 
 	/**
@@ -174,7 +173,7 @@ final class SynthesizedMergedAnnotationInvocationHandler<A extends Annotation> i
 			return '\'' + value.toString() + '\'';
 		}
 		if (value instanceof Byte) {
-			return String.format("(byte) 0x%02X", value);
+			return "(byte) 0x%02X".formatted(value);
 		}
 		if (value instanceof Long longValue) {
 			return Long.toString(longValue) + 'L';

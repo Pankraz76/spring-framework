@@ -218,9 +218,9 @@ abstract class AbstractStaxXMLReaderTests {
 
 		@Override
 		public Object[] adaptArguments(Object[] arguments) {
-			if (arguments.length == 3 && arguments[0] instanceof char[] &&
-					arguments[1] instanceof Integer && arguments[2] instanceof Integer) {
-				return new Object[] {new String((char[]) arguments[0], (Integer) arguments[1], (Integer) arguments[2])};
+			if (arguments.length == 3 && arguments[0] instanceof char[] chars &&
+					arguments[1] instanceof Integer integer && arguments[2] instanceof Integer integer1) {
+				return new Object[] {new String(chars, integer, integer1)};
 			}
 			return arguments;
 		}
@@ -232,8 +232,8 @@ abstract class AbstractStaxXMLReaderTests {
 		@Override
 		public Object[] adaptArguments(Object[] arguments) {
 			for (int i = 0; i < arguments.length; i++) {
-				if (arguments[i] instanceof Attributes) {
-					arguments[i] = new PartialAttributes((Attributes) arguments[i]);
+				if (arguments[i] instanceof Attributes attributes) {
+					arguments[i] = new PartialAttributes(attributes);
 				}
 			}
 			return arguments;

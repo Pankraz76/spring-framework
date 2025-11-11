@@ -488,8 +488,8 @@ public class TestBean implements BeanNameAware, BeanFactoryAware, ITestBean, IOt
 
 	@Override
 	public int compareTo(Object other) {
-		if (this.name != null && other instanceof TestBean) {
-			return this.name.compareTo(((TestBean) other).getName());
+		if (this.name != null && other instanceof TestBean bean) {
+			return this.name.compareTo(bean.getName());
 		}
 		else {
 			return 1;

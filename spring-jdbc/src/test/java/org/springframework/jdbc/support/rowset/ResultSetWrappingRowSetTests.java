@@ -200,8 +200,8 @@ class ResultSetWrappingRowSetTests {
 
 
 	private void doTest(Method rsetMethod, Method rowsetMethod, Object arg, Object ret) throws Exception {
-		if (arg instanceof String) {
-			given(resultSet.findColumn((String) arg)).willReturn(1);
+		if (arg instanceof String string) {
+			given(resultSet.findColumn(string)).willReturn(1);
 			given(rsetMethod.invoke(resultSet, 1)).willReturn(ret).willThrow(new SQLException("test"));
 		}
 		else {

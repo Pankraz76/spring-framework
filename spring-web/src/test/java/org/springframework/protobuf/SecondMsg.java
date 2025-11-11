@@ -302,8 +302,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.springframework.protobuf.SecondMsg) {
-        return mergeFrom((org.springframework.protobuf.SecondMsg)other);
+      if (other instanceof org.springframework.protobuf.SecondMsg msg) {
+        return mergeFrom(msg);
       } else {
         super.mergeFrom(other);
         return this;

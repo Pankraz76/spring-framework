@@ -290,8 +290,7 @@ abstract class AbstractSchedulingTaskExecutorTests {
 			}
 			if (expectedRunCount >= 0) {
 				if (actualRunCount.incrementAndGet() > expectedRunCount) {
-					RuntimeException exception = new RuntimeException(String.format(
-							"%s failure for test '%s': expectedRunCount:<%d>, actualRunCount:<%d>",
+					RuntimeException exception = new RuntimeException("%s failure for test '%s': expectedRunCount:<%d>, actualRunCount:<%d>".formatted(
 							getClass().getSimpleName(), this.testName, expectedRunCount, actualRunCount.get()));
 					this.exception.set(exception);
 					throw exception;
@@ -324,8 +323,7 @@ abstract class AbstractSchedulingTaskExecutorTests {
 			}
 			if (expectedRunCount >= 0) {
 				if (actualRunCount.incrementAndGet() > expectedRunCount) {
-					throw new RuntimeException(String.format(
-							"%s failure for test '%s': expectedRunCount:<%d>, actualRunCount:<%d>",
+					throw new RuntimeException("%s failure for test '%s': expectedRunCount:<%d>, actualRunCount:<%d>".formatted(
 							getClass().getSimpleName(), this.testName, expectedRunCount, actualRunCount.get()));
 				}
 			}

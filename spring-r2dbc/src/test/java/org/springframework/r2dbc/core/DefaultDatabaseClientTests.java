@@ -441,7 +441,7 @@ class DefaultDatabaseClientTests {
 		Mono<List<Integer>> operation = databaseClient
 				.sql(() -> {
 					int idMax = 2 + invoked.incrementAndGet();
-					return String.format("SELECT id FROM test WHERE id < '%s'", idMax);
+					return "SELECT id FROM test WHERE id < '%s'".formatted(idMax);
 				})
 				.map(r -> r.get("id", Integer.class))
 				.all()

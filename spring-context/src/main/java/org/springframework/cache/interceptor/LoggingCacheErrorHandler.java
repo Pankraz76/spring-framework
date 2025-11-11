@@ -98,28 +98,28 @@ public class LoggingCacheErrorHandler implements CacheErrorHandler {
 	@Override
 	public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
 		logCacheError(
-				() -> String.format("Cache '%s' failed to get entry with key '%s'", cache.getName(), key),
+				() -> "Cache '%s' failed to get entry with key '%s'".formatted(cache.getName(), key),
 				exception);
 	}
 
 	@Override
 	public void handleCachePutError(RuntimeException exception, Cache cache, Object key, @Nullable Object value) {
 		logCacheError(
-				() -> String.format("Cache '%s' failed to put entry with key '%s'", cache.getName(), key),
+				() -> "Cache '%s' failed to put entry with key '%s'".formatted(cache.getName(), key),
 				exception);
 	}
 
 	@Override
 	public void handleCacheEvictError(RuntimeException exception, Cache cache, Object key) {
 		logCacheError(
-				() -> String.format("Cache '%s' failed to evict entry with key '%s'", cache.getName(), key),
+				() -> "Cache '%s' failed to evict entry with key '%s'".formatted(cache.getName(), key),
 				exception);
 	}
 
 	@Override
 	public void handleCacheClearError(RuntimeException exception, Cache cache) {
 		logCacheError(
-				() -> String.format("Cache '%s' failed to clear entries", cache.getName()),
+				() -> "Cache '%s' failed to clear entries".formatted(cache.getName()),
 				exception);
 	}
 

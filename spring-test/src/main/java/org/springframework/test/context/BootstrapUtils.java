@@ -190,8 +190,7 @@ public abstract class BootstrapUtils {
 			return bootstrapWith.value();
 		}
 
-		throw new IllegalStateException(String.format(
-				"Configuration error: found multiple declarations of @BootstrapWith for test class [%s]: %s",
+		throw new IllegalStateException("Configuration error: found multiple declarations of @BootstrapWith for test class [%s]: %s".formatted(
 				testClass.getName(), annotations));
 	}
 

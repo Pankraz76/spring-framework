@@ -82,7 +82,7 @@ class CharSequenceEncoderTests extends AbstractEncoderTests<CharSequenceEncoder>
 				.forEach(charset -> {
 					int capacity = this.encoder.calculateCapacity(sequence, charset);
 					int length = sequence.length();
-					assertThat(capacity).as(String.format("%s has capacity %d; length %d", charset, capacity, length))
+					assertThat(capacity).as("%s has capacity %d; length %d".formatted(charset, capacity, length))
 							.isGreaterThanOrEqualTo(length);
 				});
 	}

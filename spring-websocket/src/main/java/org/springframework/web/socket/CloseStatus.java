@@ -16,6 +16,7 @@
 
 package org.springframework.web.socket;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -36,7 +37,7 @@ import org.springframework.util.ObjectUtils;
  */
 public final class CloseStatus implements Serializable {
 
-	private static final long serialVersionUID = 5199057709285570947L;
+	@Serial private static final long serialVersionUID = 5199057709285570947L;
 
 
 	/**

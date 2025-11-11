@@ -202,7 +202,7 @@ class PayloadMethodArgumentResolverTests {
 
 		@Override
 		public void validate(@Nullable Object target, Errors errors) {
-			if (target instanceof String && ((String) target).length() < 8) {
+			if (target instanceof String string && string.length() < 8) {
 				errors.reject("Invalid length");
 			}
 		}

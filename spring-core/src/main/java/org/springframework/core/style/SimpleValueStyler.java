@@ -135,7 +135,7 @@ public class SimpleValueStyler extends DefaultValueStyler {
 		String parameterList = Arrays.stream(method.getParameterTypes())
 				.map(Class::getSimpleName)
 				.collect(Collectors.joining(", "));
-		return String.format("%s(%s)", method.getName(), parameterList);
+		return "%s(%s)".formatted(method.getName(), parameterList);
 	}
 
 }

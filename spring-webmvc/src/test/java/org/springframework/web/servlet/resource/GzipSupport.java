@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.zip.GZIPOutputStream;
@@ -72,7 +71,7 @@ class GzipSupport implements ParameterResolver {
 				Resource location = new ClassPathResource("test/", getClass());
 				Resource resource = new FileSystemResource(location.createRelative(filePath).getFile());
 
-				Path gzFilePath = Paths.get(resource.getFile().getAbsolutePath() + ".gz");
+				Path gzFilePath = Path.of(resource.getFile().getAbsolutePath() + ".gz");
 				Files.deleteIfExists(gzFilePath);
 
 				File gzFile = Files.createFile(gzFilePath).toFile();

@@ -528,8 +528,8 @@ public abstract class AbstractStompBrokerRelayIntegrationTests {
 
 				return false;
 			}
-			if (payload instanceof byte[] && this.payload instanceof byte[]) {
-				return Arrays.equals((byte[]) payload, (byte[]) this.payload);
+			if (payload instanceof byte[] bytes && this.payload instanceof byte[] bytes1) {
+				return Arrays.equals(bytes, bytes1);
 			}
 			else {
 				return this.payload.equals(payload);
@@ -543,8 +543,8 @@ public abstract class AbstractStompBrokerRelayIntegrationTests {
 		}
 
 		protected String getPayloadAsText() {
-			return (this.payload instanceof byte[]) ?
-					new String((byte[]) this.payload, StandardCharsets.UTF_8) : this.payload.toString();
+			return (this.payload instanceof byte[] bs) ?
+					new String(bs, StandardCharsets.UTF_8) : this.payload.toString();
 		}
 	}
 

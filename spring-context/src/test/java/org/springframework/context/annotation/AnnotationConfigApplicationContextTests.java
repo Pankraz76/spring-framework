@@ -41,7 +41,6 @@ import org.springframework.context.testfixture.context.annotation.LambdaBeanConf
 import org.springframework.core.ResolvableType;
 import org.springframework.util.ObjectUtils;
 
-import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.springframework.util.StringUtils.uncapitalize;
@@ -137,7 +136,7 @@ class AnnotationConfigApplicationContextTests {
 		Class<?> targetType = Pattern.class;
 		assertThatExceptionOfType(NoSuchBeanDefinitionException.class)
 				.isThrownBy(() -> context.getBean(targetType))
-				.withMessageContaining(format("No qualifying bean of type '%s'", targetType.getName()));
+				.withMessageContaining("No qualifying bean of type '%s'".formatted(targetType.getName()));
 	}
 
 	@Test

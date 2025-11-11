@@ -252,7 +252,7 @@ public final class DataSize implements Comparable<DataSize>, Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("%dB", this.bytes);
+		return "%dB".formatted(this.bytes);
 	}
 
 

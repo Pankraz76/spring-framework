@@ -18,6 +18,7 @@ package org.springframework.aop.framework;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -70,7 +71,7 @@ import org.springframework.util.ClassUtils;
 final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializable {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = 5531744639992436476L;
+	@Serial private static final long serialVersionUID = 5531744639992436476L;
 
 
 	private static final String COROUTINES_FLOW_CLASS_NAME = "kotlinx.coroutines.flow.Flow";

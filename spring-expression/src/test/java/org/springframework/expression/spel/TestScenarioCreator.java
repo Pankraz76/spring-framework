@@ -186,7 +186,7 @@ class TestScenarioCreator {
 	}
 
 	public static String formatObjectVarargs(String format, Object... args) {
-		return String.format(format, args);
+		return format.formatted(args);
 	}
 
 	public static String formatPrimitiveVarargs(String format, int... nums) {
@@ -194,7 +194,7 @@ class TestScenarioCreator {
 		for (int i = 0; i < nums.length; i++) {
 			args[i] = nums[i];
 		}
-		return String.format(format, args);
+		return format.formatted(args);
 	}
 
 	public static int add(int x, int y) {

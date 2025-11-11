@@ -115,7 +115,7 @@ class ConcurrentWebSocketSessionDecoratorTests {
 
 		sendBlockingMessage(decorator);
 
-		String msg = String.format("%1023s", "a");
+		String msg = "%1023s".formatted("a");
 		TextMessage message = new TextMessage(msg);
 		decorator.sendMessage(message);
 
@@ -140,7 +140,7 @@ class ConcurrentWebSocketSessionDecoratorTests {
 
 		sendBlockingMessage(decorator);
 
-		String msg = String.format("%1023s", "a");
+		String msg = "%1023s".formatted("a");
 
 		for (int i = 0; i < 5; i++) {
 			TextMessage message = new TextMessage(msg);

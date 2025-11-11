@@ -109,8 +109,7 @@ public class TestSocketUtils {
 		int candidatePort;
 		int searchCounter = 0;
 		do {
-			Assert.state(++searchCounter <= MAX_ATTEMPTS, () -> String.format(
-					"Could not find an available TCP port in the range [%d, %d] after %d attempts",
+			Assert.state(++searchCounter <= MAX_ATTEMPTS, () -> "Could not find an available TCP port in the range [%d, %d] after %d attempts".formatted(
 					PORT_RANGE_MIN, PORT_RANGE_MAX, MAX_ATTEMPTS));
 			candidatePort = PORT_RANGE_MIN + random.nextInt(PORT_RANGE_PLUS_ONE);
 		}

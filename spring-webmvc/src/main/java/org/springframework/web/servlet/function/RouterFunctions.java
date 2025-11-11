@@ -1142,7 +1142,7 @@ public abstract class RouterFunctions {
 		public Optional<HandlerFunction<T>> route(ServerRequest request) {
 			if (this.predicate.test(request)) {
 				if (logger.isTraceEnabled()) {
-					logger.trace(String.format("Predicate \"%s\" matches against \"%s\"", this.predicate, request));
+					logger.trace("Predicate \"%s\" matches against \"%s\"".formatted(this.predicate, request));
 				}
 				return Optional.of(this.handlerFunction);
 			}
@@ -1176,7 +1176,7 @@ public abstract class RouterFunctions {
 			return this.predicate.nest(serverRequest)
 					.map(nestedRequest -> {
 								if (logger.isTraceEnabled()) {
-									logger.trace(String.format("Nested predicate \"%s\" matches against \"%s\"",
+									logger.trace("Nested predicate \"%s\" matches against \"%s\"".formatted(
 											this.predicate, serverRequest));
 								}
 								Optional<HandlerFunction<T>> result = this.routerFunction.route(nestedRequest);

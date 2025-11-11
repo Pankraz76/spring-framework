@@ -563,16 +563,16 @@ class ProtectedLifecycleBean implements BeanNameAware, BeanFactoryAware, Initial
 
 		@Override
 		public Object postProcessBeforeInitialization(Object bean, String name) throws BeansException {
-			if (bean instanceof ProtectedLifecycleBean) {
-				((ProtectedLifecycleBean) bean).postProcessBeforeInit();
+			if (bean instanceof ProtectedLifecycleBean lifecycleBean) {
+				lifecycleBean.postProcessBeforeInit();
 			}
 			return bean;
 		}
 
 		@Override
 		public Object postProcessAfterInitialization(Object bean, String name) throws BeansException {
-			if (bean instanceof ProtectedLifecycleBean) {
-				((ProtectedLifecycleBean) bean).postProcessAfterInit();
+			if (bean instanceof ProtectedLifecycleBean lifecycleBean) {
+				lifecycleBean.postProcessAfterInit();
 			}
 			return bean;
 		}

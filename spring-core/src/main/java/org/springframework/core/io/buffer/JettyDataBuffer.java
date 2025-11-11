@@ -312,7 +312,7 @@ public final class JettyDataBuffer implements PooledDataBuffer {
 
 	@Override
 	public String toString() {
-		return String.format("JettyDataBuffer (r: %d, w: %d, c: %d)",
+		return "JettyDataBuffer (r: %d, w: %d, c: %d)".formatted(
 				readPosition(), writePosition(), capacity());
 	}
 

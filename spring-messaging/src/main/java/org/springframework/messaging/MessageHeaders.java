@@ -19,6 +19,7 @@ package org.springframework.messaging;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
@@ -106,7 +107,7 @@ public class MessageHeaders implements Map<String, Object>, Serializable {
 	public static final String ERROR_CHANNEL = "errorChannel";
 
 
-	private static final long serialVersionUID = 7035068984263400920L;
+	@Serial private static final long serialVersionUID = 7035068984263400920L;
 
 	private static final Log logger = LogFactory.getLog(MessageHeaders.class);
 

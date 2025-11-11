@@ -59,7 +59,7 @@ class ContentBasedVersionStrategyTests {
 		String hash = "7fbe76cdac6093784895bb4989203e5a";
 		String path = "font-awesome/css/font-awesome.min%s%s.css";
 
-		assertThat(this.strategy.removeVersion(String.format(path, "-", hash), hash)).isEqualTo(String.format(path, "", ""));
+		assertThat(this.strategy.removeVersion(path.formatted("-", hash), hash)).isEqualTo(path.formatted("", ""));
 	}
 
 	@Test

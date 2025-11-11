@@ -187,7 +187,7 @@ public abstract class MockMvcResultMatchers {
 	 * to inspect a specific subset of the body.
 	 * <p>The JSON path expression can be a parameterized string using
 	 * formatting specifiers as defined in
-	 * {@link String#format(String, Object...)}.
+	 * {@link String#formatted(Object...)}.
 	 * @param expression the JSON path expression, optionally parameterized with arguments
 	 * @param args arguments to parameterize the JSON path expression with
 	 * @see #jsonPath(String, Matcher)
@@ -232,7 +232,7 @@ public abstract class MockMvcResultMatchers {
 	 * Access to response body assertions using an XPath expression to
 	 * inspect a specific subset of the body.
 	 * <p>The XPath expression can be a parameterized string using formatting
-	 * specifiers as defined in {@link String#format(String, Object...)}.
+	 * specifiers as defined in {@link String#formatted(Object...)}.
 	 * @param expression the XPath expression, optionally parameterized with arguments
 	 * @param args arguments to parameterize the XPath expression with
 	 */
@@ -244,7 +244,7 @@ public abstract class MockMvcResultMatchers {
 	 * Access to response body assertions using an XPath expression to
 	 * inspect a specific subset of the body.
 	 * <p>The XPath expression can be a parameterized string using formatting
-	 * specifiers as defined in {@link String#format(String, Object...)}.
+	 * specifiers as defined in {@link String#formatted(Object...)}.
 	 * @param expression the XPath expression, optionally parameterized with arguments
 	 * @param namespaces the namespaces referenced in the XPath expression
 	 * @param args arguments to parameterize the XPath expression with

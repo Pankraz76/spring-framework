@@ -189,14 +189,12 @@ public abstract class ReflectionTestUtils {
 
 		Field field = ReflectionUtils.findField(targetClass, name, type);
 		if (field == null) {
-			throw new IllegalArgumentException(String.format(
-					"Could not find field '%s' of type [%s] on %s or target class [%s]", name, type,
+			throw new IllegalArgumentException("Could not find field '%s' of type [%s] on %s or target class [%s]".formatted(name, type,
 					safeToString(targetObject), targetClass));
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format(
-					"Setting field '%s' of type [%s] on %s or target class [%s] to value [%s]", name, type,
+			logger.debug("Setting field '%s' of type [%s] on %s or target class [%s] to value [%s]".formatted(name, type,
 					safeToString(targetObject), targetClass, value));
 		}
 		ReflectionUtils.makeAccessible(field);
@@ -272,12 +270,12 @@ public abstract class ReflectionTestUtils {
 
 		Field field = ReflectionUtils.findField(targetClass, name);
 		if (field == null) {
-			throw new IllegalArgumentException(String.format("Could not find field '%s' on %s or target class [%s]",
+			throw new IllegalArgumentException("Could not find field '%s' on %s or target class [%s]".formatted(
 					name, safeToString(targetObject), targetClass));
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Getting field '%s' from %s or target class [%s]", name,
+			logger.debug("Getting field '%s' from %s or target class [%s]".formatted(name,
 					safeToString(targetObject), targetClass));
 		}
 		ReflectionUtils.makeAccessible(field);
@@ -342,13 +340,12 @@ public abstract class ReflectionTestUtils {
 			method = ReflectionUtils.findMethod(target.getClass(), setterMethodName, paramTypes);
 		}
 		if (method == null) {
-			throw new IllegalArgumentException(String.format(
-					"Could not find setter method '%s' on %s with parameter type [%s]", setterMethodName,
+			throw new IllegalArgumentException("Could not find setter method '%s' on %s with parameter type [%s]".formatted(setterMethodName,
 					safeToString(target), type));
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Invoking setter method '%s' on %s with value [%s]", setterMethodName,
+			logger.debug("Invoking setter method '%s' on %s with value [%s]".formatted(setterMethodName,
 					safeToString(target), value));
 		}
 
@@ -402,8 +399,7 @@ public abstract class ReflectionTestUtils {
 			method = ReflectionUtils.findMethod(target.getClass(), getterMethodName);
 		}
 		if (method == null) {
-			throw new IllegalArgumentException(String.format(
-					"Could not find getter method '%s' on %s", getterMethodName, safeToString(target)));
+			throw new IllegalArgumentException("Could not find getter method '%s' on %s".formatted(getterMethodName, safeToString(target)));
 		}
 
 		if (SPRING_AOP_PRESENT) {
@@ -415,7 +411,7 @@ public abstract class ReflectionTestUtils {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Invoking getter method '%s' on %s", getterMethodName, safeToString(target)));
+			logger.debug("Invoking getter method '%s' on %s".formatted(getterMethodName, safeToString(target)));
 		}
 		ReflectionUtils.makeAccessible(method);
 		return ReflectionUtils.invokeMethod(method, target);
@@ -524,16 +520,16 @@ public abstract class ReflectionTestUtils {
 
 	private static String safeToString(@Nullable Object target) {
 		try {
-			return String.format("target object [%s]", target);
+			return "target object [%s]".formatted(target);
 		}
 		catch (Exception ex) {
-			return String.format("target of type [%s] whose toString() method threw [%s]",
+			return "target of type [%s] whose toString() method threw [%s]".formatted(
 					(target != null ? target.getClass().getName() : "unknown"), ex);
 		}
 	}
 
 	private static String safeToString(@Nullable Class<?> clazz) {
-		return String.format("target class [%s]", (clazz != null ? clazz.getName() : null));
+		return "target class [%s]".formatted((clazz != null ? clazz.getName() : null));
 	}
 
 	/**

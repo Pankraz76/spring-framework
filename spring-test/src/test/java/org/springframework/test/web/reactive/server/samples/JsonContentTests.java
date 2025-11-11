@@ -146,7 +146,7 @@ class JsonContentTests {
 
 		@PostMapping
 		ResponseEntity<String> savePerson(@RequestBody Person person) {
-			return ResponseEntity.created(URI.create(String.format("/persons/%s/%s", person.getFirstName(), person.getLastName()))).build();
+			return ResponseEntity.created(URI.create("/persons/%s/%s".formatted(person.getFirstName(), person.getLastName()))).build();
 		}
 	}
 

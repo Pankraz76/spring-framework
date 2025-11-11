@@ -16,6 +16,7 @@
 
 package org.springframework.test.context.support;
 
+import java.io.Serial;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -47,7 +48,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("serial")
 public class DefaultTestContext implements TestContext {
 
-	private static final long serialVersionUID = -5827157174866681233L;
+	@Serial private static final long serialVersionUID = -5827157174866681233L;
 
 	private final Map<String, Object> attributes = new ConcurrentHashMap<>(4);
 

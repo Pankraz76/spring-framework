@@ -16,6 +16,7 @@
 
 package org.springframework.http;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.LinkedHashMap;
@@ -53,7 +54,7 @@ import org.springframework.util.ObjectUtils;
  */
 public class ProblemDetail implements Serializable {
 
-	private static final long serialVersionUID = 3307761915842206538L;
+	@Serial private static final long serialVersionUID = 3307761915842206538L;
 
 
 	private @Nullable URI type;

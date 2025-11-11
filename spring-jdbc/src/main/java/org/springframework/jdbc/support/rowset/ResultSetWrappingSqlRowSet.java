@@ -16,6 +16,7 @@
 
 package org.springframework.jdbc.support.rowset;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -67,7 +68,7 @@ import org.springframework.util.StringUtils;
 public class ResultSetWrappingSqlRowSet implements SqlRowSet {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = -4688694393146734764L;
+	@Serial private static final long serialVersionUID = -4688694393146734764L;
 
 	@SuppressWarnings("serial")
 	private final ResultSet resultSet;

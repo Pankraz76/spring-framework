@@ -16,6 +16,7 @@
 
 package org.springframework.aop.target;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -35,7 +36,7 @@ import org.springframework.util.ObjectUtils;
 public final class EmptyTargetSource implements TargetSource, Serializable {
 
 	/** use serialVersionUID from Spring 1.2 for interoperability. */
-	private static final long serialVersionUID = 3680494563553489691L;
+	@Serial private static final long serialVersionUID = 3680494563553489691L;
 
 
 	//---------------------------------------------------------------------

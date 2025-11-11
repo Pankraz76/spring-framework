@@ -177,7 +177,7 @@ class ServletWebRequestHttpMethodsTests {
 	void ifNoneMatchShouldMatchPaddedETag(String method) {
 		setUpRequest(method);
 		String etag = "spring";
-		String paddedEtag = String.format("\"%s\"", etag);
+		String paddedEtag = "\"%s\"".formatted(etag);
 		servletRequest.addHeader(HttpHeaders.IF_NONE_MATCH, paddedEtag);
 		assertThat(request.checkNotModified(etag)).isTrue();
 		assertNotModified(paddedEtag, null);

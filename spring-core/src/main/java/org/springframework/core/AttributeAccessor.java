@@ -77,7 +77,7 @@ public interface AttributeAccessor {
 		if (value == null) {
 			value = computeFunction.apply(name);
 			Assert.state(value != null,
-					() -> String.format("Compute function must not return null for attribute named '%s'", name));
+					() -> "Compute function must not return null for attribute named '%s'".formatted(name));
 			setAttribute(name, value);
 		}
 		return (T) value;

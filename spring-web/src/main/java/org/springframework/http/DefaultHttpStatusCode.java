@@ -16,6 +16,7 @@
 
 package org.springframework.http;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.jspecify.annotations.Nullable;
@@ -28,7 +29,7 @@ import org.jspecify.annotations.Nullable;
  */
 final class DefaultHttpStatusCode implements HttpStatusCode, Comparable<HttpStatusCode>, Serializable {
 
-	private static final long serialVersionUID = 7017664779360718111L;
+	@Serial private static final long serialVersionUID = 7017664779360718111L;
 
 	private final int value;
 

@@ -204,11 +204,11 @@ public class SimpleNamingContextBuilder implements InitialContextFactoryBuilder 
 			Object icf = environment.get(Context.INITIAL_CONTEXT_FACTORY);
 			if (icf != null) {
 				Class<?> icfClass;
-				if (icf instanceof Class) {
-					icfClass = (Class<?>) icf;
+				if (icf instanceof Class<?> class1) {
+					icfClass = class1;
 				}
-				else if (icf instanceof String) {
-					icfClass = ClassUtils.resolveClassName((String) icf, getClass().getClassLoader());
+				else if (icf instanceof String string) {
+					icfClass = ClassUtils.resolveClassName(string, getClass().getClassLoader());
 				}
 				else {
 					throw new IllegalArgumentException("Invalid value type for environment key [" +

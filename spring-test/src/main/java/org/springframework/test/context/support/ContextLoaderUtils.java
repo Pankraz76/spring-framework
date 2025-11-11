@@ -104,9 +104,8 @@ abstract class ContextLoaderUtils {
 
 		UntypedAnnotationDescriptor desc =
 				findAnnotationDescriptorForTypes(testClass, contextConfigType, contextHierarchyType);
-		Assert.notNull(desc, () -> String.format(
-					"Could not find an 'annotation declaring class' for annotation type [%s] or [%s] and test class [%s]",
-					contextConfigType.getName(), contextHierarchyType.getName(), testClass.getName()));
+		Assert.notNull(desc, () -> "Could not find an 'annotation declaring class' for annotation type [%s] or [%s] and test class [%s]".formatted(
+				contextConfigType.getName(), contextHierarchyType.getName(), testClass.getName()));
 
 		while (desc != null) {
 			Class<?> rootDeclaringClass = desc.getRootDeclaringClass();
@@ -238,9 +237,8 @@ abstract class ContextLoaderUtils {
 
 		Class<ContextConfiguration> annotationType = ContextConfiguration.class;
 		AnnotationDescriptor<ContextConfiguration> descriptor = findAnnotationDescriptor(testClass, annotationType);
-		Assert.notNull(descriptor, () -> String.format(
-					"Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]",
-					annotationType.getName(), testClass.getName()));
+		Assert.notNull(descriptor, () -> "Could not find an 'annotation declaring class' for annotation type [%s] and class [%s]".formatted(
+				annotationType.getName(), testClass.getName()));
 
 		List<ContextConfigurationAttributes> attributesList = new ArrayList<>();
 		ContextConfiguration previousAnnotation = null;
@@ -281,7 +279,7 @@ abstract class ContextLoaderUtils {
 			Class<?> declaringClass, List<ContextConfigurationAttributes> attributesList) {
 
 		if (logger.isTraceEnabled()) {
-			logger.trace(String.format("Retrieved @ContextConfiguration [%s] for declaring class [%s].",
+			logger.trace("Retrieved @ContextConfiguration [%s] for declaring class [%s].".formatted(
 					contextConfiguration, declaringClass.getName()));
 		}
 		ContextConfigurationAttributes attributes =

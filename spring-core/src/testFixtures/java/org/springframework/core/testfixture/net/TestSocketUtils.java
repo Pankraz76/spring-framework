@@ -76,8 +76,7 @@ public abstract class TestSocketUtils {
 		int searchCounter = 0;
 		do {
 			if (searchCounter > MAX_ATTEMPTS) {
-				throw new IllegalStateException(String.format(
-						"Could not find an available TCP port in the range [%d, %d] after %d attempts",
+				throw new IllegalStateException("Could not find an available TCP port in the range [%d, %d] after %d attempts".formatted(
 						PORT_RANGE_MIN, PORT_RANGE_MAX, MAX_ATTEMPTS));
 			}
 			candidatePort = PORT_RANGE_MIN + random.nextInt(PORT_RANGE + 1);

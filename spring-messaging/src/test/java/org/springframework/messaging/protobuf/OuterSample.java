@@ -44,10 +44,19 @@ public final class OuterSample {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014sample.proto\",\n\003Msg\022\013\n\003foo\030\001 \001(\t\022\030\n\004bl" +
-      "ah\030\002 \001(\0132\n.SecondMsg\"\031\n\tSecondMsg\022\014\n\004bla" +
-      "h\030\001 \001(\005B7\n&org.springframework.messaging" +
-      ".protobufB\013OuterSampleP\001"
+      """
+      
+      sample.proto",
+      Msg
+      foo (	
+      bl\
+      ah (2
+      .SecondMsg"
+      	SecondMsg
+      bla\
+      h (B7
+      &org.springframework.messaging\
+      .protobufBOuterSampleP"""
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

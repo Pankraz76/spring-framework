@@ -197,7 +197,7 @@ class TestPropertySourceAttributes {
 		}
 		String prefixedResourcePath = ResourceUtils.CLASSPATH_URL_PREFIX + SLASH + resourcePath;
 		if (logger.isDebugEnabled()) {
-			logger.debug(String.format("Detected default properties file \"%s\" for test class [%s]",
+			logger.debug("Detected default properties file \"%s\" for test class [%s]".formatted(
 					prefixedResourcePath, testClass.getName()));
 		}
 		return prefixedResourcePath;

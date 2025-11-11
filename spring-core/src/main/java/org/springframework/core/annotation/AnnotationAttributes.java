@@ -350,13 +350,11 @@ public class AnnotationAttributes extends LinkedHashMap<String, @Nullable Object
 		Assert.hasText(attributeName, "'attributeName' must not be null or empty");
 		Object value = get(attributeName);
 		if (value == null) {
-			throw new IllegalArgumentException(String.format(
-					"Attribute '%s' not found in attributes for annotation [%s]",
+			throw new IllegalArgumentException("Attribute '%s' not found in attributes for annotation [%s]".formatted(
 					attributeName, this.displayName));
 		}
 		if (value instanceof Throwable throwable) {
-			throw new IllegalArgumentException(String.format(
-					"Attribute '%s' for annotation [%s] was not resolvable due to exception [%s]",
+			throw new IllegalArgumentException("Attribute '%s' for annotation [%s] was not resolvable due to exception [%s]".formatted(
 					attributeName, this.displayName, value), throwable);
 		}
 		if (!expectedType.isInstance(value) && expectedType.isArray() &&
@@ -366,8 +364,7 @@ public class AnnotationAttributes extends LinkedHashMap<String, @Nullable Object
 			value = array;
 		}
 		if (!expectedType.isInstance(value)) {
-			throw new IllegalArgumentException(String.format(
-					"Attribute '%s' is of type %s, but %s was expected in attributes for annotation [%s]",
+			throw new IllegalArgumentException("Attribute '%s' is of type %s, but %s was expected in attributes for annotation [%s]".formatted(
 					attributeName, value.getClass().getSimpleName(), expectedType.getSimpleName(),
 					this.displayName));
 		}

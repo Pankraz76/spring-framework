@@ -238,7 +238,7 @@ public abstract class ValueCodeGeneratorDelegates {
 				return escaped;
 			}
 			return (!Character.isISOControl(ch)) ? Character.toString(ch) :
-					String.format("\\u%04x", (int) ch);
+					"\\u%04x".formatted((int) ch);
 		}
 	}
 

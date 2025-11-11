@@ -313,8 +313,7 @@ class ContextLoaderUtilsContextHierarchyTests extends AbstractContextConfigurati
 	private void assertContextConfigEntriesAreNotUnique(Class<?> testClass) {
 		assertThatIllegalStateException().isThrownBy(() ->
 				buildContextHierarchyMap(testClass))
-			.withMessage(String.format(
-				"The @ContextConfiguration elements configured via @ContextHierarchy in test class [%s] and its superclasses must define unique contexts per hierarchy level.", testClass.getName()));
+			.withMessage("The @ContextConfiguration elements configured via @ContextHierarchy in test class [%s] and its superclasses must define unique contexts per hierarchy level.".formatted(testClass.getName()));
 	}
 
 	@Test

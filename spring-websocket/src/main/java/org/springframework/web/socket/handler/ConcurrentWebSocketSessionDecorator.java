@@ -212,14 +212,14 @@ public class ConcurrentWebSocketSessionDecorator extends WebSocketSessionDecorat
 			try {
 				if (getTimeSinceSendStarted() > getSendTimeLimit()) {
 					String format = "Send time %d (ms) for session '%s' exceeded the allowed limit %d";
-					String reason = String.format(format, getTimeSinceSendStarted(), getId(), getSendTimeLimit());
+					String reason = format.formatted(getTimeSinceSendStarted(), getId(), getSendTimeLimit());
 					limitExceeded(reason);
 				}
 				else if (getBufferSize() > getBufferSizeLimit()) {
 					switch (this.overflowStrategy) {
 						case TERMINATE -> {
 							String format = "Buffer size %d bytes for session '%s' exceeds the allowed limit %d";
-							String reason = String.format(format, getBufferSize(), getId(), getBufferSizeLimit());
+							String reason = format.formatted(getBufferSize(), getId(), getBufferSizeLimit());
 							limitExceeded(reason);
 						}
 						case DROP -> {

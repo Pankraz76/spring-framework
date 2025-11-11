@@ -16,6 +16,7 @@
 
 package org.springframework.test.context.web;
 
+import java.io.Serial;
 import java.util.List;
 import java.util.Set;
 
@@ -60,7 +61,7 @@ import org.springframework.util.StringUtils;
  */
 public class WebMergedContextConfiguration extends MergedContextConfiguration {
 
-	private static final long serialVersionUID = 7323361588604247458L;
+	@Serial private static final long serialVersionUID = 7323361588604247458L;
 
 	private final String resourceBasePath;
 

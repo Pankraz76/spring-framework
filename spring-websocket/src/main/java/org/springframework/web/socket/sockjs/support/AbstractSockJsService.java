@@ -593,8 +593,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 				addNoCacheHeaders(response);
 				if (checkOrigin(request, response)) {
 					response.getHeaders().setContentType(new MediaType("application", "json", StandardCharsets.UTF_8));
-					String content = String.format(
-							INFO_CONTENT, random.nextInt(), isSessionCookieNeeded(), isWebSocketEnabled());
+					String content = INFO_CONTENT.formatted(random.nextInt(), isSessionCookieNeeded(), isWebSocketEnabled());
 					response.getBody().write(content.getBytes());
 				}
 
@@ -640,7 +639,7 @@ public abstract class AbstractSockJsService implements SockJsService, CorsConfig
 				return;
 			}
 
-			String content = String.format(IFRAME_CONTENT, getSockJsClientLibraryUrl());
+			String content = IFRAME_CONTENT.formatted(getSockJsClientLibraryUrl());
 			byte[] contentBytes = content.getBytes(StandardCharsets.UTF_8);
 			StringBuilder builder = new StringBuilder("\"0");
 			DigestUtils.appendMd5DigestAsHex(contentBytes, builder);

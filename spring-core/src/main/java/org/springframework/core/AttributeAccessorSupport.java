@@ -68,7 +68,7 @@ public abstract class AttributeAccessorSupport implements AttributeAccessor, Ser
 		Assert.notNull(computeFunction, "Compute function must not be null");
 		Object value = this.attributes.computeIfAbsent(name, computeFunction);
 		Assert.state(value != null,
-				() -> String.format("Compute function must not return null for attribute named '%s'", name));
+				() -> "Compute function must not return null for attribute named '%s'".formatted(name));
 		return (T) value;
 	}
 

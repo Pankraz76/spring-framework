@@ -142,7 +142,7 @@ public abstract class TestPropertySourceUtils {
 				(currentAttributes.equals(previousAttributes) && !currentAttributes.isEmpty());
 
 		if (duplicationDetected && logger.isTraceEnabled()) {
-			logger.trace(String.format("Ignoring duplicate %s declaration on %s since it is also declared on %s",
+			logger.trace("Ignoring duplicate %s declaration on %s since it is also declared on %s".formatted(
 					currentAttributes, currentAttributes.getDeclaringClass().getName(),
 					previousAttributes.getDeclaringClass().getName()));
 		}

@@ -16,6 +16,7 @@
 
 package org.springframework.messaging.support;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ import org.springframework.util.ObjectUtils;
  */
 public class GenericMessage<T> implements Message<T>, Serializable {
 
-	private static final long serialVersionUID = 4268801052358035098L;
+	@Serial private static final long serialVersionUID = 4268801052358035098L;
 
 	@SuppressWarnings("serial")
 	private final T payload;

@@ -491,7 +491,7 @@ class DefaultServerRequestTests {
 	void checkNotModifiedUnpaddedETag(String method) {
 		MockHttpServletRequest servletRequest = PathPatternsTestUtils.initRequest(method, "/", true);
 		String eTag = "Foo";
-		String paddedEtag = String.format("\"%s\"", eTag);
+		String paddedEtag = "\"%s\"".formatted(eTag);
 		servletRequest.addHeader(HttpHeaders.IF_NONE_MATCH, paddedEtag);
 
 		DefaultServerRequest request = new DefaultServerRequest(servletRequest, this.messageConverters);

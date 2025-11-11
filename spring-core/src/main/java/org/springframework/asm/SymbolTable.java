@@ -480,26 +480,25 @@ final class SymbolTable {
    * @return a new or already existing Symbol with the given value.
    */
   Symbol addConstant(final Object value) {
-    if (value instanceof Integer) {
-      return addConstantInteger(((Integer) value).intValue());
-    } else if (value instanceof Byte) {
-      return addConstantInteger(((Byte) value).intValue());
-    } else if (value instanceof Character) {
-      return addConstantInteger(((Character) value).charValue());
-    } else if (value instanceof Short) {
-      return addConstantInteger(((Short) value).intValue());
-    } else if (value instanceof Boolean) {
-      return addConstantInteger(((Boolean) value).booleanValue() ? 1 : 0);
-    } else if (value instanceof Float) {
-      return addConstantFloat(((Float) value).floatValue());
-    } else if (value instanceof Long) {
-      return addConstantLong(((Long) value).longValue());
-    } else if (value instanceof Double) {
-      return addConstantDouble(((Double) value).doubleValue());
-    } else if (value instanceof String) {
-      return addConstantString((String) value);
-    } else if (value instanceof Type) {
-      Type type = (Type) value;
+    if (value instanceof Integer integer) {
+      return addConstantInteger(integer.intValue());
+    } else if (value instanceof Byte byte1) {
+      return addConstantInteger(byte1.intValue());
+    } else if (value instanceof Character character) {
+      return addConstantInteger(character.charValue());
+    } else if (value instanceof Short short1) {
+      return addConstantInteger(short1.intValue());
+    } else if (value instanceof Boolean boolean1) {
+      return addConstantInteger(boolean1.booleanValue() ? 1 : 0);
+    } else if (value instanceof Float float1) {
+      return addConstantFloat(float1.floatValue());
+    } else if (value instanceof Long long1) {
+      return addConstantLong(long1.longValue());
+    } else if (value instanceof Double double1) {
+      return addConstantDouble(double1.doubleValue());
+    } else if (value instanceof String string) {
+      return addConstantString(string);
+    } else if (value instanceof Type type) {
       int typeSort = type.getSort();
       if (typeSort == Type.OBJECT) {
         return addConstantClass(type.getInternalName());
@@ -508,16 +507,14 @@ final class SymbolTable {
       } else { // type is a primitive or array type.
         return addConstantClass(type.getDescriptor());
       }
-    } else if (value instanceof Handle) {
-      Handle handle = (Handle) value;
+    } else if (value instanceof Handle handle) {
       return addConstantMethodHandle(
           handle.getTag(),
           handle.getOwner(),
           handle.getName(),
           handle.getDesc(),
           handle.isInterface());
-    } else if (value instanceof ConstantDynamic) {
-      ConstantDynamic constantDynamic = (ConstantDynamic) value;
+    } else if (value instanceof ConstantDynamic constantDynamic) {
       return addConstantDynamic(
           constantDynamic.getName(),
           constantDynamic.getDescriptor(),

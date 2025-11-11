@@ -214,7 +214,7 @@ public class Inventor {
 	}
 
 	public String formatObjectVarargs(String format, Object... args) {
-		return String.format(format, args);
+		return format.formatted(args);
 	}
 
 	public String formatPrimitiveVarargs(String format, int... nums) {
@@ -222,7 +222,7 @@ public class Inventor {
 		for (int i = 0; i < nums.length; i++) {
 			args[i] = nums[i];
 		}
-		return String.format(format, args);
+		return format.formatted(args);
 	}
 
 

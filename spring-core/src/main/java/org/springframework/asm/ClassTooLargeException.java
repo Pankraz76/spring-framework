@@ -27,6 +27,8 @@
 // THE POSSIBILITY OF SUCH DAMAGE.
 package org.springframework.asm;
 
+import java.io.Serial;
+
 /**
  * Exception thrown when the constant pool of a class produced by a {@link ClassWriter} is too
  * large.
@@ -34,7 +36,7 @@ package org.springframework.asm;
  * @author Jason Zaugg
  */
 public final class ClassTooLargeException extends IndexOutOfBoundsException {
-  private static final long serialVersionUID = 160715609518896765L;
+	@Serial private static final long serialVersionUID = 160715609518896765L;
 
   private final String className;
   private final int constantPoolCount;

@@ -164,7 +164,7 @@ class BasicJsonWriter {
 				case '\t' -> "\\t";
 				default -> {
 					if (c <= 0x1F) {
-						yield String.format("\\u%04x", c);
+						yield "\\u%04x".formatted(c);
 					}
 					else {
 						yield (char) c;

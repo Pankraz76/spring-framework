@@ -52,7 +52,7 @@ public class FormContentTests {
 
 		@PutMapping("/")
 		public String test(Data d) {
-			return String.format("d1:%s, d2:%s.", d.getD1(), d.getD2());
+			return "d1:%s, d2:%s.".formatted(d.getD1(), d.getD2());
 		}
 	}
 

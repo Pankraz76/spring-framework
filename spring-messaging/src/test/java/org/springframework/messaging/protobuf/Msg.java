@@ -62,8 +62,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public java.lang.String getFoo() {
     java.lang.Object ref = foo_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+    if (ref instanceof java.lang.String string) {
+      return string;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
@@ -82,10 +82,10 @@ private static final long serialVersionUID = 0L;
   public com.google.protobuf.ByteString
       getFooBytes() {
     java.lang.Object ref = foo_;
-    if (ref instanceof java.lang.String) {
+    if (ref instanceof java.lang.String string) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
+              string);
       foo_ = b;
       return b;
     } else {
@@ -391,8 +391,8 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.springframework.messaging.protobuf.Msg) {
-        return mergeFrom((org.springframework.messaging.protobuf.Msg)other);
+      if (other instanceof org.springframework.messaging.protobuf.Msg msg) {
+        return mergeFrom(msg);
       } else {
         super.mergeFrom(other);
         return this;
@@ -497,10 +497,10 @@ private static final long serialVersionUID = 0L;
     public com.google.protobuf.ByteString
         getFooBytes() {
       java.lang.Object ref = foo_;
-      if (ref instanceof String) {
+      if (ref instanceof java.lang.String string) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                string);
         foo_ = b;
         return b;
       } else {

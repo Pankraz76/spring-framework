@@ -144,7 +144,7 @@ class JsonContentTests {
 
 		@PostMapping
 		ResponseEntity<String> savePerson(@RequestBody Person person) {
-			URI location = URI.create(String.format("/persons/%s/%s", person.getFirstName(), person.getLastName()));
+			URI location = URI.create("/persons/%s/%s".formatted(person.getFirstName(), person.getLastName()));
 			return ResponseEntity.created(location).build();
 		}
 	}

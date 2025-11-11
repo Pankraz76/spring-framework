@@ -94,7 +94,7 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 		Optional<A> annotation = findMergedAnnotation(element, annotationType);
 
 		if (annotation.isEmpty()) {
-			String reason = String.format("%s is enabled since @%s is not present", element,
+			String reason = "%s is enabled since @%s is not present".formatted(element,
 					annotationType.getSimpleName());
 			if (logger.isDebugEnabled()) {
 				logger.debug(reason);
@@ -103,8 +103,7 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 		}
 
 		String expression = annotation.map(expressionExtractor).map(String::trim).filter(StringUtils::hasLength)
-				.orElseThrow(() -> new IllegalStateException(String.format(
-						"The expression in @%s on [%s] must not be blank", annotationType.getSimpleName(), element)));
+				.orElseThrow(() -> new IllegalStateException("The expression in @%s on [%s] must not be blank".formatted(annotationType.getSimpleName(), element)));
 
 		boolean loadContext = loadContextExtractor.apply(annotation.get());
 		boolean evaluatedToTrue = evaluateExpression(expression, loadContext, annotationType, context);
@@ -113,8 +112,8 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 		if (evaluatedToTrue) {
 			String adjective = (enabledOnTrue ? "enabled" : "disabled");
 			String reason = annotation.map(reasonExtractor).filter(StringUtils::hasText).orElseGet(
-					() -> String.format("%s is %s because @%s(\"%s\") evaluated to true", element, adjective,
-						annotationType.getSimpleName(), expression));
+					() -> "%s is %s because @%s(\"%s\") evaluated to true".formatted(element, adjective,
+							annotationType.getSimpleName(), expression));
 			if (logger.isInfoEnabled()) {
 				logger.info(reason);
 			}
@@ -123,7 +122,7 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 		}
 		else {
 			String adjective = (enabledOnTrue ? "disabled" : "enabled");
-			String reason = String.format("%s is %s because @%s(\"%s\") did not evaluate to true",
+			String reason = "%s is %s because @%s(\"%s\") did not evaluate to true".formatted(
 					element, adjective, annotationType.getSimpleName(), expression);
 			if (logger.isDebugEnabled()) {
 				logger.debug(reason);
@@ -196,12 +195,12 @@ abstract class AbstractExpressionEvaluatingCondition implements ExecutionConditi
 				return true;
 			}
 			Assert.state("false".equals(str),
-				() -> String.format("@%s(\"%s\") on %s must evaluate to \"true\" or \"false\", not \"%s\"",
-					annotationType.getSimpleName(), expression, element, result));
+				() -> "@%s(\"%s\") on %s must evaluate to \"true\" or \"false\", not \"%s\"".formatted(
+						annotationType.getSimpleName(), expression, element, result));
 			return false;
 		}
 		else {
-			String message = String.format("@%s(\"%s\") on %s must evaluate to a String or a Boolean, not %s",
+			String message = "@%s(\"%s\") on %s must evaluate to a String or a Boolean, not %s".formatted(
 					annotationType.getSimpleName(), expression, element,
 					(result != null ? result.getClass().getName() : "null"));
 			throw new IllegalStateException(message);

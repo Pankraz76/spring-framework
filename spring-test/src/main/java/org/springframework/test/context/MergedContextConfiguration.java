@@ -16,6 +16,7 @@
 
 package org.springframework.test.context;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
@@ -71,7 +72,7 @@ import org.springframework.util.StringUtils;
  */
 public class MergedContextConfiguration implements Serializable {
 
-	private static final long serialVersionUID = -3290560718464957422L;
+	@Serial private static final long serialVersionUID = -3290560718464957422L;
 
 	private static final String[] EMPTY_STRING_ARRAY = new String[0];
 

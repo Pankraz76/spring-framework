@@ -47,8 +47,9 @@ class PropertiesEditorTests {
 
 	@Test
 	void twoProperties() {
-		String s = "foo=bar with whitespace\n" +
-			"me=mi";
+		String s = """
+			foo=bar with whitespace
+			me=mi""";
 		PropertiesEditor pe= new PropertiesEditor();
 		pe.setAsText(s);
 		Properties p = (Properties) pe.getValue();
@@ -124,12 +125,14 @@ class PropertiesEditorTests {
 	 */
 	@Test
 	void ignoresLeadingSpacesAndTabs() {
-		String s = "    #Ignore this comment\n" +
-			"\t\tfoo=bar\n" +
-			"\t#Another comment more junk \n" +
-			" me=mi\n" +
-			"x=x\n" +
-			"\n";
+		String s = """
+			    #Ignore this comment
+					foo=bar
+				#Another comment more junk\s
+			 me=mi
+			x=x
+			
+			""";
 		PropertiesEditor pe= new PropertiesEditor();
 		pe.setAsText(s);
 		Properties p = (Properties) pe.getValue();

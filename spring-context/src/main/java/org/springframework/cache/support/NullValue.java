@@ -16,6 +16,7 @@
 
 package org.springframework.cache.support;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import org.jspecify.annotations.Nullable;
@@ -38,7 +39,7 @@ public final class NullValue implements Serializable {
 	 */
 	public static final Object INSTANCE = new NullValue();
 
-	private static final long serialVersionUID = 1L;
+	@Serial private static final long serialVersionUID = 1L;
 
 
 	private NullValue() {

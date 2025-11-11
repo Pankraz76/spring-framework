@@ -127,7 +127,7 @@ class ConfigurationClassEnhancer {
 			Enhancer enhancer = newEnhancer(configClass, classLoader);
 			Class<?> enhancedClass = createClass(enhancer, classLoaderMismatch);
 			if (logger.isTraceEnabled()) {
-				logger.trace(String.format("Successfully enhanced %s; enhanced class name is: %s",
+				logger.trace("Successfully enhanced %s; enhanced class name is: %s".formatted(
 						configClass.getName(), enhancedClass.getName()));
 			}
 			return enhancedClass;

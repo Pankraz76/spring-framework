@@ -577,8 +577,8 @@ abstract class AbstractPropertyAccessorTests {
 		accessor.registerCustomEditor(String.class, "name", new PropertyEditorSupport() {
 			@Override
 			public void setValue(Object value) {
-				if (value instanceof String[]) {
-					setValue(StringUtils.arrayToDelimitedString(((String[]) value), "-"));
+				if (value instanceof String[] strings) {
+					setValue(StringUtils.arrayToDelimitedString(strings, "-"));
 				}
 				else {
 					super.setValue(value != null ? value : "");
@@ -929,8 +929,8 @@ abstract class AbstractPropertyAccessorTests {
 		accessor.registerCustomEditor(int.class, "array", new PropertyEditorSupport() {
 			@Override
 			public void setValue(Object value) {
-				if (value instanceof Integer) {
-					super.setValue((Integer) value + 1);
+				if (value instanceof Integer integer) {
+					super.setValue(integer + 1);
 				}
 			}
 		});
@@ -947,8 +947,8 @@ abstract class AbstractPropertyAccessorTests {
 		accessor.registerCustomEditor(int.class, "array[1]", new PropertyEditorSupport() {
 			@Override
 			public void setValue(Object value) {
-				if (value instanceof Integer) {
-					super.setValue((Integer) value + 1);
+				if (value instanceof Integer integer) {
+					super.setValue(integer + 1);
 				}
 			}
 		});

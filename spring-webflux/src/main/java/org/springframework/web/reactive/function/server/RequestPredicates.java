@@ -346,7 +346,7 @@ public abstract class RequestPredicates {
 
 	private static void traceMatch(String prefix, Object desired, @Nullable Object actual, boolean match) {
 		if (logger.isTraceEnabled()) {
-			logger.trace(String.format("%s \"%s\" %s against value \"%s\"",
+			logger.trace("%s \"%s\" %s against value \"%s\"".formatted(
 					prefix, desired, match ? "matches" : "does not match", actual));
 		}
 	}
@@ -963,7 +963,7 @@ public abstract class RequestPredicates {
 
 		@Override
 		public String toString() {
-			return String.format("*.%s",
+			return "*.%s".formatted(
 					(this.extension != null) ?
 							this.extension :
 							this.extensionPredicate);
@@ -1011,7 +1011,7 @@ public abstract class RequestPredicates {
 
 		@Override
 		public String toString() {
-			return String.format("?%s %s", this.name,
+			return "?%s %s".formatted(this.name,
 					(this.value != null) ?
 							this.value :
 							this.valuePredicate);
@@ -1097,7 +1097,7 @@ public abstract class RequestPredicates {
 
 		@Override
 		public String toString() {
-			return String.format("(%s && %s)", this.left, this.right);
+			return "(%s && %s)".formatted(this.left, this.right);
 		}
 	}
 
@@ -1215,7 +1215,7 @@ public abstract class RequestPredicates {
 
 		@Override
 		public String toString() {
-			return String.format("(%s || %s)", this.left, this.right);
+			return "(%s || %s)".formatted(this.left, this.right);
 		}
 	}
 

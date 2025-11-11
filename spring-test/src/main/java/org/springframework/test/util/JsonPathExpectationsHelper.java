@@ -86,7 +86,7 @@ public class JsonPathExpectationsHelper {
 	 * Construct a new {@code JsonPathExpectationsHelper}.
 	 * @param expression the {@link JsonPath} expression; never {@code null} or empty
 	 * @param args arguments to parameterize the {@code JsonPath} expression with,
-	 * using formatting specifiers defined in {@link String#format(String, Object...)}
+	 * using formatting specifiers defined in {@link String#formatted(Object...)}
 	 * @deprecated in favor of calling {@link String#formatted(Object...)} upfront
 	 */
 	@Deprecated(since = "6.2", forRemoval = true)

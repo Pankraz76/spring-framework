@@ -193,11 +193,11 @@ public class EmbeddedDatabaseFactory {
 
 		if (logger.isInfoEnabled()) {
 			if (this.dataSource instanceof SimpleDriverDataSource simpleDriverDataSource) {
-				logger.info(String.format("Starting embedded database: url='%s', username='%s'",
+				logger.info("Starting embedded database: url='%s', username='%s'".formatted(
 						simpleDriverDataSource.getUrl(), simpleDriverDataSource.getUsername()));
 			}
 			else {
-				logger.info(String.format("Starting embedded database '%s'", this.databaseName));
+				logger.info("Starting embedded database '%s'".formatted(this.databaseName));
 			}
 		}
 
@@ -224,11 +224,11 @@ public class EmbeddedDatabaseFactory {
 		if (this.dataSource != null) {
 			if (logger.isInfoEnabled()) {
 				if (this.dataSource instanceof SimpleDriverDataSource simpleDriverDataSource) {
-					logger.info(String.format("Shutting down embedded database: url='%s'",
+					logger.info("Shutting down embedded database: url='%s'".formatted(
 							simpleDriverDataSource.getUrl()));
 				}
 				else {
-					logger.info(String.format("Shutting down embedded database '%s'", this.databaseName));
+					logger.info("Shutting down embedded database '%s'".formatted(this.databaseName));
 				}
 			}
 			if (this.databaseConfigurer != null) {

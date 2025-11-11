@@ -231,12 +231,12 @@ class PeriodicTriggerTests {
 		if (o == null) {
 			return null;
 		}
-		if (o instanceof Instant) {
-			return (Instant) o;
+		if (o instanceof Instant instant) {
+			return instant;
 		}
-		if (o instanceof Number) {
+		if (o instanceof Number number) {
 			return Instant.now()
-					.plus(NumberUtils.convertNumberToTargetClass((Number) o, Long.class),
+					.plus(NumberUtils.convertNumberToTargetClass(number, Long.class),
 							ChronoUnit.MILLIS);
 		}
 		throw new IllegalArgumentException(

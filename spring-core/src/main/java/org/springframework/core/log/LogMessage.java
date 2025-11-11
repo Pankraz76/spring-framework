@@ -89,7 +89,7 @@ public abstract class LogMessage implements CharSequence {
 	 * Build a lazily formatted message from the given format string and argument.
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param arg1 the argument (can be {@code null})
-	 * @see String#format(String, Object...)
+	 * @see String#formatted(Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1) {
 		return new FormatMessage1(format, arg1);
@@ -100,7 +100,7 @@ public abstract class LogMessage implements CharSequence {
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param arg1 the first argument (can be {@code null})
 	 * @param arg2 the second argument (can be {@code null})
-	 * @see String#format(String, Object...)
+	 * @see String#formatted(Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1, @Nullable Object arg2) {
 		return new FormatMessage2(format, arg1, arg2);
@@ -112,7 +112,7 @@ public abstract class LogMessage implements CharSequence {
 	 * @param arg1 the first argument (can be {@code null})
 	 * @param arg2 the second argument (can be {@code null})
 	 * @param arg3 the third argument (can be {@code null})
-	 * @see String#format(String, Object...)
+	 * @see String#formatted(Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1, @Nullable Object arg2, @Nullable Object arg3) {
 		return new FormatMessage3(format, arg1, arg2, arg3);
@@ -125,7 +125,7 @@ public abstract class LogMessage implements CharSequence {
 	 * @param arg2 the second argument (can be {@code null})
 	 * @param arg3 the third argument (can be {@code null})
 	 * @param arg4 the fourth argument (can be {@code null})
-	 * @see String#format(String, Object...)
+	 * @see String#formatted(Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object arg1, @Nullable Object arg2, @Nullable Object arg3,
 			@Nullable Object arg4) {
@@ -140,7 +140,7 @@ public abstract class LogMessage implements CharSequence {
 	 * @param format the format string (following {@link String#format} rules)
 	 * @param args the varargs array (can be {@code null} and can contain {@code null}
 	 * elements)
-	 * @see String#format(String, Object...)
+	 * @see String#formatted(Object...)
 	 */
 	public static LogMessage format(String format, @Nullable Object... args) {
 		return new FormatMessageX(format, args);
@@ -185,7 +185,7 @@ public abstract class LogMessage implements CharSequence {
 
 		@Override
 		protected String buildString() {
-			return String.format(this.format, this.arg1);
+			return this.format.formatted(this.arg1);
 		}
 	}
 
@@ -204,7 +204,7 @@ public abstract class LogMessage implements CharSequence {
 
 		@Override
 		String buildString() {
-			return String.format(this.format, this.arg1, this.arg2);
+			return this.format.formatted(this.arg1, this.arg2);
 		}
 	}
 
@@ -226,7 +226,7 @@ public abstract class LogMessage implements CharSequence {
 
 		@Override
 		String buildString() {
-			return String.format(this.format, this.arg1, this.arg2, this.arg3);
+			return this.format.formatted(this.arg1, this.arg2, this.arg3);
 		}
 	}
 
@@ -252,7 +252,7 @@ public abstract class LogMessage implements CharSequence {
 
 		@Override
 		String buildString() {
-			return String.format(this.format, this.arg1, this.arg2, this.arg3, this.arg4);
+			return this.format.formatted(this.arg1, this.arg2, this.arg3, this.arg4);
 		}
 	}
 
@@ -268,7 +268,7 @@ public abstract class LogMessage implements CharSequence {
 
 		@Override
 		String buildString() {
-			return String.format(this.format, this.args);
+			return this.format.formatted(this.args);
 		}
 	}
 
