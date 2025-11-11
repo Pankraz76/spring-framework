@@ -17,6 +17,7 @@
 package org.springframework.web.util;
 
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Locale;
 import java.util.Map;
@@ -554,7 +555,7 @@ public class UrlPathHelper {
 				logger.debug("Could not decode request string [" + source + "] with encoding '" + enc +
 						"': falling back to platform default encoding; exception message: " + ex.getMessage());
 			}
-			return URLDecoder.decode(source);
+			return URLDecoder.decode(source, StandardCharsets.UTF_8);
 		}
 	}
 

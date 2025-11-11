@@ -31,7 +31,6 @@ import java.nio.channels.WritableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -99,7 +98,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 		URI uri = this.resource.getURI();
 		Flux<DataBuffer> result =
-				DataBufferUtils.readByteChannel(() -> FileChannel.open(Paths.get(uri), StandardOpenOption.READ),
+				DataBufferUtils.readByteChannel(() -> FileChannel.open(Path.of(uri), StandardOpenOption.READ),
 					super.bufferFactory, 3);
 
 		verifyReadData(result);
@@ -134,7 +133,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 		URI uri = this.resource.getURI();
 		Flux<DataBuffer> result =
-				DataBufferUtils.readByteChannel(() -> FileChannel.open(Paths.get(uri), StandardOpenOption.READ),
+				DataBufferUtils.readByteChannel(() -> FileChannel.open(Path.of(uri), StandardOpenOption.READ),
 					super.bufferFactory, 3);
 
 		StepVerifier.create(result)
@@ -149,7 +148,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 		URI uri = this.resource.getURI();
 		Flux<DataBuffer> flux = DataBufferUtils.readAsynchronousFileChannel(
-				() -> AsynchronousFileChannel.open(Paths.get(uri), StandardOpenOption.READ),
+				() -> AsynchronousFileChannel.open(Path.of(uri), StandardOpenOption.READ),
 				super.bufferFactory, 3);
 
 		verifyReadData(flux);
@@ -161,7 +160,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 		URI uri = this.resource.getURI();
 		Flux<DataBuffer> flux = DataBufferUtils.readAsynchronousFileChannel(
-				() -> AsynchronousFileChannel.open(Paths.get(uri), StandardOpenOption.READ),
+				() -> AsynchronousFileChannel.open(Path.of(uri), StandardOpenOption.READ),
 				9, super.bufferFactory, 3);
 
 		StepVerifier.create(flux)
@@ -207,7 +206,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 		URI uri = this.resource.getURI();
 		Flux<DataBuffer> flux = DataBufferUtils.readAsynchronousFileChannel(
-				() -> AsynchronousFileChannel.open(Paths.get(uri), StandardOpenOption.READ),
+				() -> AsynchronousFileChannel.open(Path.of(uri), StandardOpenOption.READ),
 				super.bufferFactory, 3);
 
 		StepVerifier.create(flux)
@@ -222,7 +221,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 		URI uri = this.resource.getURI();
 		Flux<DataBuffer> flux = DataBufferUtils.readAsynchronousFileChannel(
-				() -> AsynchronousFileChannel.open(Paths.get(uri), StandardOpenOption.READ),
+				() -> AsynchronousFileChannel.open(Path.of(uri), StandardOpenOption.READ),
 				super.bufferFactory, 3);
 
 		BaseSubscriber<DataBuffer> subscriber = new ZeroDemandSubscriber();
@@ -891,7 +890,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 	void readAndWriteByteChannel(DataBufferFactory bufferFactory) throws Exception {
 		super.bufferFactory = bufferFactory;
 
-		Path source = Paths.get(
+		Path source = Path.of(
 				DataBufferUtilsTests.class.getResource("DataBufferUtilsTests.txt").toURI());
 		Flux<DataBuffer> sourceFlux =
 				DataBufferUtils
@@ -925,7 +924,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 	void readAndWriteAsynchronousFileChannel(DataBufferFactory bufferFactory) throws Exception {
 		super.bufferFactory = bufferFactory;
 
-		Path source = Paths.get(
+		Path source = Path.of(
 				DataBufferUtilsTests.class.getResource("DataBufferUtilsTests.txt").toURI());
 		Flux<DataBuffer> sourceFlux = DataBufferUtils.readAsynchronousFileChannel(
 				() -> AsynchronousFileChannel.open(source, StandardOpenOption.READ),
@@ -1283,7 +1282,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 	@ParameterizedDataBufferAllocatingTest
 	void propagateContextByteChannel(DataBufferFactory bufferFactory) throws IOException {
-		Path path = Paths.get(this.resource.getURI());
+		Path path = Path.of(this.resource.getURI());
 		try (SeekableByteChannel out = Files.newByteChannel(this.tempFile, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)) {
 			Flux<DataBuffer> result = DataBufferUtils.read(path, bufferFactory, 1024, StandardOpenOption.READ)
 					.transformDeferredContextual((f, ctx) -> {
@@ -1307,7 +1306,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 	@ParameterizedDataBufferAllocatingTest
 	void propagateContextAsynchronousFileChannel(DataBufferFactory bufferFactory) throws IOException {
-		Path path = Paths.get(this.resource.getURI());
+		Path path = Path.of(this.resource.getURI());
 		try (AsynchronousFileChannel out = AsynchronousFileChannel.open(this.tempFile, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING)) {
 			Flux<DataBuffer> result = DataBufferUtils.read(path, bufferFactory, 1024, StandardOpenOption.READ)
 					.transformDeferredContextual((f, ctx) -> {
@@ -1331,7 +1330,7 @@ class DataBufferUtilsTests extends AbstractDataBufferAllocatingTests {
 
 	@ParameterizedDataBufferAllocatingTest
 	void propagateContextPath(DataBufferFactory bufferFactory) throws IOException {
-		Path path = Paths.get(this.resource.getURI());
+		Path path = Path.of(this.resource.getURI());
 		Path out = Files.createTempFile("data-buffer-utils-tests", ".tmp");
 
 		Flux<Void> result = DataBufferUtils.read(path, bufferFactory, 1024, StandardOpenOption.READ)

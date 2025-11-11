@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -84,7 +85,7 @@ class ConcurrentBeanWrapperTests {
 
 		for (Iterator<?> i = p.entrySet().iterator(); i.hasNext();) {
 			i.next();
-			if (Math.random() > 0.9) {
+			if (ThreadLocalRandom.current().nextDouble() > 0.9) {
 				i.remove();
 			}
 		}

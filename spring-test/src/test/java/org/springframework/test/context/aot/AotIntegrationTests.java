@@ -18,7 +18,6 @@ package org.springframework.test.context.aot;
 
 import java.io.PrintWriter;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -81,7 +80,7 @@ class AotIntegrationTests extends AbstractAotTests {
 	// nested JUnit Platform launched by the CompileWithForkedClassLoaderExtension.
 	static {
 		try {
-			Path classpathRoot = Paths.get(AotIntegrationTests.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+			Path classpathRoot = Path.of(AotIntegrationTests.class.getProtectionDomain().getCodeSource().getLocation().toURI());
 			System.setProperty(CLASSPATH_ROOT, classpathRoot.toFile().getCanonicalPath());
 		}
 		catch (Exception ex) {
@@ -267,7 +266,7 @@ class AotIntegrationTests extends AbstractAotTests {
 	private static TestClassScanner createTestClassScanner() {
 		String classpathRoot = System.getProperty(CLASSPATH_ROOT);
 		assertThat(classpathRoot).as(CLASSPATH_ROOT).isNotNull();
-		Set<Path> classpathRoots = Set.of(Paths.get(classpathRoot));
+		Set<Path> classpathRoots = Set.of(Path.of(classpathRoot));
 		return new TestClassScanner(classpathRoots);
 	}
 

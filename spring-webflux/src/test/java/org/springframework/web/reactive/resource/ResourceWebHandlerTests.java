@@ -17,7 +17,7 @@
 package org.springframework.web.reactive.resource;
 
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
@@ -800,7 +800,7 @@ class ResourceWebHandlerTests {
 		@Test
 		void servesResourcesFromFileSystem() throws Exception {
 			String packagePath = ClassUtils.classPackageAsResourcePath(getClass());
-			String path = Paths.get("src/test/resources", packagePath).normalize() + "/";
+			String path = Path.of("src/test/resources", packagePath).normalize() + "/";
 
 			this.handler.setLocations(List.of(new FileSystemResource(path)));
 			this.handler.afterPropertiesSet();

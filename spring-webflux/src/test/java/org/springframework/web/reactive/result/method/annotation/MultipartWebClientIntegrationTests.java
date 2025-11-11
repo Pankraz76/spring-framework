@@ -19,7 +19,6 @@ package org.springframework.web.reactive.result.method.annotation;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -176,8 +175,8 @@ class MultipartWebClientIntegrationTests extends AbstractHttpHandlerIntegrationT
 				.bodyToFlux(String.class);
 
 		StepVerifier.create(result)
-				.consumeNextWith(filename -> verifyContents(Paths.get(filename), new ClassPathResource("foo.txt", MultipartHttpMessageReader.class)))
-				.consumeNextWith(filename -> verifyContents(Paths.get(filename), new ClassPathResource("logo.png", getClass())))
+				.consumeNextWith(filename -> verifyContents(Path.of(filename), new ClassPathResource("foo.txt", MultipartHttpMessageReader.class)))
+				.consumeNextWith(filename -> verifyContents(Path.of(filename), new ClassPathResource("logo.png", getClass())))
 				.verifyComplete();
 
 	}

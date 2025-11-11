@@ -39,8 +39,7 @@ dependencies {
 	testImplementation("org.xmlunit:xmlunit-matchers")
 	testRuntimeOnly(project(":spring-context"))
 	testRuntimeOnly("com.sun.activation:jakarta.activation")
-	testRuntimeOnly("com.sun.xml.bind:jaxb-core")
-	testRuntimeOnly("com.sun.xml.bind:jaxb-impl")
+	testRuntimeOnly("org.glassfish.jaxb:jaxb-runtime")
 	testRuntimeOnly("jakarta.json:jakarta.json-api")
 	testRuntimeOnly("org.eclipse:yasson")
 }

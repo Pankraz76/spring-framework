@@ -42,6 +42,11 @@ runs:
         java-early-access: ${{ inputs.java-early-access }}
         java-toolchain: ${{ inputs.java-toolchain }}
         java-version: ${{ inputs.java-version }}
+    - name: SanityCheck
+      id: build
+      if: ${{ inputs.publish == 'false' }}
+      shell: bash
+      run: ./gradlew rewriteDryRun -Dorg.gradle.jvmargs=-Xmx8G
     - name: Build
       id: build
       if: ${{ inputs.publish == 'false' }}

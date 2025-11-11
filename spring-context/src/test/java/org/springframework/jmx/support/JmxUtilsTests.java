@@ -196,7 +196,7 @@ class JmxUtilsTests {
 	}
 
 
-	public interface FooMBean {
+	public public interface FooMBean {
 
 		String getName();
 	}
@@ -211,7 +211,7 @@ class JmxUtilsTests {
 	}
 
 
-	public interface FooMXBean {
+	public public interface FooMXBean {
 
 		String getName();
 	}
@@ -234,7 +234,7 @@ class JmxUtilsTests {
 	}
 
 
-	private interface JmxInterfaceMBean {
+	public interface JmxInterfaceMBean {
 	}
 
 
@@ -246,7 +246,7 @@ class JmxUtilsTests {
 	}
 
 
-	private interface JmxClassMBean {
+	public interface JmxClassMBean {
 	}
 
 
