@@ -17,7 +17,6 @@
 package org.springframework.test.context.aot;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -140,7 +139,7 @@ abstract class AbstractAotTests {
 
 	Path classpathRoot() {
 		try {
-			return Paths.get(getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
+			return Path.of(getClass().getProtectionDomain().getCodeSource().getLocation().toURI());
 		}
 		catch (Exception ex) {
 			throw new RuntimeException(ex);
@@ -149,7 +148,7 @@ abstract class AbstractAotTests {
 
 	Path classpathRoot(Class<?> clazz) {
 		try {
-			return Paths.get(clazz.getProtectionDomain().getCodeSource().getLocation().toURI());
+			return Path.of(clazz.getProtectionDomain().getCodeSource().getLocation().toURI());
 		}
 		catch (Exception ex) {
 			throw new RuntimeException(ex);

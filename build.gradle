@@ -1,12 +1,12 @@
 plugins {
-	id 'io.freefair.aspectj' version '8.13.1' apply false
-	// kotlinVersion is managed in gradle.properties
-	id 'org.jetbrains.kotlin.plugin.serialization' version "${kotlinVersion}" apply false
-	id 'org.jetbrains.dokka'
 	id 'com.github.bjornvester.xjc' version '1.8.2' apply false
 	id 'com.gradleup.shadow' version "9.2.2" apply false
-	id 'me.champeau.jmh' version '0.7.2' apply false
+	id 'io.freefair.aspectj' version '8.13.1' apply false
 	id 'io.spring.nullability' version '0.0.8' apply false
+	id 'me.champeau.jmh' version '0.7.2' apply false
+	id 'org.jetbrains.dokka'
+	id 'org.jetbrains.kotlin.plugin.serialization' version "${kotlinVersion}" apply false // kotlinVersion is managed in gradle.properties
+    id 'org.openrewrite.rewrite' version '7.20.0' apply false
 }
 
 ext {
@@ -15,6 +15,8 @@ ext {
 }
 
 description = "Spring Framework"
+
+apply from: "$rootDir/gradle/rewrite.gradle"
 
 configure(allprojects) { project ->
 	apply plugin: "org.springframework.build.localdev"

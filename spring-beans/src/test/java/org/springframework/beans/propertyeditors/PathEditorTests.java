@@ -19,7 +19,6 @@ package org.springframework.beans.propertyeditors;
 import java.beans.PropertyEditor;
 import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -106,7 +105,7 @@ class PathEditorTests {
 		Object value = pathEditor.getValue();
 		assertThat(value).isInstanceOf(Path.class);
 		Path path = (Path) value;
-		assertThat(path).isEqualTo(Paths.get("."));
+		assertThat(path).isEqualTo(Path.of("."));
 	}
 
 	@Test

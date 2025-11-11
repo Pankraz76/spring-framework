@@ -30,7 +30,6 @@ import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
@@ -118,7 +117,7 @@ class PathMatchingResourcePatternResolverTests {
 
 		@Test  // gh-31111
 		void usingFileProtocolWithWildcardInPatternAndNonexistentRootPath() throws IOException {
-			Path testResourcesDir = Paths.get("src/test/resources").toAbsolutePath();
+			Path testResourcesDir = Path.of("src/test/resources").toAbsolutePath();
 			String pattern = String.format("file:%s/example/bogus/**", testResourcesDir);
 			assertThat(resolver.getResources(pattern)).isEmpty();
 			// When the log level for the resolver is set to at least INFO, we should see
@@ -131,7 +130,7 @@ class PathMatchingResourcePatternResolverTests {
 
 		@Test
 		void encodedHashtagInPath() throws IOException {
-			Path rootDir = Paths.get("src/test/resources/custom%23root").toAbsolutePath();
+			Path rootDir = Path.of("src/test/resources/custom%23root").toAbsolutePath();
 			URL root = new URL("file:" + rootDir + "/");
 			resolver = new PathMatchingResourcePatternResolver(new DefaultResourceLoader(new URLClassLoader(new URL[] {root})));
 			resolver.setUseCaches(false);
@@ -164,7 +163,7 @@ class PathMatchingResourcePatternResolverTests {
 
 			@Test
 			void usingFileProtocolWithWildcardInPatternAndNotEndingInSlash() throws Exception {
-				Path testResourcesDir = Paths.get("src/test/resources").toAbsolutePath();
+				Path testResourcesDir = Path.of("src/test/resources").toAbsolutePath();
 				String pattern = String.format("file:%s/org/springframework/core/io/sup*", testResourcesDir);
 				String pathPrefix = ".+org/springframework/core/io/";
 
@@ -195,7 +194,7 @@ class PathMatchingResourcePatternResolverTests {
 
 			@Test
 			void usingFileProtocolWithWildcardInPatternAndEndingInSlash() throws Exception {
-				Path testResourcesDir = Paths.get("src/test/resources").toAbsolutePath();
+				Path testResourcesDir = Path.of("src/test/resources").toAbsolutePath();
 				String pattern = String.format("file:%s/org/springframework/core/io/sup*/", testResourcesDir);
 				String pathPrefix = ".+org/springframework/core/io/";
 
@@ -229,7 +228,7 @@ class PathMatchingResourcePatternResolverTests {
 
 			@Test
 			void usingFileProtocolWithoutWildcardInPatternAndEndingInSlashStarStar() {
-				Path testResourcesDir = Paths.get("src/test/resources").toAbsolutePath();
+				Path testResourcesDir = Path.of("src/test/resources").toAbsolutePath();
 				String pattern = String.format("file:%s/scanned-resources/**", testResourcesDir);
 				String pathPrefix = ".+?resources/";
 
@@ -241,7 +240,7 @@ class PathMatchingResourcePatternResolverTests {
 
 			@Test
 			void usingFileProtocolWithWildcardInPatternAndEndingInSlashStarStar() {
-				Path testResourcesDir = Paths.get("src/test/resources").toAbsolutePath();
+				Path testResourcesDir = Path.of("src/test/resources").toAbsolutePath();
 				String pattern = String.format("file:%s/scanned*resources/**", testResourcesDir);
 				String pathPrefix = ".+?resources/";
 
@@ -253,7 +252,7 @@ class PathMatchingResourcePatternResolverTests {
 
 			@Test
 			void usingFileProtocolAndAssertingUrlAndUriSyntax() throws Exception {
-				Path testResourcesDir = Paths.get("src/test/resources").toAbsolutePath();
+				Path testResourcesDir = Path.of("src/test/resources").toAbsolutePath();
 				String pattern = "file:%s/scanned-resources/**/resource#test1.txt".formatted(testResourcesDir);
 				Resource[] resources = resolver.getResources(pattern);
 				assertThat(resources).hasSize(1);

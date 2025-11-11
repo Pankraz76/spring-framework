@@ -19,7 +19,6 @@ package org.springframework.http.converter.json;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeParseException;
@@ -284,7 +283,7 @@ class Jackson2ObjectMapperBuilderTests {
 	void wellKnownModules() throws JsonProcessingException {
 		ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
-		Path file = Paths.get("foo");
+		Path file = Path.of("foo");
 		assertThat(new String(objectMapper.writeValueAsBytes(file), StandardCharsets.UTF_8))
 				.endsWith("foo\"");
 

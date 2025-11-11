@@ -17,6 +17,7 @@
 package org.springframework.util.backoff;
 
 import java.util.StringJoiner;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.util.Assert;
 
@@ -308,7 +309,7 @@ public class ExponentialBackOff implements BackOff {
 				long applicableJitter = jitter * (interval / initialInterval);
 				long min = Math.max(interval - applicableJitter, initialInterval);
 				long max = Math.min(interval + applicableJitter, getMaxInterval());
-				return min + (long) (Math.random() * (max - min));
+				return min + (long) (ThreadLocalRandom.current().nextDouble() * (max - min));
 			}
 			return interval;
 		}

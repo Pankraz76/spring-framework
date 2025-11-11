@@ -22,7 +22,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
@@ -33,7 +32,7 @@ import org.springframework.util.ResourceUtils;
  * Editor for {@code java.nio.file.Path}, to directly populate a Path
  * property instead of using a String property as bridge.
  *
- * <p>Based on {@link Paths#get(URI)}'s resolution algorithm, checking
+ * <p>Based on {@link Path#of(URI)}'s resolution algorithm, checking
  * registered NIO file system providers, including the default file system
  * for "file:..." paths. Also supports Spring-style URL notation: any fully
  * qualified standard URL and Spring's special "classpath:" pseudo-URL, as
@@ -44,7 +43,7 @@ import org.springframework.util.ResourceUtils;
  * @author Juergen Hoeller
  * @since 4.3.2
  * @see java.nio.file.Path
- * @see Paths#get(URI)
+ * @see Path#of(URI)
  * @see ResourceEditor
  * @see org.springframework.core.io.ResourceLoader
  * @see FileEditor
@@ -83,7 +82,7 @@ public class PathEditor extends PropertyEditorSupport {
 					// No NIO candidate except for "C:" style drive letters
 					nioPathCandidate = (scheme.length() == 1);
 					// Let's try NIO file system providers via Paths.get(URI)
-					setValue(Paths.get(uri).normalize());
+					setValue(Path.of(uri).normalize());
 					return;
 				}
 			}
@@ -104,7 +103,7 @@ public class PathEditor extends PropertyEditorSupport {
 			setValue(null);
 		}
 		else if (nioPathCandidate && (!resource.isFile() || !resource.exists())) {
-			setValue(Paths.get(text).normalize());
+			setValue(Path.of(text).normalize());
 		}
 		else {
 			try {
