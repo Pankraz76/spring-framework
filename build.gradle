@@ -19,6 +19,7 @@ description = "Spring Framework"
 apply from: "$rootDir/gradle/rewrite.gradle"
 
 configure(allprojects) { project ->
+    apply from: rootProject.file('gradle/error-prone.gradle')
 	apply plugin: "org.springframework.build.localdev"
 	group = "org.springframework"
 	repositories {
