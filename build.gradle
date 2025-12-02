@@ -17,6 +17,7 @@ ext {
 description = "Spring Framework"
 
 configure(allprojects) { project ->
+    apply from: rootProject.file('gradle/error-prone.gradle')
 	apply plugin: "org.springframework.build.localdev"
 	group = "org.springframework"
 	repositories {

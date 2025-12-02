@@ -53,7 +53,7 @@ public class ClassTransformerChain extends AbstractClassTransformer {
             if (i > 0) {
                 sb.append(", ");
             }
-            sb.append(chain[i].toString());
+            sb.append(chain[i]);
         }
         sb.append("}");
         return sb.toString();
