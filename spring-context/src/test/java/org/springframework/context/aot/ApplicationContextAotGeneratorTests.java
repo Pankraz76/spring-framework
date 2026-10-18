@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
@@ -81,6 +82,7 @@ import org.springframework.context.testfixture.context.annotation.LazyAutowiredF
 import org.springframework.context.testfixture.context.annotation.LazyAutowiredMethodComponent;
 import org.springframework.context.testfixture.context.annotation.LazyConstructorArgumentComponent;
 import org.springframework.context.testfixture.context.annotation.LazyFactoryMethodArgumentComponent;
+import org.springframework.context.testfixture.context.annotation.LazyNestedCglibConfiguration;
 import org.springframework.context.testfixture.context.annotation.LazyResourceFieldComponent;
 import org.springframework.context.testfixture.context.annotation.LazyResourceMethodComponent;
 import org.springframework.context.testfixture.context.annotation.LookupComponent;
@@ -610,6 +612,32 @@ class ApplicationContextAotGeneratorTests {
 				});
 				assertThat(freshApplicationContext.getBean(ValueCglibConfiguration.class)
 						.getName()).isEqualTo("AOT World");
+			});
+		}
+
+		@Test  // gh-30684
+		void processAheadOfTimeWhenHasCglibProxyAndConfigurationCreationInvokesNestedFactoryMethod() {
+			GenericApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+			applicationContext.registerBean(LazyNestedCglibConfiguration.class);
+			applicationContext.registerBean(LazyNestedCglibConfiguration.NumberConfiguration.class);
+
+			testCompiledResult(applicationContext, (initializer, compiled) -> {
+				GenericApplicationContext freshApplicationContext = createFreshApplicationContext(initializer);
+				// If the nested 'number' factory method leaked out of its scope, the outer 'text()'
+				// call would be treated as an inter-bean reference and 'text' would be created twice.
+				AtomicInteger textInitializations = new AtomicInteger();
+				freshApplicationContext.getBeanFactory().addBeanPostProcessor(new BeanPostProcessor() {
+					@Override
+					public Object postProcessAfterInitialization(Object bean, String beanName) {
+						if (beanName.equals("text")) {
+							textInitializations.incrementAndGet();
+						}
+						return bean;
+					}
+				});
+				freshApplicationContext.refresh();
+				assertThat(freshApplicationContext.getBean("text", String.class)).isEqualTo("Hello 42");
+				assertThat(textInitializations).hasValue(1);
 			});
 		}
 

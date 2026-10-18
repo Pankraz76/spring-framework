@@ -25,6 +25,7 @@ import org.springframework.util.ReflectionUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
 /**
  * Tests for {@link SimpleInstantiationStrategy}.
@@ -110,6 +111,44 @@ class SimpleInstantiationStrategyTests {
 				.withMessageContaining("Factory method 'errorBean' threw exception")
 				.withMessageContaining("This a test message")
 				.havingCause().isInstanceOf(IllegalStateException.class).withMessage("This a test message");
+	}
+
+	@Test
+	void instantiateWithFactoryMethodExposesFactoryMethodAndClearsItAfterwards() {
+		Method factoryMethod = method(SampleFactory.class, "simpleBean");
+		Method invoked = SimpleInstantiationStrategy.instantiateWithFactoryMethod(factoryMethod,
+				SimpleInstantiationStrategy::getCurrentlyInvokedFactoryMethod);
+		assertThat(invoked).isEqualTo(factoryMethod);
+		assertThat(SimpleInstantiationStrategy.getCurrentlyInvokedFactoryMethod()).isNull();
+	}
+
+	@Test  // gh-30684
+	void instantiateWithFactoryMethodRestoresOuterFactoryMethodAfterNestedInvocation() {
+		Method outerMethod = method(SampleFactory.class, "simpleBean");
+		Method innerMethod = method(SampleFactory.class, "cloneBean");
+		Method invoked = SimpleInstantiationStrategy.instantiateWithFactoryMethod(outerMethod, () -> {
+			Method nestedInvoked = SimpleInstantiationStrategy.instantiateWithFactoryMethod(innerMethod,
+					SimpleInstantiationStrategy::getCurrentlyInvokedFactoryMethod);
+			assertThat(nestedInvoked).isEqualTo(innerMethod);
+			return SimpleInstantiationStrategy.getCurrentlyInvokedFactoryMethod();
+		});
+		assertThat(invoked).isEqualTo(outerMethod);
+		assertThat(SimpleInstantiationStrategy.getCurrentlyInvokedFactoryMethod()).isNull();
+	}
+
+	@Test
+	void instantiateWithFactoryMethodRestoresOuterFactoryMethodWhenNestedInvocationFails() {
+		Method outerMethod = method(SampleFactory.class, "simpleBean");
+		Method innerMethod = method(SampleFactory.class, "errorBean");
+		Method invoked = SimpleInstantiationStrategy.instantiateWithFactoryMethod(outerMethod, () -> {
+			assertThatIllegalStateException().isThrownBy(() ->
+					SimpleInstantiationStrategy.instantiateWithFactoryMethod(innerMethod, () -> {
+						throw new IllegalStateException("Expected");
+					}));
+			return SimpleInstantiationStrategy.getCurrentlyInvokedFactoryMethod();
+		});
+		assertThat(invoked).isEqualTo(outerMethod);
+		assertThat(SimpleInstantiationStrategy.getCurrentlyInvokedFactoryMethod()).isNull();
 	}
 
 	private Object instantiate(RootBeanDefinition bd, Object factory, Method method, Object... args) {
