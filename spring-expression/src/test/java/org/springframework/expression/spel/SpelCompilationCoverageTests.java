@@ -2705,6 +2705,49 @@ public class SpelCompilationCoverageTests extends AbstractExpressionTests {
 			assertThat(expression.getValue(context)).isEqualTo("value: 42");
 		}
 
+		@Test
+		void opPlusStringExceedingMaxConcatenatedStringLength() {
+			int maxSize = 100_000;
+			StandardEvaluationContext context = new StandardEvaluationContext();
+			context.setVariable("text1", "a".repeat(maxSize / 2));
+			context.setVariable("text2", "b".repeat(maxSize / 2));
+			context.setVariable("num", 42);
+
+			expression = parse("#text1 + #text2");
+			assertThat(expression.getValue(context, String.class)).hasSize(maxSize);
+			assertCanCompile(expression);
+			assertThat(expression.getValue(context, String.class)).hasSize(maxSize);
+			context.setVariable("text2", "b".repeat((maxSize / 2) + 1));
+			assertThatExceptionOfType(SpelEvaluationException.class)
+					.isThrownBy(() -> expression.getValue(context))
+					.withCauseInstanceOf(IllegalStateException.class);
+
+			context.setVariable("text1", "a".repeat(maxSize - 2));
+			expression = parse("#text1 + #num");
+			assertThat(expression.getValue(context, String.class)).hasSize(maxSize);
+			assertCanCompile(expression);
+			assertThat(expression.getValue(context, String.class)).hasSize(maxSize);
+			context.setVariable("text1", "a".repeat(maxSize - 1));
+			assertThatExceptionOfType(SpelEvaluationException.class)
+					.isThrownBy(() -> expression.getValue(context))
+					.withCauseInstanceOf(IllegalStateException.class);
+
+			// In mixed mode, the expression reverts to interpreted mode, which rejects it as well.
+			SpelParserConfiguration configuration = SpelParserConfiguration.builder()
+					.compilerMode(SpelCompilerMode.MIXED)
+					.build();
+			context.setVariable("text1", "a".repeat(maxSize / 2));
+			context.setVariable("text2", "b".repeat(maxSize / 2));
+			expression = new SpelExpressionParser(configuration).parseExpression("#text1 + #text2");
+			assertThat(expression.getValue(context, String.class)).hasSize(maxSize);
+			assertCanCompile(expression);
+			context.setVariable("text2", "b".repeat((maxSize / 2) + 1));
+			assertThatExceptionOfType(SpelEvaluationException.class)
+					.isThrownBy(() -> expression.getValue(context))
+					.satisfies(ex -> assertThat(ex.getMessageCode())
+							.isEqualTo(SpelMessage.MAX_CONCATENATED_STRING_LENGTH_EXCEEDED));
+		}
+
 		@Test  // gh-37433
 		void opPlusStringWithAnnotatedOperand() {
 			GenericConversionService conversionService = new DefaultConversionService();

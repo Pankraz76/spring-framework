@@ -369,6 +369,7 @@ public class OpPlus extends Operator {
 			walk(mv, cf, this, getLeftOperand());
 			walk(mv, cf, this, getRightOperand());
 			mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
+			insertStringLengthCheck(mv);
 		}
 		else {
 			this.children[0].generateCode(mv, cf);
@@ -394,6 +395,35 @@ public class OpPlus extends Operator {
 			}
 		}
 		cf.pushDescriptor(this.exitTypeDescriptor);
+	}
+
+	/**
+	 * Emit the equivalent of the {@link #MAX_CONCATENATED_STRING_LENGTH} check
+	 * performed in interpreted mode for the concatenated {@code String} on the stack.
+	 * <p>Since the concatenated {@code String} is at least as long as each of its
+	 * operands and intermediate results, checking it suffices to reject the same
+	 * expressions as interpreted mode. The emitted code throws an
+	 * {@link IllegalStateException}, which allows a compiled expression to revert
+	 * to interpreted mode in {@code SpelCompilerMode.MIXED}.
+	 * @since 7.1
+	 */
+	private static void insertStringLengthCheck(MethodVisitor mv) {
+		// Equivalent to the following, leaving the concatenated String on the stack.
+		// if (result.length() > MAX_CONCATENATED_STRING_LENGTH) { throw new IllegalStateException(...); }
+		Label lengthVerified = new Label();
+		mv.visitInsn(DUP);                                             // stack: result/result
+		mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "length",
+				"()I", false);                                         // stack: result/length
+		mv.visitLdcInsn(MAX_CONCATENATED_STRING_LENGTH);               // stack: result/length/max
+		mv.visitJumpInsn(IF_ICMPLE, lengthVerified);                   // stack: result
+		mv.visitTypeInsn(NEW, "java/lang/IllegalStateException");      // stack: result/ex
+		mv.visitInsn(DUP);                                             // stack: result/ex/ex
+		mv.visitLdcInsn("Concatenated string is too long, exceeding the threshold of " +
+				MAX_CONCATENATED_STRING_LENGTH + " characters");
+		mv.visitMethodInsn(INVOKESPECIAL, "java/lang/IllegalStateException", "<init>",
+				"(Ljava/lang/String;)V", false);                       // stack: result/ex
+		mv.visitInsn(ATHROW);
+		mv.visitLabel(lengthVerified);                                 // stack: result
 	}
 
 	/**
